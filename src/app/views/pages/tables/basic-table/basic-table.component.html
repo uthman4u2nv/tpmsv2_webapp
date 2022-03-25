@@ -1,0 +1,248 @@
+
+<div class="row">
+  <div class="col-md-12 stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6"><h6 class="card-title">SWITCH RESPONSE CODES</h6>
+            <div class="spinner-border text-success" role="status" *ngIf="loading1">
+            <span class="sr-only">Loading...</span>
+          </div>
+          </div>
+          <div class="col-md-6"><div class="text-right" align="right"><div class="row"><div class="col-md-6 text-left"><input type="text" class="form-control" placeholder="Search" (keyup)="SearchErrors($event)" /></div><div class="col-md-6"><button class="btn btn-success" (click)="opnAddNewErrorModal(addModal)">Add Switch Response Code</button></div></div></div></div>
+           {{BankLoadingMessage}}
+        </div>
+        
+        <div class="table-responsive">
+         <!-- <ngx-datatable
+            class="bootstrap"
+            [rows]="rows"
+            [loadingIndicator]="loadingIndicator"
+            [columnMode]="ColumnMode.force"
+            [footerHeight]="50"
+            [limit]="10"
+            rowHeight="auto"
+          >
+            <ngx-datatable-column name="Id"></ngx-datatable-column>
+            <ngx-datatable-column name="Name"></ngx-datatable-column>
+            <ngx-datatable-column name="Gender"></ngx-datatable-column>
+            <ngx-datatable-column name="Age"></ngx-datatable-column>
+            <ngx-datatable-column name="City" prop="address.city"></ngx-datatable-column>
+            <ngx-datatable-column name="State" prop="address.state"></ngx-datatable-column>
+          </ngx-datatable>-->
+
+          <ngx-datatable class="bootstrap selection-cell" [rows]="rows" [columnMode]="'flex'" [headerHeight]="50" [footerHeight]="50" rowHeight="auto" [limit]="10"  [selected]="selected"
+          [selectionType]="SelectionType.cell"
+          (select)="onSelect($event,basicModal)" [loadingIndicator]="loadingIndicator"
+          [columnMode]="ColumnMode.force">
+            <ngx-datatable-column name="#" [flexGrow]="0.5">
+                <ng-template let-rowIndex="rowIndex" let-row="row" ngx-datatable-cell-template>
+                    {{(rowIndex + 1)}}
+                </ng-template>
+            </ngx-datatable-column>
+            <!--<ngx-datatable-column name="" [flexGrow]="2">
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                  {{row?.bankLogo}}
+              </ng-template>https://via.placeholder.com/60x60.png?text=no-logo
+          </ngx-datatable-column>-->
+          
+            
+            <ngx-datatable-column name="Response Code" prop="errorCode" [flexGrow]="2">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                    {{row?.errorCode}}
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Response Code Name" prop="errorCodeName" [flexGrow]="2">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                    {{row?.errorCodeName}}
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Response Code Type" prop="errorCodeType" [flexGrow]="2">
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                  <span class="badge badge-primary" *ngIf="row?.errorCodeType==1">Inwards</span>
+                  <span class="badge badge-info" *ngIf="row?.errorCodeType==2">Outwards</span>
+              </ng-template>
+          </ngx-datatable-column>
+            
+            
+        <ngx-datatable-column name="Status" prop="bankStatus" [flexGrow]="2">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+              <span class="badge badge-success" *ngIf="row?.errorCodeStatus==1">Active</span>
+              <span class="badge badge-danger" *ngIf="row?.errorCodeStatus==0">Inactive</span>
+          </ng-template>
+      </ngx-datatable-column>
+    
+        </ngx-datatable>
+
+
+        <ng-template #basicModal let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">{{errorCode}} &nbsp;{{errorCodeName}}</h5>
+    <button type="button" class="close" (click)="modal.close('by: close icon')" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="card">
+      <div class="card-body">
+       
+        <div class="alert alert-success" *ngIf="updateInfo">
+          {{updateMsg}}
+        </div>
+        <div class="spinner-border text-success" role="status" *ngIf="loading">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <form class="forms-sample needs-validation" #updateResponse="ngForm" >
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="errorCode">Response Code</label>
+                <input type="text" class="form-control" id="errorCode" required #errorCode="ngModel" [(ngModel)]="Obj.errorCode" name="errorCode" autocomplete="off" placeholder="Error Code">
+                <div [hidden]="errorCode.valid || errorCode.pristine" class="alert alert-danger">
+                  Response Code is required
+           </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="errorCodeName">Response Code Name</label>
+                <input type="text" class="form-control" required #errorCodeName="ngModel" [(ngModel)]="Obj.errorCodeName" name="errorCodeName" id="errorCodeName" placeholder="Error Code Name">
+                <div [hidden]="errorCodeName.valid || errorCodeName.pristine" class="alert alert-danger">
+                  Response is required
+           </div>
+              </div>
+            
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="errorCodeDesc">Response Code Desc</label>
+                <textarea class="form-control" rows="5" required #errorCodeDesc="ngModel"  [(ngModel)]="Obj.errorCodeDesc" name="errorCodeDesc" id="errorCodeDesc">
+                  
+                </textarea>
+                <div [hidden]="errorCodeDesc.valid || errorCodeDesc.pristine" class="alert alert-danger">
+                  Response Code Description is required
+           </div>
+              </div>
+            </div>
+            
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Response Code Type</label>
+                <div class="form-group">
+                  
+                  <select class="form-control" required [(ngModel)]="Obj.errorCodeType" name="errorCodeType" id="errorCodeType">
+                    <option value="1">Inwards</option>
+                    <option value="2">Outwards</option>
+                  </select>
+                 
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="errorCodeStatus">Response Code Status</label>
+                <div class="form-group">
+                  
+                  <select class="form-control" required [(ngModel)]="Obj.errorCodeStatus" name="errorCodeStatus" id="errorCodeStatus">
+                    <option value="1">Active</option>
+                    <option value="0">Inactive</option>
+                  </select>
+               
+                </div>
+              </div>
+            </div>
+          </div>
+                  
+        </form>
+      </div>
+
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modal.close('by: close button')">Close</button>
+    <button type="button" class="btn btn-success" [disabled]="!updateResponse.form.valid"  (click)="UpdateErrorCode(Obj)">Update Response Code</button>
+  </div>
+</ng-template>
+
+
+<ng-template #addModal let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">ADD NEW SWITCH RESPONSE CODE</h5>
+    <button type="button" class="close" (click)="modal.close('by: close icon')" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="card">
+      <div class="card-body">
+       
+        <div class="alert alert-success" *ngIf="addResp">
+          {{updateAddMsg}}
+        </div>
+        <div class="spinner-border text-success" role="status" *ngIf="loadingAdd">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <form class="forms-sample needs-validation" #addResponseCode="ngForm">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="bankName">Response Code</label>
+                <input type="text" class="form-control" id="errorCode" required #errorCode="ngModel" [(ngModel)]="Obj2.errorCode" name="errorCode" autocomplete="off" placeholder="Error Code">
+                <div [hidden]="errorCode.valid || errorCode.pristine" class="alert alert-danger">
+                  Response Code is required
+           </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="errorCodeName">Response Code Name</label>
+                <input type="text" class="form-control" required #errorCodeName="ngModel" [(ngModel)]="Obj2.errorCodeName" name="errorCodeName" id="errorCodeName" placeholder="Code Name">
+                <div [hidden]="errorCodeName.valid || errorCodeName.pristine" class="alert alert-danger">
+                  Response Code Name is required
+           </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="errorCodeDesc">Response Code Desc</label>
+                <textarea rows="5" class="form-control" required #errorCodeDesc="ngModel" [(ngModel)]="Obj2.errorCodeDesc" name="errorCodeDesc" id="errorCodeDesc">
+
+                </textarea>   
+                <div [hidden]="errorCodeDesc.valid || errorCodeDesc.pristine" class="alert alert-danger">
+                  Response Description is required
+           </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Response Code Type</label>
+                <select class="form-control" required [(ngModel)]="Obj2.errorCodeType" name="errorCodeType" id="errorCodeType">
+                  <option value="1">Inwards</option>
+                  <option value="2">Outwards</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        
+                 
+        </form>
+      </div>
+
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modal.close('by: close button')">Close</button>
+    <button type="button" class="btn btn-success" [disabled]="!addResponseCode.form.valid" (click)="AddError(Obj2)">Add Response Code </button>
+  </div>
+</ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

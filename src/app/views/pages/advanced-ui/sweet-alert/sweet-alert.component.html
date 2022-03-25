@@ -1,0 +1,299 @@
+
+
+<!--<div class="row">
+  <div class="col-md-12 grid-margin stretch-card" style="padding-left: 0px !important;">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-lg-10"> <h4 class="card-title">Dashboard</h4><a (click)="openFullscreen()" title="Full Screen"> <i data-feather="airplay" appFeatherIcon></i> </a></div>
+          <div class="col-lg-2 text-right"><input type="text" class="form-control" placeholder="Search Bank" (keyup)="SearchDashboard($event)" /></div>
+        </div>
+        
+        
+        
+      </div>
+    </div>
+  </div>
+</div>-->
+<div class="row" style="background-color: #ffff; padding:5px; margin-top: 0px !important;">
+  <div class="col-lg-10">DASHBOARD &nbsp;<a (click)="openFullscreen()" alt="Full Screen Mode" title="Full Screen" style="color: black;"> <i data-feather="airplay" appFeatherIcon></i>Full Screen Mode</a></div>
+    <div class="col-lg-2 text-right"><input type="text" class="form-control" placeholder="Search Bank" (keyup)="SearchDashboard($event)" /></div>
+</div>
+
+<div class="row table-responsive" #fullScreen  style="margin-top: 10px !important;"> 
+  <ul class="bbx" style="padding-left: 0px !important;" >
+  <!--<div class="col-6 col-md-6 col-xl-6">-->
+    <div class="card" style="border: 2px solid; border-color: darkcyan;" *ngFor="let rows of row" (click)="onSelect(rows.bankName,rows.bankLogo,rows.bankCode,basicModal)">
+      <!--<div class="card-header d-flex justify-content-center" style="margin-bottom: 0px !important; margin-top:-30px !important; color:black; " >
+        
+        
+      </div>-->
+      <div class="card-body" style="margin-top: 0px !important; padding: 2px !important;">
+
+        <div class="row">
+          <div class="col-lg-3 text-start" align="left"><img [src]="rows.bankLogo" height="40" width="40" class="rounded-circle z-depth-2" /></div>
+          <div class="col-lg-9">
+            <div class="row">
+              <div class="col-md-12 text-center border-bottom-2" ><strong>{{rows.bankName | uppercase}}</strong></div>
+            </div>
+            <div class="row" style="padding:5px !important" >
+              <!--<div class="col-md-4 blockss">
+                <small>Vol.</small>
+                <p class="text-start"><small>In:{{rows.inVolume}}</small></p>
+                <p class="text-start"><small>Out:{{rows.outVolume}}</small></p>
+                
+                
+       
+              </div>-->
+               <div class="col-md-6 blockss">
+                <!--<p class="text-start"><small>In</small></p>-->
+                <small>
+                 <strong>IN:</strong>
+                  
+                  <!--<p>-->
+                    <div class="circless" style="border: 1px solid; padding: 5px; width: 40px; height:40px; background-color: green; color: white;" *ngIf="rows.inRate > 0 && rows.inRate < 6"><p class="text-start">{{rows.inRate}}%</p></div>
+                  <div class="circless" style="padding: 5px; width: 40px; height:40px; background-color: yellow; color: black;" *ngIf="rows.inRate > 5 && rows.inRate < 7"><p class="text-start">{{rows.inRate}}%</p></div>
+                  <div class="circless" style="border: 2px solid; padding: 5px; width: 40px; height:40px; background-color: red; color: white;" *ngIf="rows.inRate > 7 && rows.inRate < 10"><p class="text-start">{{rows.inRate}}%</p></div>
+                  <div class="circless" style="border: 2px solid; padding: 5px; width: 40px; height:40px; background-color: red; color: white;" *ngIf="rows.inRate > 6.9 && rows.inRate < 7.1 "><p class="text-start">{{rows.inRate}}%</p></div>
+                  <div class="circless blink-bg"  style="border: 2px solid; padding: 5px; width: 40px; height:40px; color: white;" *ngIf="rows.inRate > 9.9"><p class="text-center">{{rows.inRate}}%</p></div>
+                 
+                  </small>
+              </div>
+              <div class="col-md-6 blockss text-start">
+                <!--<p class="text-start"><small>Out</small></p>-->
+                
+                <small>
+                 <strong>OUT:</strong>
+                 
+                  <div class="circless" style="border: 1px solid; padding: 5px; width: 40px; height:40px; background-color: green; color: white;" *ngIf="rows.outRate > 0 && rows.outRate < 6"><p class="text-start">{{rows.outRate}}%</p></div>
+                  <div class="circless" style=" padding: 5px; width: 40px; height:40px; background-color: yellow; color: black;" *ngIf="rows.outRate > 5 && rows.outRate < 7"><p class="text-start">{{rows.outRate}}%</p></div>
+                  <div class="circless" style="border: 2px solid; padding: 5px; width: 40px; height:40px; background-color: red; color: white;" *ngIf="rows.outRate > 6.9 && rows.outRate < 7.1 "><p class="text-start">{{rows.outRate}}%</p></div>
+                  <div class="circless" style="border: 2px solid; padding: 5px; width: 40px; height:40px; background-color: red; color: white;" *ngIf="rows.outRate > 7 && rows.outRate < 10"><p class="text-start">{{rows.outRate}}%</p></div>
+                  <div class="circless blink-bg"  style="border: 2px solid; padding: 5px; width: 40px; height:40px; color: white;" *ngIf="rows.outRate > 9.9"><p class="text-start">{{rows.outRate}}%</p></div>
+                </small>
+              
+            </div>
+            
+            </div>
+            
+          </div>
+        </div>
+       
+        
+        
+       
+        
+        
+      </div>
+      <div class="card-footer" style="padding: 2px !important;color:darkcyan">
+        <div class="row">
+          
+          <div class="col-md-12"><p class="text-center"><strong><small>Vol: In: {{rows.inVolume}} | Out: {{rows.outVolume}}</small></strong></p></div>
+        </div>
+      </div>
+    </div>
+ <!-- </div>-->
+  </ul>
+</div>
+
+<ng-template #basicModal let-modal>
+  <div class="modal-header">
+    
+    <div class="row">                
+      <div class="col-lg-3" valign="top" ><img [src]="bankLogo" height="60" width="60" class="rounded-circle z-depth-2" /></div>
+      <div class="col-lg-9" valign="top" style="padding-left: 30px !important;"><strong>{{bankName}}</strong><p><small><strong>{{bankCode}}</strong></small></p></div>
+      </div>
+    <button type="button" class="close" (click)="modal.close('by: close icon')" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+
+    
+    <div class="card">
+      <div class="card-body">
+        
+        <ul ngbNav #defaultNav="ngbNav" [(activeId)]="defaultNavActiveId" class="nav-tabs">
+          <li [ngbNavItem]="1">
+            <a ngbNavLink>INWARDS</a>
+            <ng-template ngbNavContent>
+              <div class="card shadow-lg p-3 mb-5 bg-white rounded" style="margin-top: 5px; margin-bottom: 2px !important;">
+                <h5 class="modal-title" style="color: darkcyan;">INWARDS TRANSACTIONS LAST 5 MINUTES 00:00:00 AM - 00:05:00 AM</h5>
+                <div class="card-body" style="padding-left: 5px !important;">
+                  <div class="row">                
+                  <div class="col-lg-4 text-start">
+                  <table class="table" style="font-size: small;">
+                    <tr><td colspan="2"><span style="color: darkcyan;">Inwards</span></td></tr>
+                    <tr><td>Txn Vol.</td><td>10</td></tr>
+                    <tr><td>Failed</td><td>1</td></tr>
+                    <tr><td class="text-start">Success</td><td class="text-start">Failed</td></tr>
+                    <tr><td><span class="rounded-circle" style="border: 2px solid; padding: 5px; width: 60px; height: 60px; background-color: indianred; color: #ffff;">90%</span></td><td><span class="rounded-circle" style="border: 2px solid; padding: 5px; width: 40px; background-color: green;color: #ffff;">10%</span></td></tr>
+    
+                  </table>
+                  </div>
+                  <div class="col-lg-8">
+                    <table class="table">
+                      <tr><td class="col-md-3" style="white-space:normal; word-wrap: break-word;min-width: 160px;max-width: 160px;">Status</td><td class="col-md-3">Volume</td></tr>
+                    <tr><td>Success(00)</td><td>10</td></tr>
+                    <tr><td>Insufficient Funds (AM04)</td><td>2</td></tr>
+                    <tr><td>Amount exceeds agreed limit (AM14)</td><td>4</td></tr>   
+                    </table>
+                                 
+                  </div>
+                  
+                  </div>
+                </div>
+              </div>
+              <!-- Daily Inwards-->
+              <div class="card shadow-lg p-3 mb-5 bg-white rounded" style="margin-top: 5px; margin-bottom: 2px !important;">
+                <h5 class="modal-title" style="color: darkcyan;">DAILY INWARDS TRANSACTIONS FOR 20-03-2022</h5>
+                <div class="card-body" style="padding-left: 5px !important;">
+                  <div class="row">                
+                  <div class="col-lg-4 text-start">
+                  <table class="table" style="font-size: small;">
+                    <tr><td colspan="2"><span style="color: darkcyan;">Inwards</span></td></tr>
+                    <tr><td>Txn Vol.</td><td>10</td></tr>
+                    <tr><td>Failed</td><td>1</td></tr>
+                    <tr><td class="text-start">Success</td><td class="text-start">Failed</td></tr>
+                    <tr><td><span class="rounded-circle" style="border: 2px solid; padding: 5px; width: 60px; height: 60px; background-color: indianred; color: #ffff;">90%</span></td><td><span class="rounded-circle" style="border: 2px solid; padding: 5px; width: 40px; background-color: green;color: #ffff;">10%</span></td></tr>
+    
+                  </table>
+                  </div>
+                  <div class="col-lg-8">
+                    <table class="table">
+                      <tr><td class="col-md-3" style="white-space:normal; word-wrap: break-word;min-width: 160px;max-width: 160px;">Status</td><td class="col-md-3">Volume</td></tr>
+                    <tr><td>Success(00)</td><td>10</td></tr>
+                    <tr><td>Insufficient Funds (AM04)</td><td>2</td></tr>
+                    <tr><td>Amount exceeds agreed limit (AM14)</td><td>4</td></tr>   
+                    </table>
+                                 
+                  </div>
+                  
+                  </div>
+                </div>
+              </div>
+              <!-- End Daily Inwards-->
+            </ng-template>
+          </li>
+          <li [ngbNavItem]="2">
+            <a ngbNavLink>OUTWARDS</a>
+            <ng-template ngbNavContent>
+              <div class="card shadow-lg p-3 mb-5 bg-white rounded" style="margin-top: 5px; margin-bottom: 2px !important;">
+                <h5 class="modal-title" style="color: darkcyan;">OUTWARDS TRANSACTIONS LAST 5 MINUTES 00:00:00AM - 00:05:00 AM</h5>
+                <div class="card-body" style="padding-left: 5px !important;">
+                  <div class="row">                
+                  <div class="col-lg-4 text-start">
+                  <table class="table" style="font-size: small;">
+                    <tr><td colspan="2"><span style="color: darkcyan;">Outwards</span></td></tr>
+                    <tr><td>Txn Vol.</td><td>10</td></tr>
+                    <tr><td>Failed</td><td>1</td></tr>
+                    <tr><td class="text-start">Success</td><td class="text-start">Failed</td></tr>
+                    <tr><td><span class="rounded-circle" style="border: 2px solid; padding: 5px; width: 60px; height: 60px; background-color: indianred; color: #ffff;">90%</span></td><td><span class="rounded-circle" style="border: 2px solid; padding: 5px; width: 40px; background-color: green;color: #ffff;">10%</span></td></tr>
+    
+                  </table>
+                  </div>
+                  <div class="col-lg-8">
+                    <table class="table">
+                      <tr><td class="col-md-3" style="white-space:normal; word-wrap: break-word;min-width: 160px;max-width: 160px;">Status</td><td class="col-md-3">Volume</td></tr>
+                    <tr><td>Success(00)</td><td>10</td></tr>
+                    <tr><td>Insufficient Funds (AM04)</td><td>2</td></tr>
+                    <tr><td>Amount exceeds agreed limit (AM14)</td><td>4</td></tr>   
+                    </table>
+                                 
+                  </div>
+                  
+                  </div>
+                </div>
+              </div>
+              <!--Daily Outwards-->
+              <div class="card shadow-lg p-3 mb-5 bg-white rounded" style="margin-top: 5px; margin-bottom: 2px !important;">
+                <h5 class="modal-title" style="color: darkcyan;">DAILY OUTWARDS TRANSACTIONS AS AT 2--03-2022</h5>
+                <div class="card-body" style="padding-left: 5px !important;">
+                  <div class="row">                
+                  <div class="col-lg-4 text-start">
+                  <table class="table" style="font-size: small;">
+                    <tr><td colspan="2"><span style="color: darkcyan;">Outwards</span></td></tr>
+                    <tr><td>Txn Vol.</td><td>10</td></tr>
+                    <tr><td>Failed</td><td>1</td></tr>
+                    <tr><td class="text-start">Success</td><td class="text-start">Failed</td></tr>
+                    <tr><td><span class="rounded-circle" style="border: 2px solid; padding: 5px; width: 60px; height: 60px; background-color: indianred; color: #ffff;">90%</span></td><td><span class="rounded-circle" style="border: 2px solid; padding: 5px; width: 40px; background-color: green;color: #ffff;">10%</span></td></tr>
+    
+                  </table>
+                  </div>
+                  <div class="col-lg-8">
+                    <table class="table">
+                      <tr><td class="col-md-3" style="white-space:normal; word-wrap: break-word;min-width: 160px;max-width: 160px;">Status</td><td class="col-md-3">Volume</td></tr>
+                    <tr><td>Success(00)</td><td>10</td></tr>
+                    <tr><td>Insufficient Funds (AM04)</td><td>2</td></tr>
+                    <tr><td>Amount exceeds agreed limit (AM14)</td><td>4</td></tr>   
+                    </table>
+                                 
+                  </div>
+                  
+                  </div>
+                </div>
+              </div>
+              <!--End Daily OUTWARDS-->
+            </ng-template>
+          </li>
+          <li [ngbNavItem]="3">
+            <a ngbNavLink>CHART VOLUME RATE</a>
+            <ng-template ngbNavContent>
+              <div class="card">
+                <div class="card-body">
+                  <h6 class="card-title">VOLUME</h6>
+          
+                  <canvas baseChart
+                    [datasets]="lineChartData"
+                    [labels]="lineChartLabels"
+                    [options]="lineChartOptions"
+                    [colors]="lineChartColors"
+                    [legend]="lineChartLegend"
+                    [chartType]="lineChartType"
+                    [plugins]="lineChartPlugins">
+                  </canvas>
+          
+                </div>
+              </div>
+            </ng-template>
+          </li>
+          <li [ngbNavItem]="4">
+            <a ngbNavLink>FAILURE RATE</a>
+            <ng-template ngbNavContent>
+              <div class="card">
+                <div class="card-body">
+                  <h6 class="card-title">FAILURE RATE</h6>
+          
+                  <canvas baseChart
+                    [datasets]="lineChartData1"
+                    [labels]="lineChartLabels1"
+                    [options]="lineChartOptions1"
+                    [colors]="lineChartColors1"
+                    [legend]="lineChartLegend1"
+                    [chartType]="lineChartType1"
+                    [plugins]="lineChartPlugins1">
+                  </canvas>
+          
+                </div>
+              </div>
+            </ng-template>
+          </li>
+        </ul>
+        
+        <div [ngbNavOutlet]="defaultNav" class="border border-top-0 p-3"></div>
+        <p class="mt-2">Active: {{ defaultNavActiveId }}</p>
+        
+      
+        
+      </div>
+
+    </div>
+  </div>
+  <div class="modal-footer">
+    
+  </div>
+</ng-template>
+
+
+

@@ -1,0 +1,14 @@
+{
+    "telemetry.machineId": "f4c46b1a0b2acdd92af9222ba3b3ec5896ac827cf380ff7ffba451893762f6d9",
+    "openedPathsList": {
+        "workspaces3": [
+            {
+                "id": "f94e39b932f9f427e76c04f061b2b456",
+                "configURIPath": "file:///c%3A/Users/UTHMAN/Desktop/IPSL/TPMSv2/tpmsv2_webapp/.metadata/codemix.code-workspace"
+            }
+        ],
+        "files2": []
+    },
+    "theme": "vs-dark",
+    "themeBackground": "#1e1e1e"
+}

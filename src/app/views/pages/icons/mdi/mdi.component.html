@@ -1,0 +1,243 @@
+
+<div class="row">
+  <div class="col-md-12 stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6"><h6 class="card-title">COLOR CODES</h6>
+            <div class="spinner-border text-success" role="status" *ngIf="loading1">
+            <span class="sr-only">Loading...</span>
+          </div>
+          </div>
+          <div class="col-md-6"><div class="text-right" align="right"><div class="row"><div class="col-md-6 text-left"><input type="text" class="form-control" placeholder="Search"  /></div><div class="col-md-6"><button class="btn btn-success" (click)="opnAddNewColorCodeModal(addModal)">Add Color Code</button></div></div></div></div>
+           {{BankLoadingMessage}}
+        </div>
+        
+        <div class="table-responsive">
+          <ngx-datatable class="bootstrap selection-cell" [rows]="rows" [columnMode]="'flex'" [headerHeight]="50" [footerHeight]="50" rowHeight="auto" [limit]="10"  [selected]="selected"
+          [selectionType]="SelectionType.cell"
+          (select)="onSelect($event,basicModal)" [loadingIndicator]="loadingIndicator"
+          [columnMode]="ColumnMode.force">
+            <ngx-datatable-column name="#" [flexGrow]="0.5">
+                <ng-template let-rowIndex="rowIndex" let-row="row" ngx-datatable-cell-template>
+                    {{(rowIndex + 1)}}
+                </ng-template>
+            </ngx-datatable-column>
+            <!--<ngx-datatable-column name="" [flexGrow]="2">
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                  {{row?.bankLogo}}
+              </ng-template>https://via.placeholder.com/60x60.png?text=no-logo
+          </ngx-datatable-column>-->
+          
+            
+            <ngx-datatable-column name="Name" prop="statusName" [flexGrow]="2">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                    {{row?.statusName}}
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Starting Value" prop="startingValue" [flexGrow]="2">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                    {{row?.startingValue}}
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="End Value" prop="endValue" [flexGrow]="2">
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                {{row?.endValue}}
+              </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Color" prop="colour" [flexGrow]="2">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              <input [(colorPicker)]="Obj.colour" [value]="row.colour" [style.background]="row.colour" [(colorPicker)]="row.colour" [disabled] class="form-control"/>
+            </ng-template>
+        </ngx-datatable-column>
+            
+            
+        <ngx-datatable-column name="Status" prop="status" [flexGrow]="2">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+              <span class="badge badge-success" *ngIf="row?.status==1">Active</span>
+              <span class="badge badge-danger" *ngIf="row?.status==0">Inactive</span>
+          </ng-template>
+      </ngx-datatable-column>
+    
+        </ngx-datatable>
+
+
+        <ng-template #basicModal let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel"> <!--<input [disabled] [(colorPicker)]="Obj.colour" [value]="statusName" [style.background]="colour" [(colorPicker)]="colour" class="form-control"/>-->{{statusName}}</h5>
+    <button type="button" class="close" (click)="modal.close('by: close icon')" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="card">
+      <div class="card-body">
+       
+        <div class="alert alert-success" *ngIf="updateInfo">
+          {{updateMsg}}
+        </div>
+        <div class="spinner-border text-success" role="status" *ngIf="loading">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <form class="forms-sample needs-validation" #updateColor="ngForm">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="statusName">Status Name</label>
+                <input type="text" class="form-control" id="statusName" required #statusName="ngModel" [(ngModel)]="Obj.statusName" name="statusName" autocomplete="off" placeholder="Status Name">
+                <div [hidden]="statusName.valid || statusName.pristine" class="alert alert-danger">
+                  Name is is required
+           </div>
+              </div>
+            </div>
+            <div class="col-md-6">          
+                
+              <div class="form-group">
+                <label for="colour">Colour</label>
+                <input [(colorPicker)]="Obj.colour" [value]="colour" required #color="ngModel" [style.background]="colour" [(colorPicker)]="colour" class="form-control"/>
+                <div [hidden]="colour.valid || colour.pristine" class="alert alert-danger">
+                  Colour is required
+           </div>
+              </div>
+            
+          </div>
+           
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="startingValue">Starting Value</label>
+                <input type="number" step="any" class="form-control" required #startingValue="ngModel" [(ngModel)]="Obj.startingValue" name="startingValue" id="startingValue" placeholder="Starting Value">
+                <div [hidden]="startingValue.valid || startingValue.pristine" class="alert alert-danger">
+                  Starting value is required
+           </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="endValue">End Value</label>
+                <input type="number" step="any" class="form-control" required #endValue="ngModel" [(ngModel)]="Obj.endValue" name="endValue" id="endValue" placeholder="End Value">
+                <div [hidden]="endValue.valid || endValue.pristine" class="alert alert-danger">
+                  End Value is required
+           </div>
+              </div>
+            </div>
+           <!--here-->
+            <div class="col-md-4">           
+                
+                <div class="form-group">
+                  <label for="status">Status</label>
+                  <select class="form-control" required #status="ngModel" [(ngModel)]="Obj.status" name="status" id="status">
+                    <option value="1">Active</option>
+                    <option value="0">Inactive</option>
+                  </select>
+                </div>
+              
+            </div>
+            
+          </div>
+          
+                  
+        </form>
+      </div>
+
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modal.close('by: close button')">Close</button>
+    <button type="button" class="btn btn-success" [disabled]="!updateColor.form.valid"  (click)="UpdateColourCode(Obj)">Update Color Code</button>
+  </div>
+</ng-template>
+
+
+<ng-template #addModal let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">ADD NEW COLOUR CODE</h5>
+    <button type="button" class="close" (click)="modal.close('by: close icon')" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="card">
+      <div class="card-body">
+       
+        <div class="alert alert-success" *ngIf="addResp">
+          {{updateAddMsg}}
+        </div>
+        <div class="spinner-border text-success" role="status" *ngIf="loadingAdd">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <form class="forms-sample needs-validation" #addColor="ngForm">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="statusName">Display Name</label>
+                <input type="text" class="form-control" id="statusName" required #statusName="ngModel" [(ngModel)]="Obj2.statusName" name="statusName" autocomplete="off" placeholder="Display Name">
+                <div [hidden]="statusName.valid || statusName.pristine" class="alert alert-danger">
+                  Name is required
+           </div>
+              </div>
+            </div>
+            <div class="col-md-6">          
+                
+              <div class="form-group">
+                <label for="colour">Colour</label>
+                <input [(colorPicker)]="Obj2.colour" [value]="Obj2.colour" required #colour="ngModel" [style.background]="Obj2.colour" [(colorPicker)]="Obj2.colour" class="form-control"/>
+                <div [hidden]="colour.valid || colour.pristine" class="alert alert-danger">
+                  Colour is required
+           </div>
+              </div>
+            
+          </div>
+            
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="startingValue">Starting Value</label>
+                <input type="number" step="any" class="form-control" required #startingVakue="ngModel" [(ngModel)]="Obj2.startingValue" name="startingValue" id="startingValue" placeholder="Starting Value">
+                <div [hidden]="startingValue.valid || startingValue.pristine" class="alert alert-danger">
+                  Response Code Description is required
+           </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="endValue">End Value</label>
+                <input type="number" step="any" class="form-control" required #endValue="ngModel" [(ngModel)]="Obj2.endValue" name="endValue" id="endValue" placeholder="Ending Value">
+                <div [hidden]="endValue.valid || endValue.pristine" class="alert alert-danger">
+                  Response Code Description is required
+           </div>
+              </div>
+            </div>
+            <div class="col-md-4">           
+                
+              <div class="form-group">
+                <label for="status">Status</label>
+                <select class="form-control"  [(ngModel)]="Obj2.status" name="status" id="status">
+                  <option value="1">Active</option>
+                  <option value="0">Inactive</option>
+                </select>
+              </div>
+            
+          </div>
+            
+            
+          </div>
+        
+                 
+        </form>
+      </div>
+
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modal.close('by: close button')">Close</button>
+    <button type="button" class="btn btn-success" [disabled]="!addColor.form.valid"  (click)="AddColourCode(Obj2)">Add Color Code </button>
+  </div>
+</ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

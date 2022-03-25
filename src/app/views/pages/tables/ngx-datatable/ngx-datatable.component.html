@@ -1,0 +1,308 @@
+
+<div class="row">
+  <div class="col-md-12 stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6"><h6 class="card-title">BANKS</h6></div>
+          <div class="col-md-6"><div class="text-right" align="right"><div class="row"><div class="col-md-6 text-left"><input type="text" class="form-control" placeholder="Search" (keyup)="SearchBanks($event)" /></div><div class="col-md-6"><button class="btn btn-success" (click)="opnAddNewBankModal(addModal)">Add Bank</button></div></div></div></div>
+           {{BankLoadingMessage}}
+        </div>
+        
+        <div class="table-responsive">
+         <!-- <ngx-datatable
+            class="bootstrap"
+            [rows]="rows"
+            [loadingIndicator]="loadingIndicator"
+            [columnMode]="ColumnMode.force"
+            [footerHeight]="50"
+            [limit]="10"
+            rowHeight="auto"
+          >
+            <ngx-datatable-column name="Id"></ngx-datatable-column>
+            <ngx-datatable-column name="Name"></ngx-datatable-column>
+            <ngx-datatable-column name="Gender"></ngx-datatable-column>
+            <ngx-datatable-column name="Age"></ngx-datatable-column>
+            <ngx-datatable-column name="City" prop="address.city"></ngx-datatable-column>
+            <ngx-datatable-column name="State" prop="address.state"></ngx-datatable-column>
+          </ngx-datatable>-->
+
+          <ngx-datatable class="bootstrap selection-cell" [rows]="rows" [columnMode]="'flex'" [headerHeight]="50" [footerHeight]="50" rowHeight="auto" [limit]="10"  [selected]="selected"
+          [selectionType]="SelectionType.cell"
+          (select)="onSelect($event,basicModal)" [loadingIndicator]="loadingIndicator"
+          [columnMode]="ColumnMode.force">
+            <ngx-datatable-column name="#" [flexGrow]="0.5">
+                <ng-template let-rowIndex="rowIndex" let-row="row" ngx-datatable-cell-template>
+                    {{(rowIndex + 1)}}
+                </ng-template>
+            </ngx-datatable-column>
+            <!--<ngx-datatable-column name="" [flexGrow]="2">
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                  {{row?.bankLogo}}
+              </ng-template>https://via.placeholder.com/60x60.png?text=no-logo
+          </ngx-datatable-column>-->
+          <ngx-datatable-column name="Bank Logo" prop="bankLogo" [flexGrow]="2">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              <ng-container *ngIf="row?.bankLogo; else elseTemplate">
+                <img src="{{row?.bankLogo}}" height="40" width="40" />
+              </ng-container>
+              <ng-template #elseTemplate>
+                <img src="https://via.placeholder.com/60x60.png?text=no-logo" class="img-responsive">
+            </ng-template>
+                
+            </ng-template>
+        </ngx-datatable-column>
+            <ngx-datatable-column name="Bank Name" prop="bankName" [flexGrow]="2">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                    {{ row?.bankName | titlecase }}
+                </ng-template>
+            </ngx-datatable-column>
+            
+            <ngx-datatable-column name="Bank Code" prop="bankCode" [flexGrow]="2">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                    {{row?.bankCode}}
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Bank Email" prop="bankEmail" [flexGrow]="2">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                    {{row?.bankEmail}}
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Bank Phone" prop="bankPhone" [flexGrow]="2">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                    {{row?.bankPhone}}
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Failure Threshold" prop="failureThreshold" [flexGrow]="2">
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                  {{row?.failureThreshold}}
+              </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Volume Threshold" prop="volumeThreshold" [flexGrow]="2">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                {{row?.volumeThreshold}}
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Status" prop="bankStatus" [flexGrow]="2">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+              <span class="badge badge-success" *ngIf="row?.bankStatus==1">Active</span>
+              <span class="badge badge-danger" *ngIf="row?.bankStatus==0">Inactive</span>
+          </ng-template>
+      </ngx-datatable-column>
+    
+        </ngx-datatable>
+
+
+        <ng-template #basicModal let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel"><img src="{{bankLogo}}" height="40" width="40" />&nbsp;{{bankName}}</h5>
+    <button type="button" class="close" (click)="modal.close('by: close icon')" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="card">
+      <div class="card-body">
+       
+        <div class="alert alert-success" *ngIf="updateInfo">
+          {{updateMsg}}
+        </div>
+        <div class="spinner-border text-success" role="status" *ngIf="loading">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <form class="forms-sample needs-validation" #updateBank="ngForm">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="bankName">Bank Name</label>
+                <input type="text" class="form-control" id="bankName" required #bankName="ngModel" [(ngModel)]="Obj.bankName" name="bankName" autocomplete="off" placeholder="Bank Name">
+                <div [hidden]="bankName.valid || bankName.pristine" class="alert alert-danger">
+                  Bank Name is required
+           </div>  
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="bankCode">Bank Code</label>
+                <input type="text" class="form-control" required #bankCode="ngModel" (change)="CheckCode($event)" [(ngModel)]="Obj.bankCode" name="bankCode" id="bankCode" placeholder="Code">
+                <div [hidden]="bankCode.valid || bankCode.pristine" class="alert alert-danger">
+                  Bank Code is required
+           </div>  
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="email">Bank Email</label>
+                <input type="email" class="form-control" required #bankEmail="ngModel"  [(ngModel)]="Obj.bankEmail" name="bankEmail" id="bankEmail" placeholder="Email">
+                <div [hidden]="bankEmail.valid || bankEmail.pristine" class="alert alert-danger">
+                  Email is required
+           </div>  
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Bank Phone</label>
+                <input type="tel" class="form-control" required #bankPhone="ngModel"  [(ngModel)]="Obj.bankPhone" name="bankPhone" id="bankPhone" placeholder="Phone">
+                <div [hidden]="bankPhone.valid || bankPhone.pristine" class="alert alert-danger">
+                  Bank Phone is required
+           </div>  
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Failure Threshold</label>
+                <input type="number" required class="form-control" required #failureThreshold="ngModel"  [(ngModel)]="Obj.failureThreshold" name="failureThreshold" id="failureThreshold" placeholder="Failure Threshold">
+                <div [hidden]="failureThreshold.valid || failureThreshold.pristine" class="alert alert-danger">
+                  Failure Threshold is required
+           </div>  
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Volume Threshold</label>
+                <input type="number" required class="form-control" id="volumeThreshold" required #volumeThreshold="ngModel"  [(ngModel)]="Obj.volumeThreshold" name="volumeThreshold" placeholder="Volume Threshold">
+                <div [hidden]="volumeThreshold.valid || volumeThreshold.pristine" class="alert alert-danger">
+                  Volume Threshold is required
+           </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Bank Logo</label>
+                <input type="hidden" required class="form-control" id="bankLogo"  [(ngModel)]="Obj.bankLogo" name="bankLogo" placeholder="Bank Logo Link">
+                <input type="file" (change)="fileChangeEvent($event)" class="form-control" />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="bankStatus">Status</label>
+                <select class="form-control" required [(ngModel)]="Obj.bankStatus" name="bankStatus" id="bankStatus">
+                  <option value="1">Active</option>
+                  <option value="0">Inactive</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-6"></div>
+          </div>
+         
+         
+          
+          
+         
+          
+          
+          
+         
+        
+        </form>
+      </div>
+
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modal.close('by: close button')">Close</button>
+    <button type="button" class="btn btn-success" [disabled]="!updateBank.form.valid"  (click)="UpdateBanks(Obj)">Update Bank</button>
+  </div>
+</ng-template>
+
+
+<ng-template #addModal let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">ADD NEW BANK</h5>
+    <button type="button" class="close" (click)="modal.close('by: close icon')" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="card">
+      <div class="card-body">
+       
+        <div class="alert alert-success" *ngIf="addResp">
+          {{updateAddMsg}}
+        </div>
+        <div class="spinner-border text-success" role="status" *ngIf="loadingAdd">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <form class="forms-sample needs-validation" #addBank="ngForm">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="bankName">Bank Name</label>
+                <input type="text" class="form-control" id="bankName" required #bankName="ngModel" [(ngModel)]="Obj2.bankName" name="bankName" autocomplete="off" placeholder="Bank Name">
+                <div [hidden]="bankName.valid || bankName.pristine" class="alert alert-danger">
+                  Bank Name is required
+           </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="bankCode">Bank Code</label>
+                <input type="text" class="form-control" required #bankCode="ngModel" [(ngModel)]="Obj2.bankCode" name="bankCode" id="bankCode" placeholder="Code">
+                <div [hidden]="bankCode.valid || bankCode.pristine" class="alert alert-danger">
+                  Bank Code is required
+           </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Bank Email</label>
+                <input type="email" class="form-control" required #bankEmail="ngModel"  [(ngModel)]="Obj2.bankEmail" name="bankEmail" id="bankEmail" placeholder="Email">
+                <div [hidden]="bankEmail.valid || bankEmail.pristine" class="alert alert-danger">
+                  Email is required
+           </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Bank Phone</label>
+                <input type="tel" class="form-control" required #bankPhone="ngModel"  [(ngModel)]="Obj2.bankPhone" name="bankPhone" id="bankPhone" placeholder="Phone">
+                <div [hidden]="bankPhone.valid || bankPhone.pristine" class="alert alert-danger">
+                  Bank Phone is required
+           </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Failure Threshold</label>
+                <input type="number" required class="form-control" required #failureThreshold="ngModel"  [(ngModel)]="Obj2.failureThreshold" name="failureThreshold" id="failureThreshold" placeholder="Failure Threshold">
+                <div [hidden]="failureThreshold.valid || failureThreshold.pristine" class="alert alert-danger">
+                  Failure Threshold is required
+           </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Volume Threshold</label>
+                <input type="number" required class="form-control" id="volumeThreshold" #volumeThreshold="ngModel"  [(ngModel)]="Obj2.volumeThreshold" name="volumeThreshold" placeholder="Volume Threshold">
+                <div [hidden]="volumeThreshold.valid || volumeThreshold.pristine" class="alert alert-danger">
+                  Volume Threshold is required
+           </div>
+              </div>
+            </div>
+          </div>
+                 
+        </form>
+      </div>
+
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modal.close('by: close button')">Close</button>
+    <button type="button" class="btn btn-success" [disabled]="!addBank.form.valid" (click)="AddBank(Obj2)">Add Bank</button>
+  </div>
+</ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
