@@ -14,11 +14,27 @@ import { HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { NgBootstrapFormValidationModule } from 'ng-bootstrap-form-validation';
+import { GoogleChartsModule } from 'angular-google-charts';
+import { environment } from 'src/environments/environment';
+//import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+//import { Socket } from 'ngx-socket-io';  
+import { Injectable } from '@angular/core';
+import { map } from 'rxjs/operators';
+import { ServiceWorkerModule } from '@angular/service-worker';
+//import { GuagechartComponent } from './guagechart/guagechart.component';
+
+/*const config: SocketIoConfig = {
+	url: environment.socketUrl, // socket server url;
+	options: {
+		transports: ['websocket']
+	}
+}*/
 
 @NgModule({
   declarations: [
     AppComponent,
     ErrorPageComponent,
+    //GuagechartComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,7 +44,16 @@ import { NgBootstrapFormValidationModule } from 'ng-bootstrap-form-validation';
     HttpClientModule,
     FormsModule,
     NgBootstrapFormValidationModule.forRoot(),
-    NgBootstrapFormValidationModule
+    NgBootstrapFormValidationModule,
+    GoogleChartsModule.forRoot(),
+    //SocketIoModule.forRoot(config),
+    //SocketIoModule.forRoot({ url: 'http://localhost:8586' }),
+    /*ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    }),*/
 
   ],
   providers: [
@@ -43,8 +68,9 @@ import { NgBootstrapFormValidationModule } from 'ng-bootstrap-form-validation';
           scss: () => import('highlight.js/lib/languages/scss'),
         }
       }
-    }
+    },
   ],
+  
   bootstrap: [AppComponent]
 })
 export class AppModule { }

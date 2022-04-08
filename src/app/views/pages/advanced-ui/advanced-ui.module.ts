@@ -14,6 +14,23 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import {NgbActiveModal, NgbModal, NgbNav, NgbNavConfig,NgbNavModule} from "@ng-bootstrap/ng-bootstrap";
 import { NgApexchartsModule } from "ng-apexcharts";
 import { ChartsModule } from 'ng2-charts';
+import { FormsModule } from '@angular/forms';
+import { GoogleChartsModule } from 'angular-google-charts';
+import {GuagechartComponent} from './../../../guagechart/guagechart.component'
+//import { Socket } from 'ngx-socket-io';
+import { environment } from 'src/environments/environment';
+//import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+//import { Socket } from 'ngx-socket-io';  
+import { Injectable } from '@angular/core';
+import { map } from 'rxjs/operators';
+
+/*const config: SocketIoConfig = {
+	url: environment.socketUrl, // socket server url;
+	options: {
+		transports: ['websocket']
+	}
+}*/
+
 
 
 
@@ -28,7 +45,7 @@ const routes: Routes = [
         pathMatch: 'full'
       },
       {
-        path: 'cropper',
+        path: 'report',
         component: ImageCropperComponent
       },
       {
@@ -44,8 +61,12 @@ const routes: Routes = [
   }
 ]
 
+
+
 @NgModule({
-  declarations: [AdvancedUiComponent, ImageCropperComponent, OwlCarouselComponent, SweetAlertComponent],
+  declarations: [AdvancedUiComponent, ImageCropperComponent, OwlCarouselComponent, SweetAlertComponent,GuagechartComponent],
+  exports: [GuagechartComponent],
+  
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
@@ -55,9 +76,14 @@ const routes: Routes = [
     NgxDatatableModule,
     NgbNavModule,
     NgApexchartsModule,
-    ChartsModule
+    ChartsModule,
+    FormsModule,
+    GoogleChartsModule.forRoot(),
+    //SocketIoModule.forRoot(config),
 
 
   ]
+  
+  
 })
 export class AdvancedUiModule { }

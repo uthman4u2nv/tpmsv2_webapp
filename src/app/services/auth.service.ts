@@ -28,6 +28,9 @@ export interface LoginResponse{
   phone:string;
   bank:number;
   role:number;
+  dateJoined:string;
+  roleName:string;
+  bankName:string;
 
 	
 }

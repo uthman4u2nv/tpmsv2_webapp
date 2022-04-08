@@ -1,6 +1,75 @@
-:host {
+/*:host {
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+}*/
+body {
+  padding: 0;
+  background-color: #1e3c72 !important;
+  height: 100%;
+}
+
+.body-bg {
+  background-image: url(../../../../../assets/images/cubes-isometric.svg);   
+  background-repeat: repeat;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  //opacity: 0.9;
+  background-color: #1e3c72 !important;
+  position: relative;
+  //z-index:-1;
+}
+
+
+.main-bg {
+  display: block;
+  margin: 0 auto;
+  width:1200px;
+  height: 100%;
+  margin-bottom: 40px !important;
+  //z-index: -10;
+}
+
+.account-block {
+  padding: 0;
+  background-image: url(../../../../../assets/images/abstract_img.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  position: relative;
+}
+
+.account-block .overlay {
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.account-block .account-testimonial {
+  text-align: center;
+  color: #fff;
+  position: absolute;
+  margin: 0 auto;
+  padding: 0 1.75rem;
+  bottom: 3rem;
+  left: 0;
+  right: 0;
+}
+
+.text-theme {
+  color: #5369f8 !important;
+}
+
+.btn-theme {
+  background-color: #5369f8; 
+  border-color: #5369f8;
+  color: #fff;
 }

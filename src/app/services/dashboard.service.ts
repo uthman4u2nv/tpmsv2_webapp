@@ -30,4 +30,5 @@ export interface dashboardResp{
   bankName:string;
   bankCode:string;
   bankLogo:string;
+  totalRate:number;
 }

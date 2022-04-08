@@ -37,11 +37,14 @@ export class LoginComponent implements OnInit {
       if(d.responseCode=="00"){
         localStorage.setItem("fullnames",d.fullnames);
         localStorage.setItem("email",d.email);
-        localStorage.setItem("phones",d.phone);
+        localStorage.setItem("phone",d.phone);
         localStorage.setItem("bank",d.bank.toString());
         localStorage.setItem("role",d.role.toString());
         this.router.navigate(['dashboard-new/dashboard-new']);
         localStorage.setItem('isLoggedin', 'true');
+        localStorage.setItem("dateJoined",d.dateJoined);
+        localStorage.setItem("bankName",d.bankName);
+        localStorage.setItem("roleName",d.roleName);
         this.btnLink="Login";
       }else{
         this.validation=true;

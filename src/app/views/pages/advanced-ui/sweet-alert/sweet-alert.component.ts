@@ -1,4 +1,4 @@
-import { Component, Input, OnInit,ViewChild } from '@angular/core';
+import { Component, Injectable, Input, OnInit,ViewChild } from '@angular/core';
 import { ColumnMode,SelectionType } from '@swimlane/ngx-datatable';
 import { DashboardService } from '../../../../services/dashboard.service'
 import { HttpClient,HttpErrorResponse } from '@angular/common/http';
@@ -7,11 +7,16 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import { DomSanitizer } from '@angular/platform-browser';
 import { ChartOptions, ChartType, ChartDataSets, RadialChartOptions } from 'chart.js';
 import { Label, Color, SingleDataSet } from 'ng2-charts';
+import { WebSocketServiceService } from '../../../../services/web-socket-service.service';
+
+
+
 
 @Component({
   selector: 'app-sweet-alert',
   templateUrl: './sweet-alert.component.html'
 })
+@Injectable()
 export class SweetAlertComponent implements OnInit {
 
   @Input() Obj={bankCode:"",bankName:"",bankLogo:""}
@@ -26,9 +31,16 @@ export class SweetAlertComponent implements OnInit {
   defaultNavActiveId=1;
   incomingdata:any[]=[];
   outgoingdata:any[]=[];
+  mydata:"";
   @ViewChild('fullScreen') divRef;
 
-  constructor(public dash:DashboardService,private _sanitizer: DomSanitizer,private modalService: NgbModal) { }
+  
+//
+  constructor(public dash:DashboardService,private _sanitizer: DomSanitizer,private modalService: NgbModal,private wss:WebSocketServiceService) {
+
+
+   }
+  
 
 
   
@@ -87,8 +99,28 @@ export class SweetAlertComponent implements OnInit {
   ];
 
   ngOnInit(): void {
-    this.FetchDashboard();
+    //this.FetchDashboard();
+    //this.LoadDashboard();
+    //this.wss.FetchDash();
+    //this.wss.FetchDashboard().subscribe((data: any) => this.row = data)
+    //this.wss.Fet().subscribe((data: any) => console.log(data))
+    this.wss.listen().subscribe((data)=>{
+      this.row=data;
+      this.DisplayDashboard(data);console.log("dataaaaa"+data)
+    },error=>{
+      console.log(error+"Error");
+    });
 
+  }
+
+  LoadDashboard(){
+    this.wss.listen().subscribe(d=>{
+      this.row=d;
+    },(error)=>{console.log(error)})
+  }
+  DispData(data){
+    //console.log("Pushed Data:"+data);
+    this.mydata=data;
   }
   openFullscreen() {
     // Use this.divRef.nativeElement here to request fullscreen
@@ -104,10 +136,15 @@ export class SweetAlertComponent implements OnInit {
       elem.webkitRequestFullscreen();
     }
   }
+  DisplayDashboard(data){
+    //console.log("Dataaaa:"+data);
+    this.row=data;
+  }
   FetchDashboard(){
     this.dash.FetchDashboard().subscribe(d=>{
-     // console.log(d);
+     
       this.row=d;
+      
     },(err: HttpErrorResponse)=>{
 
     })
@@ -156,7 +193,7 @@ export class SweetAlertComponent implements OnInit {
       this.incomingdata.push(dd);
       return dd;
       //return "["+this.incomingdata+"]";
-      console.log("Incoming Analyticssss:"+"["+this.incomingdata+"]");
+      //console.log("Incoming Analyticssss:"+"["+this.incomingdata+"]");
       
     },(err: HttpErrorResponse)=>{
 

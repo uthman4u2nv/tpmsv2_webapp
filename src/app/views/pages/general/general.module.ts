@@ -13,6 +13,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { PricingComponent } from './pricing/pricing.component';
 import { TimelineComponent } from './timeline/timeline.component';
 import { Routes, RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {
@@ -60,7 +61,8 @@ const routes: Routes = [
     FeahterIconModule,
     NgbAccordionModule,
     NgbDropdownModule,
-    NgbTooltipModule
+    NgbTooltipModule,
+    FormsModule
   ]
 })
 export class GeneralModule { }

@@ -25,7 +25,9 @@ export const environment = {
   updatecoloururl:'http://localhost:8585/display/UpdateDisplaySettings',
   addcoloururl:'http://localhost:8585/display/addNewDisplaySettings',
   dashboardanalytics:'http://localhost:8585/dashboard/analytics',
-  authurl:'http://localhost:8585/auth/login'
+  authurl:'http://localhost:8585/auth/login',
+  geteffreporturl:'https://localhost:44349/api/Report',
+  socketUrl:'http://localhost:8586'
 };
 
 /*

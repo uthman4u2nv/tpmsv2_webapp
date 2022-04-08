@@ -18,16 +18,17 @@ export const MENU: MenuItem[] = [
     link: '/settings/codes',
   },
   {
-    icon: 'people',
+    icon: 'home',
     label: 'Manage Users',
     link: '/settings/users',
   },
   {
-    icon:'layout',
+    icon:'home',
     label: 'Manage Banks',
     link: '/settings/banks'
   },
   {
+    icon:'home',
     label: 'Manage Color Codes',
     link: '/icons/mdi-icons'
   },
@@ -173,26 +174,27 @@ export const MENU: MenuItem[] = [
       },
     ]
   },*/
-  /*{
-    label: 'Advanced UI',
+  {
+    label: 'Efficiency Report',
     icon: 'anchor',
     subItems: [
       {
-        label: 'Cropper',
-        link: '/advanced-ui/cropper',
+        label: 'Generate Report',
+        //link: '/dashboard-new/cropper',
+        link: '/dashboard-new/report',
       },
       {
-        label: 'Owl carousel',
-        link: '/advanced-ui/owl-carousel',
+        label: 'Manage Response Codes',
+        link: '/advanced-ui/owl-carel',
       },
-      {
+      /*{
         label: 'Dashboard New',
         //link: '/advanced-ui/sweet-alert',
         link: '/dashboard-new/dashboard-new',
-      },
+      },*/
     ]
   },
-  {
+ /* {
     label: 'Forms',
     icon: 'file-text',
     subItems: [

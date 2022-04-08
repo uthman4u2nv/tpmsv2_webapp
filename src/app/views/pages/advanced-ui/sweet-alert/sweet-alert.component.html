@@ -20,21 +20,22 @@
     <div class="col-lg-2 text-right"><input type="text" class="form-control" placeholder="Search Bank" (keyup)="SearchDashboard($event)" /></div>
 </div>
 
-<div class="row table-responsive" #fullScreen  style="margin-top: 10px !important;"> 
+<div class="row table-responsive" #fullScreen  style="margin-top: 10px !important; background-color: white;"> 
   <ul class="bbx" style="padding-left: 0px !important;" >
   <!--<div class="col-6 col-md-6 col-xl-6">-->
-    <div class="card" style="border: 2px solid; border-color: darkcyan;" *ngFor="let rows of row" (click)="onSelect(rows.bankName,rows.bankLogo,rows.bankCode,basicModal)">
+    
+    <div class="card shadow rounded" style="border: 2px solid; border-color: darkgray;overflow: hidden; " *ngFor="let rows of row" (click)="onSelect(rows.bankName,rows.bankLogo,rows.bankCode,basicModal)">
       <!--<div class="card-header d-flex justify-content-center" style="margin-bottom: 0px !important; margin-top:-30px !important; color:black; " >
         
         
       </div>-->
-      <div class="card-body" style="margin-top: 0px !important; padding: 2px !important;">
+      <div class="card-body" style="margin-top: 0px !important; padding: 2px !important;margin-bottom:0px !important;">
 
         <div class="row">
-          <div class="col-lg-3 text-start" align="left"><img [src]="rows.bankLogo" height="40" width="40" class="rounded-circle z-depth-2" /></div>
+          <div class="col-lg-3 text-start" align="left"><img [src]="rows.bankLogo" height="40" width="40" class="rounded-circle image z-depth-2 border"  /></div>
           <div class="col-lg-9">
             <div class="row">
-              <div class="col-md-12 text-center border-bottom-2" ><strong>{{rows.bankName | uppercase}}</strong></div>
+              <div class="col-md-12 text-center" ><strong>{{rows.bankName | uppercase}}</strong></div>
             </div>
             <div class="row" style="padding:5px !important" >
               <!--<div class="col-md-4 blockss">
@@ -45,33 +46,39 @@
                 
        
               </div>-->
-               <div class="col-md-6 blockss">
-                <!--<p class="text-start"><small>In</small></p>-->
-                <small>
-                 <strong>IN:</strong>
-                  
-                  <!--<p>-->
-                    <div class="circless" style="border: 1px solid; padding: 5px; width: 40px; height:40px; background-color: green; color: white;" *ngIf="rows.inRate > 0 && rows.inRate < 6"><p class="text-start">{{rows.inRate}}%</p></div>
-                  <div class="circless" style="padding: 5px; width: 40px; height:40px; background-color: yellow; color: black;" *ngIf="rows.inRate > 5 && rows.inRate < 7"><p class="text-start">{{rows.inRate}}%</p></div>
-                  <div class="circless" style="border: 2px solid; padding: 5px; width: 40px; height:40px; background-color: red; color: white;" *ngIf="rows.inRate > 7 && rows.inRate < 10"><p class="text-start">{{rows.inRate}}%</p></div>
-                  <div class="circless" style="border: 2px solid; padding: 5px; width: 40px; height:40px; background-color: red; color: white;" *ngIf="rows.inRate > 6.9 && rows.inRate < 7.1 "><p class="text-start">{{rows.inRate}}%</p></div>
-                  <div class="circless blink-bg"  style="border: 2px solid; padding: 5px; width: 40px; height:40px; color: white;" *ngIf="rows.inRate > 9.9"><p class="text-center">{{rows.inRate}}%</p></div>
-                 
-                  </small>
-              </div>
-              <div class="col-md-6 blockss text-start">
-                <!--<p class="text-start"><small>Out</small></p>-->
-                
-                <small>
-                 <strong>OUT:</strong>
-                 
-                  <div class="circless" style="border: 1px solid; padding: 5px; width: 40px; height:40px; background-color: green; color: white;" *ngIf="rows.outRate > 0 && rows.outRate < 6"><p class="text-start">{{rows.outRate}}%</p></div>
-                  <div class="circless" style=" padding: 5px; width: 40px; height:40px; background-color: yellow; color: black;" *ngIf="rows.outRate > 5 && rows.outRate < 7"><p class="text-start">{{rows.outRate}}%</p></div>
-                  <div class="circless" style="border: 2px solid; padding: 5px; width: 40px; height:40px; background-color: red; color: white;" *ngIf="rows.outRate > 6.9 && rows.outRate < 7.1 "><p class="text-start">{{rows.outRate}}%</p></div>
-                  <div class="circless" style="border: 2px solid; padding: 5px; width: 40px; height:40px; background-color: red; color: white;" *ngIf="rows.outRate > 7 && rows.outRate < 10"><p class="text-start">{{rows.outRate}}%</p></div>
-                  <div class="circless blink-bg"  style="border: 2px solid; padding: 5px; width: 40px; height:40px; color: white;" *ngIf="rows.outRate > 9.9"><p class="text-start">{{rows.outRate}}%</p></div>
-                </small>
               
+               <div class="col-md-6 blockss" style="margin-right: -20px !important;">
+
+                
+                <!--<div class="align-items-end"><small>IN</small></div>-->
+                <div class="align-items-end">
+                <small>
+                 <!--<p class="text-center"><strong>IN:</strong></p>-->
+                 <div class="text-center" style="padding: 5px; width: 40px;  color: black;"><p class="text-start" style="color: darkcyan;"><strong>IN</strong></p></div>
+                 <div class="circless text-center" style="border: 1px solid; padding: 5px; width: 40px; height:40px; background-color: green; color: white;" *ngIf="rows.inRate ==0"><p class="text-start">{{rows.inRate}}%</p></div>
+                  <div class="circless text-center" style="border: 1px solid; padding: 5px; width: 40px; height:40px; background-color: green; color: white;" *ngIf="rows.inRate > 0 && rows.inRate < 6"><p class="text-start">{{rows.inRate}}%</p></div>
+                  <div class="circless text-center" style="padding: 5px; width: 40px; height:40px; background-color: yellow; color: black;" *ngIf="rows.inRate > 5 && rows.inRate < 7"><p class="text-start">{{rows.inRate}}%</p></div>
+                  <div class="circless text-center" style="border: 2px solid; padding: 5px; width: 40px; height:40px; background-color: red; color: white;" *ngIf="rows.inRate > 7 && rows.inRate < 10"><p class="text-start">{{rows.inRate}}%</p></div>
+                  <div class="circless text-center" style="border: 2px solid; padding: 5px; width: 40px; height:40px; background-color: red; color: white;" *ngIf="rows.inRate > 6.9 && rows.inRate < 7.1 "><p class="text-start">{{rows.inRate}}%</p></div>
+                  <div class="circless text-center blink-bg"  style="border: 2px solid; padding: 5px; width: 40px; height:40px; color: white;" *ngIf="rows.inRate > 9.9"><p class="text-center">{{rows.inRate}}%</p></div>
+                  
+                  </small>
+                </div>
+              </div>
+              <div class="col-md-6 blockss text-left">
+                <!--<div class="align-items-end"><small>OUT</small></div>-->
+                <div class="align-items-end">
+                <small>
+                 <!--<p class="text-center"><strong>OUT:</strong></p>-->
+                 <div class="text-center" style="padding: 5px; width: 40px;  color: black;"><p class="text-start" style="color: darkcyan;"><strong>OUT</strong></p></div>
+                 <div class="circless text-center" style="border: 1px solid; padding: 5px; width: 40px; height:40px; background-color: green; color: white;" *ngIf="rows.outRate == 0"><p class="text-start">{{rows.outRate}}%</p></div>
+                  <div class="circless text-center" style="border: 1px solid; padding: 5px; width: 40px; height:40px; background-color: green; color: white;" *ngIf="rows.outRate > 0 && rows.outRate < 6"><p class="text-start">{{rows.outRate}}%</p></div>
+                  <div class="circless text-center" style=" padding: 5px; width: 40px; height:40px; background-color: yellow; color: black;" *ngIf="rows.outRate > 5 && rows.outRate < 7"><p class="text-start">{{rows.outRate}}%</p></div>
+                  <div class="circless text-center" style="border: 2px solid; padding: 5px; width: 40px; height:40px; background-color: red; color: white;" *ngIf="rows.outRate > 6.9 && rows.outRate < 7.1 "><p class="text-start">{{rows.outRate}}%</p></div>
+                  <div class="circless text-center" style="border: 2px solid; padding: 5px; width: 40px; height:40px; background-color: red; color: white;" *ngIf="rows.outRate > 7 && rows.outRate < 10"><p class="text-start">{{rows.outRate}}%</p></div>
+                  <div class="circless text-center blink-bg"  style="border: 2px solid; padding: 5px; width: 40px; height:40px; color: white;" *ngIf="rows.outRate > 9.9"><p class="text-start">{{rows.outRate}}%</p></div>
+                </small>
+              </div>
             </div>
             
             </div>
@@ -85,14 +92,14 @@
         
         
       </div>
-      <div class="card-footer" style="padding: 2px !important;color:darkcyan">
+      <div class="card-footer" style="padding: 2px !important;color:darkcyan;margin-top: 5px !important;">
         <div class="row">
           
-          <div class="col-md-12"><p class="text-center"><strong><small>Vol: In: {{rows.inVolume}} | Out: {{rows.outVolume}}</small></strong></p></div>
+          <div class="col-md-12"><p class="text-center"><strong>Vol: In: {{rows.inVolume}} | Out: {{rows.outVolume}}</strong></p></div>
         </div>
       </div>
     </div>
- <!-- </div>-->
+  
   </ul>
 </div>
 
@@ -189,7 +196,7 @@
                     <tr><td>Txn Vol.</td><td>10</td></tr>
                     <tr><td>Failed</td><td>1</td></tr>
                     <tr><td class="text-start">Success</td><td class="text-start">Failed</td></tr>
-                    <tr><td><span class="rounded-circle" style="border: 2px solid; padding: 5px; width: 60px; height: 60px; background-color: indianred; color: #ffff;">90%</span></td><td><span class="rounded-circle" style="border: 2px solid; padding: 5px; width: 40px; background-color: green;color: #ffff;">10%</span></td></tr>
+                    <tr><td><span class="rounded-circle" style="border: 2px solid; padding: 5px; width: 60px; height: 60px; background-color: green; color: #ffff;">90%</span></td><td><span class="rounded-circle" style="border: 2px solid; padding: 5px; width: 40px; background-color: red;color: #ffff;">10%</span></td></tr>
     
                   </table>
                   </div>
@@ -217,7 +224,7 @@
                     <tr><td>Txn Vol.</td><td>10</td></tr>
                     <tr><td>Failed</td><td>1</td></tr>
                     <tr><td class="text-start">Success</td><td class="text-start">Failed</td></tr>
-                    <tr><td><span class="rounded-circle" style="border: 2px solid; padding: 5px; width: 60px; height: 60px; background-color: indianred; color: #ffff;">90%</span></td><td><span class="rounded-circle" style="border: 2px solid; padding: 5px; width: 40px; background-color: green;color: #ffff;">10%</span></td></tr>
+                    <tr><td><span class="rounded-circle" style="border: 2px solid; padding: 5px; width: 60px; height: 60px; background-color: green; color: #ffff;">90%</span></td><td><span class="rounded-circle" style="border: 2px solid; padding: 5px; width: 40px; background-color: red;color: #ffff;">10%</span></td></tr>
     
                   </table>
                   </div>
