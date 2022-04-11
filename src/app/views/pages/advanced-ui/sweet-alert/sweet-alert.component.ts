@@ -31,6 +31,7 @@ export class SweetAlertComponent implements OnInit {
   defaultNavActiveId=1;
   incomingdata:any[]=[];
   outgoingdata:any[]=[];
+  displaytime="";
   mydata:"";
   @ViewChild('fullScreen') divRef;
 
@@ -99,7 +100,7 @@ export class SweetAlertComponent implements OnInit {
   ];
 
   ngOnInit(): void {
-    //this.FetchDashboard();
+    this.FetchDashboard();
     //this.LoadDashboard();
     //this.wss.FetchDash();
     //this.wss.FetchDashboard().subscribe((data: any) => this.row = data)
@@ -136,8 +137,16 @@ export class SweetAlertComponent implements OnInit {
       elem.webkitRequestFullscreen();
     }
   }
+  DisplayLabel(data){
+    for (let key in data) {
+      let value = data[key];
+this.displaytime=value.datetimelabel;
+      // Use `key` and `value`
+  }
+  }
   DisplayDashboard(data){
     //console.log("Dataaaa:"+data);
+    this.DisplayLabel(data);
     this.row=data;
   }
   FetchDashboard(){

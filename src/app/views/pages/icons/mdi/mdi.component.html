@@ -85,19 +85,19 @@
               <div class="form-group">
                 <label for="statusName">Status Name</label>
                 <input type="text" class="form-control" id="statusName" required #statusName="ngModel" [(ngModel)]="Obj.statusName" name="statusName" autocomplete="off" placeholder="Status Name">
-                <div [hidden]="statusName.valid || statusName.pristine" class="alert alert-danger">
+                <!--<div [hidden]="statusName.valid || statusName.pristine" class="alert alert-danger">
                   Name is is required
-           </div>
+           </div>-->
               </div>
             </div>
             <div class="col-md-6">          
                 
               <div class="form-group">
                 <label for="colour">Colour</label>
-                <input [(colorPicker)]="Obj.colour" [value]="colour" required #color="ngModel" [style.background]="colour" [(colorPicker)]="colour" class="form-control"/>
-                <div [hidden]="colour.valid || colour.pristine" class="alert alert-danger">
+                <input [(colorPicker)]="Obj.colour" [value]="colour" [(ngModel)]="Obj.colour" required #color="ngModel" [style.background]="colour" [(colorPicker)]="colour" class="form-control"/>
+                <!--<div [hidden]="colour.valid || colour.pristine" class="alert alert-danger">
                   Colour is required
-           </div>
+           </div>-->
               </div>
             
           </div>
@@ -108,18 +108,18 @@
               <div class="form-group">
                 <label for="startingValue">Starting Value</label>
                 <input type="number" step="any" class="form-control" required #startingValue="ngModel" [(ngModel)]="Obj.startingValue" name="startingValue" id="startingValue" placeholder="Starting Value">
-                <div [hidden]="startingValue.valid || startingValue.pristine" class="alert alert-danger">
+                <!--<div [hidden]="startingValue.valid || startingValue.pristine" class="alert alert-danger">
                   Starting value is required
-           </div>
+           </div>-->
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group">
                 <label for="endValue">End Value</label>
                 <input type="number" step="any" class="form-control" required #endValue="ngModel" [(ngModel)]="Obj.endValue" name="endValue" id="endValue" placeholder="End Value">
-                <div [hidden]="endValue.valid || endValue.pristine" class="alert alert-danger">
+                <!--<div [hidden]="endValue.valid || endValue.pristine" class="alert alert-danger">
                   End Value is required
-           </div>
+           </div>-->
               </div>
             </div>
            <!--here-->
@@ -173,19 +173,19 @@
               <div class="form-group">
                 <label for="statusName">Display Name</label>
                 <input type="text" class="form-control" id="statusName" required #statusName="ngModel" [(ngModel)]="Obj2.statusName" name="statusName" autocomplete="off" placeholder="Display Name">
-                <div [hidden]="statusName.valid || statusName.pristine" class="alert alert-danger">
+                <!--<div [hidden]="statusName.valid || statusName.pristine" class="alert alert-danger">
                   Name is required
-           </div>
+           </div>-->
               </div>
             </div>
             <div class="col-md-6">          
                 
               <div class="form-group">
                 <label for="colour">Colour</label>
-                <input [(colorPicker)]="Obj2.colour" [value]="Obj2.colour" required #colour="ngModel" [style.background]="Obj2.colour" [(colorPicker)]="Obj2.colour" class="form-control"/>
-                <div [hidden]="colour.valid || colour.pristine" class="alert alert-danger">
+                <input [(colorPicker)]="Obj2.colour" [(ngModel)]="Obj2.colour" [value]="Obj2.colour" required #colour="ngModel" [style.background]="Obj2.colour" [(colorPicker)]="Obj2.colour" class="form-control"/>
+                <!--<div [hidden]="colour.valid || colour.pristine" class="alert alert-danger">
                   Colour is required
-           </div>
+           </div>-->
               </div>
             
           </div>
@@ -196,18 +196,18 @@
               <div class="form-group">
                 <label for="startingValue">Starting Value</label>
                 <input type="number" step="any" class="form-control" required #startingVakue="ngModel" [(ngModel)]="Obj2.startingValue" name="startingValue" id="startingValue" placeholder="Starting Value">
-                <div [hidden]="startingValue.valid || startingValue.pristine" class="alert alert-danger">
+                <!--<div [hidden]="startingValue.valid || startingValue.pristine" class="alert alert-danger">
                   Response Code Description is required
-           </div>
+           </div>-->
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group">
                 <label for="endValue">End Value</label>
                 <input type="number" step="any" class="form-control" required #endValue="ngModel" [(ngModel)]="Obj2.endValue" name="endValue" id="endValue" placeholder="Ending Value">
-                <div [hidden]="endValue.valid || endValue.pristine" class="alert alert-danger">
+                <!--<div [hidden]="endValue.valid || endValue.pristine" class="alert alert-danger">
                   Response Code Description is required
-           </div>
+           </div>-->
               </div>
             </div>
             <div class="col-md-4">           
@@ -232,8 +232,8 @@
     </div>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" (click)="modal.close('by: close button')">Close</button>
-    <button type="button" class="btn btn-success" [disabled]="!addColor.form.valid"  (click)="AddColourCode(Obj2)">Add Color Code </button>
+    <!--<button type="button" class="btn btn-secondary" (click)="modal.close('by: close button')">Close</button>
+    <button type="button" class="btn btn-success" [disabled]="!addColor.form.valid"  (click)="AddColourCode(Obj2)">Add Color Code </button>-->
   </div>
 </ng-template>
         </div>

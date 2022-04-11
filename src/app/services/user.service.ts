@@ -14,6 +14,7 @@ export class UserService {
   addnewuserurl=environment.addnewuserurl;
   searchuserurl=environment.searchuserurl;
   resetuserurl=environment.resetuserurl;
+  updateuserurl=environment.updateProfileurl;
   constructor(public http:HttpClient) { }
 
   FetchUsers(): Observable<UserResponse[]>{
@@ -41,6 +42,9 @@ export class UserService {
 
   ResetUser(d): Observable<AddUserResponse>{
     return this.http.get<AddUserResponse>(this.resetuserurl+'/'+d,{responseType:'json'}); 
+  }
+  UpdateProfile(data: UpdateProfileRequest): Observable<UpdateProfileResponse>{
+    return this.http.post<UpdateProfileResponse>(this.updateuserurl,data,{responseType:'json'}); 
   }
 
 }
@@ -99,6 +103,16 @@ export interface AddNewUserRequest{
 	role:number;
 }
 export interface AddUserResponse{
+  responseCode:string;
+  responseMessage:string;
+}
+export interface UpdateProfileRequest{
+  fullnames:string;
+  email:string;
+  phone:string;
+  userID:number;
+}
+export interface UpdateProfileResponse{
   responseCode:string;
   responseMessage:string;
 }

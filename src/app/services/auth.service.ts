@@ -31,6 +31,7 @@ export interface LoginResponse{
   dateJoined:string;
   roleName:string;
   bankName:string;
+  userID:number;
 
 	
 }

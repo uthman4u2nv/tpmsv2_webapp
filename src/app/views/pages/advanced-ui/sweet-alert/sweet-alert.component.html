@@ -16,7 +16,7 @@
   </div>
 </div>-->
 <div class="row" style="background-color: #ffff; padding:5px; margin-top: 0px !important;">
-  <div class="col-lg-10">DASHBOARD &nbsp;<a (click)="openFullscreen()" alt="Full Screen Mode" title="Full Screen" style="color: black;"> <i data-feather="airplay" appFeatherIcon></i>Full Screen Mode</a></div>
+  <div class="col-lg-10"><a (click)="openFullscreen()" alt="Full Screen Mode" title="Full Screen" style="color: black;"> <i data-feather="airplay" appFeatherIcon></i>Full Screen Mode</a> | <strong>Showing Data for: {{displaytime}}</strong></div>
     <div class="col-lg-2 text-right"><input type="text" class="form-control" placeholder="Search Bank" (keyup)="SearchDashboard($event)" /></div>
 </div>
 
@@ -55,12 +55,13 @@
                 <small>
                  <!--<p class="text-center"><strong>IN:</strong></p>-->
                  <div class="text-center" style="padding: 5px; width: 40px;  color: black;"><p class="text-start" style="color: darkcyan;"><strong>IN</strong></p></div>
-                 <div class="circless text-center" style="border: 1px solid; padding: 5px; width: 40px; height:40px; background-color: green; color: white;" *ngIf="rows.inRate ==0"><p class="text-start">{{rows.inRate}}%</p></div>
-                  <div class="circless text-center" style="border: 1px solid; padding: 5px; width: 40px; height:40px; background-color: green; color: white;" *ngIf="rows.inRate > 0 && rows.inRate < 6"><p class="text-start">{{rows.inRate}}%</p></div>
-                  <div class="circless text-center" style="padding: 5px; width: 40px; height:40px; background-color: yellow; color: black;" *ngIf="rows.inRate > 5 && rows.inRate < 7"><p class="text-start">{{rows.inRate}}%</p></div>
-                  <div class="circless text-center" style="border: 2px solid; padding: 5px; width: 40px; height:40px; background-color: red; color: white;" *ngIf="rows.inRate > 7 && rows.inRate < 10"><p class="text-start">{{rows.inRate}}%</p></div>
-                  <div class="circless text-center" style="border: 2px solid; padding: 5px; width: 40px; height:40px; background-color: red; color: white;" *ngIf="rows.inRate > 6.9 && rows.inRate < 7.1 "><p class="text-start">{{rows.inRate}}%</p></div>
-                  <div class="circless text-center blink-bg"  style="border: 2px solid; padding: 5px; width: 40px; height:40px; color: white;" *ngIf="rows.inRate > 9.9"><p class="text-center">{{rows.inRate}}%</p></div>
+                 <div class="circless text-center" style="border: 1px solid; padding: 5px; width: 40px; height:40px; background-color: grey; color: white;" *ngIf="rows.inRate == 9999"><p class="text-start">0%</p></div>
+                 <div class="circless text-center" style="border: 1px solid; padding: 5px; width: 40px; height:40px; background-color: green; color: white;" *ngIf="rows.inRate ==0 && rows.inVolume > 0"><p class="text-start">{{rows.inRate }}%</p></div>
+                  <div class="circless text-center" style="border: 1px solid; padding: 5px; width: 40px; height:40px; background-color: green; color: white;" *ngIf="rows.inRate > 0 && rows.inRate < 6 && rows.inVolume > 0"><p class="text-start">{{rows.inRate }}%</p></div>
+                  <div class="circless text-center" style="padding: 5px; width: 40px; height:40px; background-color: yellow; color: black;" *ngIf="rows.inRate > 5 && rows.inRate < 7"><p class="text-start">{{rows.inRate }}%</p></div>
+                  <div class="circless text-center" style="border: 2px solid; padding: 5px; width: 40px; height:40px; background-color: red; color: white;" *ngIf="rows.inRate > 7 && rows.inRate < 10"><p class="text-start">{{rows.inRate }}%</p></div>
+                  <div class="circless text-center" style="border: 2px solid; padding: 5px; width: 40px; height:40px; background-color: red; color: white;" *ngIf="rows.inRate > 6.9 && rows.inRate < 7.1 "><p class="text-start">{{rows.inRate }}%</p></div>
+                  <div class="circless text-center blink-bg"  style="border: 2px solid; padding: 5px; width: 40px; height:40px; color: white;" *ngIf="rows.inRate > 9.9 && rows.inRate < 101"><p class="text-center">{{rows.inRate }}%</p></div>
                   
                   </small>
                 </div>
@@ -71,12 +72,13 @@
                 <small>
                  <!--<p class="text-center"><strong>OUT:</strong></p>-->
                  <div class="text-center" style="padding: 5px; width: 40px;  color: black;"><p class="text-start" style="color: darkcyan;"><strong>OUT</strong></p></div>
-                 <div class="circless text-center" style="border: 1px solid; padding: 5px; width: 40px; height:40px; background-color: green; color: white;" *ngIf="rows.outRate == 0"><p class="text-start">{{rows.outRate}}%</p></div>
-                  <div class="circless text-center" style="border: 1px solid; padding: 5px; width: 40px; height:40px; background-color: green; color: white;" *ngIf="rows.outRate > 0 && rows.outRate < 6"><p class="text-start">{{rows.outRate}}%</p></div>
-                  <div class="circless text-center" style=" padding: 5px; width: 40px; height:40px; background-color: yellow; color: black;" *ngIf="rows.outRate > 5 && rows.outRate < 7"><p class="text-start">{{rows.outRate}}%</p></div>
-                  <div class="circless text-center" style="border: 2px solid; padding: 5px; width: 40px; height:40px; background-color: red; color: white;" *ngIf="rows.outRate > 6.9 && rows.outRate < 7.1 "><p class="text-start">{{rows.outRate}}%</p></div>
-                  <div class="circless text-center" style="border: 2px solid; padding: 5px; width: 40px; height:40px; background-color: red; color: white;" *ngIf="rows.outRate > 7 && rows.outRate < 10"><p class="text-start">{{rows.outRate}}%</p></div>
-                  <div class="circless text-center blink-bg"  style="border: 2px solid; padding: 5px; width: 40px; height:40px; color: white;" *ngIf="rows.outRate > 9.9"><p class="text-start">{{rows.outRate}}%</p></div>
+                 <div class="circless text-center" style="border: 1px solid; padding: 5px; width: 40px; height:40px; background-color: green; color: white;" *ngIf="rows.outRate == 0 && rows.outVolume > 0"><p class="text-start">{{rows.outRate }}%</p></div>
+                 <div class="circless text-center" style="border: 1px solid; padding: 5px; width: 40px; height:40px; background-color: grey; color: white;" *ngIf="rows.outRate == 9999 "><p class="text-start">0%</p></div>
+                  <div class="circless text-center" style="border: 1px solid; padding: 5px; width: 40px; height:40px; background-color: green; color: white;" *ngIf="rows.outRate > 0 && rows.outRate < 6 && rows.outVolume > 0"><p class="text-start">{{rows.outRate }}%</p></div>
+                  <div class="circless text-center" style=" padding: 5px; width: 40px; height:40px; background-color: yellow; color: black;" *ngIf="rows.outRate > 5 && rows.outRate < 7"><p class="text-start">{{rows.outRate }}%</p></div>
+                  <div class="circless text-center" style="border: 2px solid; padding: 5px; width: 40px; height:40px; background-color: red; color: white;" *ngIf="rows.outRate > 6.9 && rows.outRate < 7.1 "><p class="text-start">{{rows.outRate }}%</p></div>
+                  <div class="circless text-center" style="border: 2px solid; padding: 5px; width: 40px; height:40px; background-color: red; color: white;" *ngIf="rows.outRate > 7 && rows.outRate < 10"><p class="text-start">{{rows.outRate }}%</p></div>
+                  <div class="circless text-center blink-bg"  style="border: 2px solid; padding: 5px; width: 40px; height:40px; color: white;" *ngIf="rows.outRate > 9.9 && rows.outRate < 101"><p class="text-start">{{rows.outRate }}%</p></div>
                 </small>
               </div>
             </div>

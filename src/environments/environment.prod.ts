@@ -9,7 +9,8 @@ export const environment = {
   adderrorcodeurl:'http://localhost:8585/error/AddErrorCode',
   searcherrorcodeurl:'http://localhost:8585/error/search',
   checkcodeurl:'http://localhost:8585/banks/CheckCode',
-  dashboardurl:'http://localhost:8585/dashboard',
+  //dashboardurl:'http://localhost:8585/dashboard',
+  dashboardurl:'http://localhost:61681/api/dashboard',
   searchdashboardurl:'http://localhost:8585/dashboard/search',
   usersurl:'http://localhost:8585/users',
   rolesurl:'http://localhost:8585/users/roles',
@@ -22,6 +23,8 @@ export const environment = {
   addcoloururl:'http://localhost:8585/display/addNewDisplaySettings',
   dashboardanalytics:'http://localhost:8585/dashboard/analytics',
   authurl:'http://localhost:8585/auth/login',
+  updateProfileurl:'http://localhost:8585/users/UpdateProfile',
   geteffreporturl:'https://localhost:44349/api/Report',
+
   socketUrl:'http://localhost:8586'
 };

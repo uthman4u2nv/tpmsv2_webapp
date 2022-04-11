@@ -17,7 +17,9 @@ import { FeahterIconModule } from '../../core/feather-icon/feather-icon.module';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
-
+/*import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import { DomSanitizer } from '@angular/platform-browser';*/
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
@@ -32,7 +34,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     NgbDropdownModule,
     NgbCollapseModule,
     PerfectScrollbarModule,
-    FeahterIconModule
+    FeahterIconModule,
+   // NgbModal
   ],
   providers: [
     {

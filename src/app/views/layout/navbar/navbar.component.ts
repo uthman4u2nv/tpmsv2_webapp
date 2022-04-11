@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef, Inject, Renderer2 } from '@an
 import { DOCUMENT } from '@angular/common';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -46,5 +47,7 @@ export class NavbarComponent implements OnInit {
       this.router.navigate(['/auth/login']);
     }
   }
+
+
 
 }

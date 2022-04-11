@@ -21,6 +21,7 @@ import { environment } from 'src/environments/environment';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { ChangepasswordComponent } from './changepassword/changepassword.component';
 //import { GuagechartComponent } from './guagechart/guagechart.component';
 
 /*const config: SocketIoConfig = {
@@ -34,6 +35,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
   declarations: [
     AppComponent,
     ErrorPageComponent,
+    ChangepasswordComponent,
     //GuagechartComponent,
   ],
   imports: [
