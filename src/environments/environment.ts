@@ -14,8 +14,11 @@ export const environment = {
   searcherrorcodeurl:'http://localhost:8585/error/search',
   checkcodeurl:'http://localhost:8585/banks/CheckCode',
   //dashboardurl:'http://localhost:8585/dashboard',
-  dashboardurl:'http://localhost:61681/api/dashboard',
-  searchdashboardurl:'http://localhost:8585/dashboard/search',
+  //dashboardurl:'http://localhost:61681/api/dashboard',
+  dashboardurl:'https://tpms.ipsl.co.ke:4433/ReportAPI/api/Dashboard',
+  dashboardurl2:'https://tpms.ipsl.co.ke:4433/ReportAPI/api/Dashboard',
+  //searchdashboardurl:'http://localhost:8585/dashboard/search',
+  searchdashboardurl:'https://tpms.ipsl.co.ke:4433/ReportAPI/api/dashboardsearch',
   usersurl:'http://localhost:8585/users',
   rolesurl:'http://localhost:8585/users/roles',
   updateuserprofileurl:'http://localhost:8585/users/UpdateUser',
@@ -28,7 +31,9 @@ export const environment = {
   dashboardanalytics:'http://localhost:8585/dashboard/analytics',
   authurl:'http://localhost:8585/auth/login',
   updateProfileurl:'http://localhost:8585/users/UpdateProfile',
-  geteffreporturl:'https://localhost:44349/api/Report',
+  geteffreporturl:'https://tpms.ipsl.co.ke:4433/ReportAPI/api/Report',
+  dashboardanalysisurl:'https://tpms.ipsl.co.ke:4433/ReportAPI/api/DashboardAnalysis',
+  changepasswordurl:'http://localhost:8585/users/ChangePassword',
 
   socketUrl:'http://localhost:8586'
 };

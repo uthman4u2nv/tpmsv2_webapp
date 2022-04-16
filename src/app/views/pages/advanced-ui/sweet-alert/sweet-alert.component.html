@@ -55,13 +55,14 @@
                 <small>
                  <!--<p class="text-center"><strong>IN:</strong></p>-->
                  <div class="text-center" style="padding: 5px; width: 40px;  color: black;"><p class="text-start" style="color: darkcyan;"><strong>IN</strong></p></div>
-                 <div class="circless text-center" style="border: 1px solid; padding: 5px; width: 40px; height:40px; background-color: grey; color: white;" *ngIf="rows.inRate == 9999"><p class="text-start">0%</p></div>
+                 <div class="circless text-center" style="border: 1px solid; padding: 5px; width: 40px; height:40px; background-color: grey; color: white;" *ngIf="rows.inRate == 9999 && rows.inVolume == 0"><p class="text-start">0%</p></div>
+                 <div class="circless text-center" style="border: 1px solid; padding: 5px; width: 40px; height:40px; background-color: green; color: white;" *ngIf="rows.inRate == 9999 && rows.inVolume > 0"><p class="text-start">0%</p></div>
                  <div class="circless text-center" style="border: 1px solid; padding: 5px; width: 40px; height:40px; background-color: green; color: white;" *ngIf="rows.inRate ==0 && rows.inVolume > 0"><p class="text-start">{{rows.inRate }}%</p></div>
-                  <div class="circless text-center" style="border: 1px solid; padding: 5px; width: 40px; height:40px; background-color: green; color: white;" *ngIf="rows.inRate > 0 && rows.inRate < 6 && rows.inVolume > 0"><p class="text-start">{{rows.inRate }}%</p></div>
-                  <div class="circless text-center" style="padding: 5px; width: 40px; height:40px; background-color: yellow; color: black;" *ngIf="rows.inRate > 5 && rows.inRate < 7"><p class="text-start">{{rows.inRate }}%</p></div>
-                  <div class="circless text-center" style="border: 2px solid; padding: 5px; width: 40px; height:40px; background-color: red; color: white;" *ngIf="rows.inRate > 7 && rows.inRate < 10"><p class="text-start">{{rows.inRate }}%</p></div>
-                  <div class="circless text-center" style="border: 2px solid; padding: 5px; width: 40px; height:40px; background-color: red; color: white;" *ngIf="rows.inRate > 6.9 && rows.inRate < 7.1 "><p class="text-start">{{rows.inRate }}%</p></div>
-                  <div class="circless text-center blink-bg"  style="border: 2px solid; padding: 5px; width: 40px; height:40px; color: white;" *ngIf="rows.inRate > 9.9 && rows.inRate < 101"><p class="text-center">{{rows.inRate }}%</p></div>
+                  <div class="circless text-center" style="border: 1px solid; padding: 5px; width: 40px; height:40px; background-color: green; color: white;" *ngIf="rows.inRate > 0 && rows.inRate < 40 && rows.inVolume > 0"><p class="text-start">{{rows.inRate }}%</p></div>
+                  <div class="circless text-center" style="padding: 5px; width: 40px; height:40px; background-color: yellow; color: black;" *ngIf="rows.inRate > 50 && rows.inRate < 70"><p class="text-start">{{rows.inRate }}%</p></div>
+                  <div class="circless text-center" style="border: 2px solid; padding: 5px; width: 40px; height:40px; background-color: red; color: white;" *ngIf="rows.inRate > 70 && rows.inRate < 100"><p class="text-start">{{rows.inRate }}%</p></div>
+                  <div class="circless text-center" style="border: 2px solid; padding: 5px; width: 40px; height:40px; background-color: red; color: white;" *ngIf="rows.inRate > 69 && rows.inRate < 71 "><p class="text-start">{{rows.inRate }}%</p></div>
+                  <div class="circless text-center blink-bg"  style="border: 2px solid; padding: 5px; width: 40px; height:40px; color: white;" *ngIf="rows.inRate > 99 && rows.inRate < 101"><p class="text-center">{{rows.inRate }}%</p></div>
                   
                   </small>
                 </div>
@@ -73,12 +74,13 @@
                  <!--<p class="text-center"><strong>OUT:</strong></p>-->
                  <div class="text-center" style="padding: 5px; width: 40px;  color: black;"><p class="text-start" style="color: darkcyan;"><strong>OUT</strong></p></div>
                  <div class="circless text-center" style="border: 1px solid; padding: 5px; width: 40px; height:40px; background-color: green; color: white;" *ngIf="rows.outRate == 0 && rows.outVolume > 0"><p class="text-start">{{rows.outRate }}%</p></div>
-                 <div class="circless text-center" style="border: 1px solid; padding: 5px; width: 40px; height:40px; background-color: grey; color: white;" *ngIf="rows.outRate == 9999 "><p class="text-start">0%</p></div>
-                  <div class="circless text-center" style="border: 1px solid; padding: 5px; width: 40px; height:40px; background-color: green; color: white;" *ngIf="rows.outRate > 0 && rows.outRate < 6 && rows.outVolume > 0"><p class="text-start">{{rows.outRate }}%</p></div>
-                  <div class="circless text-center" style=" padding: 5px; width: 40px; height:40px; background-color: yellow; color: black;" *ngIf="rows.outRate > 5 && rows.outRate < 7"><p class="text-start">{{rows.outRate }}%</p></div>
-                  <div class="circless text-center" style="border: 2px solid; padding: 5px; width: 40px; height:40px; background-color: red; color: white;" *ngIf="rows.outRate > 6.9 && rows.outRate < 7.1 "><p class="text-start">{{rows.outRate }}%</p></div>
-                  <div class="circless text-center" style="border: 2px solid; padding: 5px; width: 40px; height:40px; background-color: red; color: white;" *ngIf="rows.outRate > 7 && rows.outRate < 10"><p class="text-start">{{rows.outRate }}%</p></div>
-                  <div class="circless text-center blink-bg"  style="border: 2px solid; padding: 5px; width: 40px; height:40px; color: white;" *ngIf="rows.outRate > 9.9 && rows.outRate < 101"><p class="text-start">{{rows.outRate }}%</p></div>
+                 <div class="circless text-center" style="border: 1px solid; padding: 5px; width: 40px; height:40px; background-color: grey; color: white;" *ngIf="rows.outRate == 9999 && rows.outVolume ==0 "><p class="text-start">0%</p></div>
+                 <div class="circless text-center" style="border: 1px solid; padding: 5px; width: 40px; height:40px; background-color: green; color: white;" *ngIf="rows.outRate == 9999 && rows.outVolume > 0"><p class="text-start">0%</p></div>
+                  <div class="circless text-center" style="border: 1px solid; padding: 5px; width: 40px; height:40px; background-color: green; color: white;" *ngIf="rows.outRate > 0 && rows.outRate < 40 && rows.outVolume > 0"><p class="text-start">{{rows.outRate }}%</p></div>
+                  <div class="circless text-center" style=" padding: 5px; width: 40px; height:40px; background-color: yellow; color: black;" *ngIf="rows.outRate > 50 && rows.outRate < 70"><p class="text-start">{{rows.outRate }}%</p></div>
+                  <div class="circless text-center" style="border: 2px solid; padding: 5px; width: 40px; height:40px; background-color: red; color: white;" *ngIf="rows.outRate > 69 && rows.outRate < 71 "><p class="text-start">{{rows.outRate }}%</p></div>
+                  <div class="circless text-center" style="border: 2px solid; padding: 5px; width: 40px; height:40px; background-color: red; color: white;" *ngIf="rows.outRate > 70 && rows.outRate < 100"><p class="text-start">{{rows.outRate }}%</p></div>
+                  <div class="circless text-center blink-bg"  style="border: 2px solid; padding: 5px; width: 40px; height:40px; color: white;" *ngIf="rows.outRate > 99 && rows.outRate < 101"><p class="text-start">{{rows.outRate }}%</p></div>
                 </small>
               </div>
             </div>
@@ -134,19 +136,24 @@
                   <div class="col-lg-4 text-start">
                   <table class="table" style="font-size: small;">
                     <tr><td colspan="2"><span style="color: darkcyan;">Inwards</span></td></tr>
-                    <tr><td>Txn Vol.</td><td>10</td></tr>
-                    <tr><td>Failed</td><td>1</td></tr>
+                    <tr><td>Txn Vol.</td><td>{{InVollast5}}</td></tr>
+					<tr><td>Success</td><td>{{InSuccessLast5}}</td></tr>
+                    <tr><td>Failed</td><td>{{InFailedLast5}}</td></tr>
                     <tr><td class="text-start">Success</td><td class="text-start">Failed</td></tr>
-                    <tr><td><span class="rounded-circle" style="border: 2px solid; padding: 5px; width: 60px; height: 60px; background-color: indianred; color: #ffff;">90%</span></td><td><span class="rounded-circle" style="border: 2px solid; padding: 5px; width: 40px; background-color: green;color: #ffff;">10%</span></td></tr>
+                    <tr><td>
+					<div class="circless text-center" style="border: 1px solid; padding: 5px; width: 40px; height:40px; background-color: green; color: white;"><p class="text-start">{{InSuccessRateLast5 | number : '1.2-2'}}%</p></div>			
+					
+					</td><td>
+					<div class="circless text-center" style="border: 1px solid; padding: 5px; width: 40px; height:40px; background-color: red; color: white;"><p class="text-start">{{InFailedRateLast5 | number : '1.2-2'}}%</p></div>					
+					
+					</td></tr>
     
                   </table>
                   </div>
                   <div class="col-lg-8">
                     <table class="table">
                       <tr><td class="col-md-3" style="white-space:normal; word-wrap: break-word;min-width: 160px;max-width: 160px;">Status</td><td class="col-md-3">Volume</td></tr>
-                    <tr><td>Success(00)</td><td>10</td></tr>
-                    <tr><td>Insufficient Funds (AM04)</td><td>2</td></tr>
-                    <tr><td>Amount exceeds agreed limit (AM14)</td><td>4</td></tr>   
+                    <tr *ngFor="let d of Last5Summary"><td>{{d.CodeName}} - ({{d.Code}})</td><td>{{d.CodeCount}}</td></tr> 
                     </table>
                                  
                   </div>
@@ -162,21 +169,24 @@
                   <div class="col-lg-4 text-start">
                   <table class="table" style="font-size: small;">
                     <tr><td colspan="2"><span style="color: darkcyan;">Inwards</span></td></tr>
-                    <tr><td>Txn Vol.</td><td>10</td></tr>
-                    <tr><td>Failed</td><td>1</td></tr>
-                    <tr><td class="text-start">Success</td><td class="text-start">Failed</td></tr>
-                    <tr><td><span class="rounded-circle" style="border: 2px solid; padding: 5px; width: 60px; height: 60px; background-color: indianred; color: #ffff;">90%</span></td><td><span class="rounded-circle" style="border: 2px solid; padding: 5px; width: 40px; background-color: green;color: #ffff;">10%</span></td></tr>
+                    <tr><td>Txn Vol.</td><td>{{InVolDaily}}</td></tr>
+					<tr><td>Success</td><td>{{InSuccessLast5}}</td></tr>
+                    <tr><td>Failed</td><td>{{InFailedDaily}}</td></tr>
+                    <tr><td class="text-start">Failed Rate</td><td class="text-start">Success Rate</td></tr>
+                    <tr><td>
+					<div class="circless text-center" style="border: 1px solid; padding: 5px; width: 40px; height:40px; background-color: red; color: white;"><p class="text-start">{{InFailedRateDaily | number : '1.2-2'}}%</p></div>
+					
+					</td><td>
+					<div class="circless text-center" style="border: 1px solid; padding: 5px; width: 40px; height:40px; background-color: green; color: white;"><p class="text-start">{{InSuccessRateDaily | number : '1.2-2'}}%</p></div>
+					</td></tr>
     
                   </table>
                   </div>
                   <div class="col-lg-8">
                     <table class="table">
                       <tr><td class="col-md-3" style="white-space:normal; word-wrap: break-word;min-width: 160px;max-width: 160px;">Status</td><td class="col-md-3">Volume</td></tr>
-                    <tr><td>Success(00)</td><td>10</td></tr>
-                    <tr><td>Insufficient Funds (AM04)</td><td>2</td></tr>
-                    <tr><td>Amount exceeds agreed limit (AM14)</td><td>4</td></tr>   
-                    </table>
-                                 
+                    <tr *ngFor="let e of DailySummary"><td>{{e.CodeName}} - ({{e.Code}})</td><td>{{e.CodeCount}}</td></tr> 
+                                 </table>
                   </div>
                   
                   </div>
@@ -195,19 +205,25 @@
                   <div class="col-lg-4 text-start">
                   <table class="table" style="font-size: small;">
                     <tr><td colspan="2"><span style="color: darkcyan;">Outwards</span></td></tr>
-                    <tr><td>Txn Vol.</td><td>10</td></tr>
-                    <tr><td>Failed</td><td>1</td></tr>
-                    <tr><td class="text-start">Success</td><td class="text-start">Failed</td></tr>
-                    <tr><td><span class="rounded-circle" style="border: 2px solid; padding: 5px; width: 60px; height: 60px; background-color: green; color: #ffff;">90%</span></td><td><span class="rounded-circle" style="border: 2px solid; padding: 5px; width: 40px; background-color: red;color: #ffff;">10%</span></td></tr>
+                    <tr><td>Txn Vol.</td><td>{{OutVollast5}}</td></tr>
+                    <tr><td>Failed</td><td>{{OutFailedLast5}}</td></tr>
+					<tr><td>Successfull</td><td>{{OutSuccessLast5}}</td></tr>
+                    <tr><td class="text-start">Failed</td><td class="text-start">Successful</td></tr>
+                    <tr><td>
+					<div class="circless text-center" style="border: 1px solid; padding: 5px; width: 40px; height:40px; background-color: red; color: white;"><p class="text-start">{{OutFailedRateLast5 | number : '1.2-2'}}%</p></div>
+					
+					</td><td>
+					<div class="circless text-center" style="border: 1px solid; padding: 5px; width: 40px; height:40px; background-color: green; color: white;"><p class="text-start">{{OutSuccessRateLast5 | number : '1.2-2'}}%</p></div>
+					
+					</td></tr>
     
                   </table>
                   </div>
                   <div class="col-lg-8">
                     <table class="table">
                       <tr><td class="col-md-3" style="white-space:normal; word-wrap: break-word;min-width: 160px;max-width: 160px;">Status</td><td class="col-md-3">Volume</td></tr>
-                    <tr><td>Success(00)</td><td>10</td></tr>
-                    <tr><td>Insufficient Funds (AM04)</td><td>2</td></tr>
-                    <tr><td>Amount exceeds agreed limit (AM14)</td><td>4</td></tr>   
+                    <tr *ngFor="let f of Last5SummaryOut"><td>{{f.CodeName}}-({{f.Code}})</td><td>{{f.CodeCount}}</td></tr>
+                    
                     </table>
                                  
                   </div>
@@ -217,25 +233,30 @@
               </div>
               <!--Daily Outwards-->
               <div class="card shadow-lg p-3 mb-5 bg-white rounded" style="margin-top: 5px; margin-bottom: 2px !important;">
-                <h5 class="modal-title" style="color: darkcyan;">DAILY OUTWARDS TRANSACTIONS AS AT 2--03-2022</h5>
+                <h5 class="modal-title" style="color: darkcyan;">DAILY OUTWARDS TRANSACTIONS AS AT </h5>
                 <div class="card-body" style="padding-left: 5px !important;">
                   <div class="row">                
                   <div class="col-lg-4 text-start">
                   <table class="table" style="font-size: small;">
                     <tr><td colspan="2"><span style="color: darkcyan;">Outwards</span></td></tr>
-                    <tr><td>Txn Vol.</td><td>10</td></tr>
-                    <tr><td>Failed</td><td>1</td></tr>
-                    <tr><td class="text-start">Success</td><td class="text-start">Failed</td></tr>
-                    <tr><td><span class="rounded-circle" style="border: 2px solid; padding: 5px; width: 60px; height: 60px; background-color: green; color: #ffff;">90%</span></td><td><span class="rounded-circle" style="border: 2px solid; padding: 5px; width: 40px; background-color: red;color: #ffff;">10%</span></td></tr>
+                    <tr><td>Txn Vol.</td><td>{{OutVolDaily}}</td></tr>
+                    <tr><td>Failed</td><td>{{OutFailedDaily}}</td></tr>
+					<tr><td>Successful</td><td>{{OutSuccessDaily}}</td></tr>
+                    <tr><td class="text-start">Failed</td><td class="text-start">Successful</td></tr>
+                    <tr><td>
+					<div class="circless text-center" style="border: 1px solid; padding: 5px; width: 40px; height:40px; background-color: red; color: white;"><p class="text-start">{{outFailedRateDaily | number : '1.2-2'}}%</p></div>
+					
+					</td><td>
+					<div class="circless text-center" style="border: 1px solid; padding: 5px; width: 40px; height:40px; background-color: green; color: white;"><p class="text-start">{{OutSuccessRateDaily | number : '1.2-2'}}%</p></div>
+					</td></tr>
     
                   </table>
                   </div>
                   <div class="col-lg-8">
                     <table class="table">
                       <tr><td class="col-md-3" style="white-space:normal; word-wrap: break-word;min-width: 160px;max-width: 160px;">Status</td><td class="col-md-3">Volume</td></tr>
-                    <tr><td>Success(00)</td><td>10</td></tr>
-                    <tr><td>Insufficient Funds (AM04)</td><td>2</td></tr>
-                    <tr><td>Amount exceeds agreed limit (AM14)</td><td>4</td></tr>   
+                    <tr *ngFor="let g of DailySummaryOut"><td>{{g.CodeName}} - ({{g.Code}})</td><td>{{g.CodeCount}}</td></tr>
+                    
                     </table>
                                  
                   </div>
@@ -303,6 +324,9 @@
     
   </div>
 </ng-template>
+<div *ngIf="blackout" class="text-center" style="position:fixed;  top:0; left:0; bottom:0; right:0;background:rgba(0,0,0,.5);margin: auto">
+  <h3>Loading...</h3>
+</div>
 
 
 

@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
   validation:boolean=false;
   validationResp="";
   btnLink="Login";
+  blackout:boolean=false;
   
 
   constructor(private router: Router, private route: ActivatedRoute,private AuthServe:AuthService) { }
@@ -30,11 +31,13 @@ export class LoginComponent implements OnInit {
   }
 
   DoLogin(data:LoginRequest){
+    this.blackout=true;
     this.validation=false;
         this.validationResp="";
         this.btnLink="Login .....";
     this.AuthServe.Login(data).subscribe(d=>{
       if(d.responseCode=="00"){
+        this.blackout=false;
         localStorage.setItem("fullnames",d.fullnames);
         localStorage.setItem("email",d.email);
         localStorage.setItem("phone",d.phone);
@@ -51,6 +54,7 @@ export class LoginComponent implements OnInit {
       }else{
         this.validation=true;
         this.validationResp=d.responseMessage;
+        this.blackout=false;
         //this.btnLink="Login";
       }
     })

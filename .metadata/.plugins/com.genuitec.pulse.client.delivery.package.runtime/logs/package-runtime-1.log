@@ -1,0 +1,20 @@
+Mar 03, 2022 8:30:42 PM com.genuitec.pulse.client.deliverypackage.runtime.internal.Activator initializeLoggers
+INFO: Package starting up at Thu Mar 03 20:30:42 WAT 2022
+Mar 03, 2022 8:30:55 PM com.genuitec.pulse.client.deliverypackage.runtime.UpdatesService checkForUpdates
+INFO: Latest version of package is installed; update check finished in 3856ms
+Mar 03, 2022 8:31:01 PM org.glassfish.grizzly.nio.NIOTransport start
+INFO: Adjusting kernel thread pool to max size 9 to handle configured number of SelectorRunners
+Mar 03, 2022 8:31:01 PM org.glassfish.grizzly.http.server.NetworkListener start
+INFO: Started listener bound to [127.0.0.1:51726]
+Mar 03, 2022 8:31:01 PM org.glassfish.grizzly.http.server.HttpServer start
+INFO: [HttpServer] Started.
+Mar 03, 2022 8:31:01 PM org.glassfish.tyrus.server.Server start
+INFO: WebSocket Registered apps: URLs all start with ws://127.0.0.1:51726
+Mar 03, 2022 8:31:01 PM org.glassfish.tyrus.server.Server start
+INFO: WebSocket server started.
+Mar 03, 2022 8:31:23 PM com.genuitec.pulse.client.deliverypackage.runtime.UpdatesService checkForUpdates
+INFO: Latest version of package is installed; update check finished in 2117ms
+Mar 03, 2022 8:35:54 PM org.glassfish.grizzly.http.server.NetworkListener shutdownNow
+INFO: Stopped listener bound to [127.0.0.1:51726]
+Mar 03, 2022 8:35:54 PM org.glassfish.tyrus.server.Server stop
+INFO: Websocket Server stopped.

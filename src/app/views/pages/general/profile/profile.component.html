@@ -121,6 +121,60 @@
               </div>
             </div>
           </div>
+          <hr />
+          <div class="card rounded">
+            <div class="card-header">Change Password</div>
+            <div class="card-body">
+              <div class="alert alert-success" *ngIf="showpasswordpass">
+                {{msg}}
+             </div>
+             <div class="alert alert-danger" *ngIf="showpasswordfailed">
+              {{msgfailed}}
+           </div>
+              <form>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="form-group">
+                      <label for="phone">Old Password</label>
+                      <input type="password" class="form-control" required [(ngModel)]="Obj2.oldpassword" name="oldpassword" id="oldpassword" #oldpassword="ngModel" placeholder="Old Password">
+                <div [hidden]="oldpassword.valid || oldpassword.pristine" class="alert alert-danger">
+                Old Password is required
+           </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="form-group">
+                      <label for="phone">New Password</label>
+                      <input type="password" class="form-control" required [(ngModel)]="Obj2.newpassword" name="newpassword" id="newpassword" #newpassword="ngModel" placeholder="New Password">
+                <div [hidden]="newpassword.valid || newpassword.pristine" class="alert alert-danger">
+                New Password is required
+           </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="form-group">
+                      <label for="phone">Confirm Password</label>
+                      <input type="password" class="form-control" required [(ngModel)]="Obj2.confirmpassword" name="confirmpassword" id="confirmpassword" #confirmpassword="ngModel" placeholder="Confirm Password">
+                <div [hidden]="confirmpassword.valid || confirmpassword.pristine" class="alert alert-danger">
+                Confirm Password is required
+           </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+
+            </div>
+            <div class="card-footer">
+              <div class="d-flex post-actions">
+                <button type="submit"  class="btn btn-success" (click)="ChangePassword(Obj2)">Change Password</button>
+              </div>
+
+            </div>
+          </div>
         </div>
         
       </div>

@@ -20,7 +20,10 @@ import { WebSocketServiceService } from '../../../../services/web-socket-service
 export class SweetAlertComponent implements OnInit {
 
   @Input() Obj={bankCode:"",bankName:"",bankLogo:""}
+  @Input() Obj2={bankCode:""}
+  @Input() Obj3={bankName:""}
   row:any=[];
+  temp:any=[];
   bankName:string="";
   bankLogo:string="";
   bankCode:string="";
@@ -33,6 +36,7 @@ export class SweetAlertComponent implements OnInit {
   outgoingdata:any[]=[];
   displaytime="";
   mydata:"";
+  blackout:boolean=false;
   @ViewChild('fullScreen') divRef;
 
   
@@ -41,6 +45,36 @@ export class SweetAlertComponent implements OnInit {
 
 
    }
+   //Analytics variables
+   InVollast5:any=0;
+   InFailedLast5:any=0;
+   InSuccessLast5:any=0;
+   InSuccessRateLast5:any=0;
+   InFailedRateLast5:any=0
+   
+   InVolDaily:any=0;
+   InFailedDaily:any=0;
+   InSuccessDaily:any=0;
+   InSuccessRateDaily:any=0;
+   InFailedRateDaily:any=0;
+   
+   Last5Summary:any=[];
+   DailySummary:any=[];
+   
+   OutVollast5:any=0;
+   OutFailedLast5:any=0;
+   OutSuccessLast5:any=0;
+   OutSuccessRateLast5:any=0;
+   OutFailedRateLast5:any=0
+   
+   OutVolDaily:any=0;
+   OutFailedDaily:any=0;
+   OutSuccessDaily:any=0;
+   OutSuccessRateDaily:any=0;
+   outFailedRateDaily:any=0;
+   
+   Last5SummaryOut:any=[];
+   DailySummaryOut:any=[];
   
 
 
@@ -100,6 +134,7 @@ export class SweetAlertComponent implements OnInit {
   ];
 
   ngOnInit(): void {
+    this.blackout=true;
     this.FetchDashboard();
     //this.LoadDashboard();
     //this.wss.FetchDash();
@@ -151,27 +186,47 @@ this.displaytime=value.datetimelabel;
   }
   FetchDashboard(){
     this.dash.FetchDashboard().subscribe(d=>{
-     
+     this.blackout=false;
       this.row=d;
-      
+      this.DisplayLabel(d);
     },(err: HttpErrorResponse)=>{
 
     })
   }
+  FetchDashboardReload(){
+    this.dash.FetchDashboard().subscribe(d=>{
+      this.blackout=false;
+       this.row=d;
+       
+     },(err: HttpErrorResponse)=>{
+ 
+     })
+  }
 
   SearchDashboard(event):any{
-    
-    if(event.target.value===""){
+        if(event.target.value===""){
       this.FetchDashboard();
     return;
     }
-    this.dash.SearchDashboard(event.target.value).subscribe(d=>{
-     // console.log(d);
-     this.row=d;
-    },(err: HttpErrorResponse) => {
+    let v=event.target.value;
+    this.Obj3.bankName=v;
+    
+    this.dash.SearchDashboard(this.Obj3).subscribe(d=>{
+      this.blackout=false;
+       this.row=d;
+       
+     },(err: HttpErrorResponse)=>{
+ 
+     })
+    //alert("hhh:"+this.row.filter(e => e.bankName === v));
+    this.row=this.row.filter(e => e.bankName === v);
+    
       
-     // console.log (err.message);
-    })
+    
+    
+    
+    
+   
   }
 
  // onSelect(event,content) {
@@ -180,6 +235,7 @@ this.displaytime=value.datetimelabel;
     
     //this.bankName=this.selected[0].bankName;
     //this.bankLogo=this.selected[0].bankLogo;
+	
     this.bankName=bankName;
     this.bankLogo=bankLogo;
     this.bankCode=bCode;
@@ -189,7 +245,7 @@ this.displaytime=value.datetimelabel;
     
     //this.Obj={bankCode:bCode,bankName:bankName,bankLogo:bankLogo}
     
-    this.openBasicModal(content);
+    this.openBasicModal(content,bCode);
    }
 
    FetchIncomingAnalytics(){
@@ -225,14 +281,49 @@ this.displaytime=value.datetimelabel;
    
   }
 
-  openBasicModal(content) {
+  openBasicModal(content,bCode) {
+	  //alert(bCode);
+	  this.Obj2.bankCode=bCode;
+	  //alert("Obj"+JSON.stringify(this.Obj2));
+	  this.dash.DashAnalysis(this.Obj2).subscribe(d=>{
+		 // alert("D:"+d);
+		   this.InVollast5=d.InLast5Vol;
+   this.InFailedLast5=d.InLast5Failed;
+   this.InSuccessLast5=d.InLast5Success;
+   this.InSuccessRateLast5=d.InLast5SuccessRate;
+   this.InFailedRateLast5=0;
+   
+   this.InVolDaily=d.DailyInVol;
+   this.InFailedDaily=d.DailyInFailed;
+   this.InSuccessDaily=d.DailyInSuccess;
+   this.InSuccessRateDaily=d.DailyInSuccessRate;
+   this.InFailedRateDaily=d.DailyInFailedRate;
+   this.DailySummary=d.DailyInSummary;
+   this.Last5Summary=d.InLast5Summary;
+   
+   this.OutVollast5=d.OutLast5Vol;
+   this.OutFailedLast5=d.OutLast5Failed;
+   this.OutSuccessLast5=d.OutLast5Success;
+   this.OutSuccessRateLast5=d.OutLast5SuccessRate;
+   this.OutFailedRateLast5=100-d.OutLast5SuccessRate;
+   
+   this.OutVolDaily=d.DailyOutVol;
+   this.OutFailedDaily=d.DailyOutFailed;
+   this.OutSuccessDaily=d.DailyOutSuccess;
+   this.OutSuccessRateDaily=d.DailyOutSuccessRate;
+   this.outFailedRateDaily=d.DailyOutFailedRate;
+   
+   this.Last5SummaryOut=d.OutLast5Summary;
+   this.DailySummaryOut=d.DailyOutSummary;
+		  
+	  },(err: HttpErrorResponse)=>{
+		  alert(err.message+"error");
+		  console.log(err.message);
+	  })
+	  
     this.FetchIncomingAnalytics();
     this.FetchOutgoingAnalytics();
-    //this.incomingdata=[86,114,106,106,107,111,133,221,783,2478];
-    //this.outgoingdata=[282,350,411,502,635,809,947,1402,3700,5267];
-
-
-    console.log("Incoming Data:"+this.incomingdata);
+     console.log("Incoming Data:"+this.incomingdata);
     console.log("Outgoing Data:"+this.outgoingdata);
     this.modalService.open(content, {size: 'xl'}).result.then((result) => {
       //this.basicModalCloseResult = "Modal closed" + result
@@ -240,4 +331,56 @@ this.displaytime=value.datetimelabel;
     }).catch((res) => {});
   }
 
+}
+
+export interface DashAnalysisReq{
+	bankCode:string;
+}
+export interface AnalysisResponse{
+	InLast5Vol:number;
+	InLast5Failed:number;
+	InLast5Success:number;
+	InLast5SuccessRate:number;
+	InLast5Summary:InLast5Summary[];
+	DailyInVol: number;
+	DailyInFailed: number;
+	DailyInSuccess: number;
+	DailyInSuccessRate: number;
+	DailyInFailedRate:number;
+	DailyInSummary:DailyInSummary[];
+	OutLast5Vol: number,
+	OutLast5Failed: number,
+	OutLast5Success: number,
+	OutLast5SuccessRate:number;
+	OutLast5Summary:OutLast5Summary[];
+	DailyOutVol:number;
+	DailyOutFailed:number;
+	DailyOutSuccess:number;
+	DailyOutSuccessRate:number;
+	DailyOutFailedRate:number;
+	DailyOutSummary:DailyOutSummary[];
+}
+
+export interface InLast5Summary{
+	Code:string;
+	CodeName:string;
+	CodeCount:number;
+}
+export interface DailyInSummary{
+	Code:string;
+	CodeName:string;
+	CodeCount:number;
+}
+export interface OutLast5Summary{	
+	Code:string;
+	CodeName:string;
+	CodeCount:number;
+}
+export interface DailyOutSummary{
+	Code:string;
+	CodeName:string;
+	CodeCount:number;
+}
+export interface SearchDashboardReq{
+	bankName:string;
 }

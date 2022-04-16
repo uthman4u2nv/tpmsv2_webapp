@@ -15,6 +15,7 @@ export class UserService {
   searchuserurl=environment.searchuserurl;
   resetuserurl=environment.resetuserurl;
   updateuserurl=environment.updateProfileurl;
+  changepasswordurl=environment.changepasswordurl;
   constructor(public http:HttpClient) { }
 
   FetchUsers(): Observable<UserResponse[]>{
@@ -45,6 +46,9 @@ export class UserService {
   }
   UpdateProfile(data: UpdateProfileRequest): Observable<UpdateProfileResponse>{
     return this.http.post<UpdateProfileResponse>(this.updateuserurl,data,{responseType:'json'}); 
+  }
+  ChangePassword(data: ChangePasswordreq): Observable<UpdateUserProfileresp>{
+    return this.http.post<UpdateUserProfileresp>(this.changepasswordurl,data,{responseType:'json'}); 
   }
 
 }
@@ -115,4 +119,8 @@ export interface UpdateProfileRequest{
 export interface UpdateProfileResponse{
   responseCode:string;
   responseMessage:string;
+}
+export interface ChangePasswordreq{
+  oldpassword:string;
+  newpassword:string;
 }

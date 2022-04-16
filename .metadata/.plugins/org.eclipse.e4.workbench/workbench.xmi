@@ -297,7 +297,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_ZQqMcJsoEeyQ2oXBM7IwNw" elementId="org.eclipse.ui.workbench.file">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_ZQz9cJsoEeyQ2oXBM7IwNw" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" enabled="false" command="_YQGHXpsoEeyQ2oXBM7IwNw"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_2AbbkLs9Eey3O_xxFtHh8w" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_YQGHXpsoEeyQ2oXBM7IwNw"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_ZQqzgJsoEeyQ2oXBM7IwNw" elementId="group.edit" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -322,7 +322,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_ZQrakJsoEeyQ2oXBM7IwNw" elementId="org.eclipse.ui.workbench.navigate">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_ZQ1yoJsoEeyQ2oXBM7IwNw" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_YQDrPZsoEeyQ2oXBM7IwNw"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_2AklgLs9Eey3O_xxFtHh8w" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_YQDrPZsoEeyQ2oXBM7IwNw"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_Z_oyUJsoEeyQ2oXBM7IwNw" elementId="com.genuitec.eclipse.code.css" visible="false">
         <tags>Draggable</tags>
@@ -573,9 +573,6 @@
     <bindings xmi:id="_YRE-xJsoEeyQ2oXBM7IwNw" keySequence="ALT+CR" command="_YQESMJsoEeyQ2oXBM7IwNw"/>
     <bindings xmi:id="_YRFl0JsoEeyQ2oXBM7IwNw" keySequence="CTRL+_" command="_YQE5NJsoEeyQ2oXBM7IwNw">
       <parameters xmi:id="_YRGM4JsoEeyQ2oXBM7IwNw" elementId="Splitter.isHorizontal" name="Splitter.isHorizontal" value="true"/>
-    </bindings>
-    <bindings xmi:id="_YRGz8JsoEeyQ2oXBM7IwNw" keySequence="CTRL+P" command="_YQGHXpsoEeyQ2oXBM7IwNw">
-      <tags>deleted</tags>
     </bindings>
     <bindings xmi:id="_YRGz8psoEeyQ2oXBM7IwNw" keySequence="CTRL+Q" command="_YQGHbpsoEeyQ2oXBM7IwNw"/>
     <bindings xmi:id="_YRGz9psoEeyQ2oXBM7IwNw" keySequence="ALT+CTRL+B" command="_YQCc9ZsoEeyQ2oXBM7IwNw"/>
@@ -1804,7 +1801,7 @@
   <addons xmi:id="_YO5NhJsoEeyQ2oXBM7IwNw" elementId="org.eclipse.ui.workbench.addon.0" contributorURI="platform:/plugin/org.eclipse.ui.workbench" contributionURI="bundleclass://org.eclipse.e4.ui.workbench/org.eclipse.e4.ui.internal.workbench.addons.HandlerProcessingAddon"/>
   <addons xmi:id="_YPH28JsoEeyQ2oXBM7IwNw" elementId="SplitterAddon" contributionURI="bundleclass://org.eclipse.e4.ui.workbench.addons.swt/org.eclipse.e4.ui.workbench.addons.splitteraddon.SplitterAddon"/>
   <addons xmi:id="_YRU2YJsoEeyQ2oXBM7IwNw" elementId="com.genuitec.pulse.client.delivery.package.runtime.ui.ide.e42.addonProcessor" contributionURI="bundleclass://com.genuitec.pulse.client.delivery.package.runtime.ui.ide.e42/com.genuitec.pulse.client.deliverypackage.runtime.ui.ide.e42.MenuContributionProcessingAddon"/>
-  <addons xmi:id="_IYS0IKimEeS11vbz3f9ezw" elementId="org.eclipse.ui.ide.addon.0" contributorURI="platform:/plugin/org.eclipse.ui.ide" contributionURI="bundleclass://org.eclipse.ui.ide/org.eclipse.ui.internal.ide.addons.SaveAllDirtyPartsAddon"/>
+  <addons xmi:id="_1QAEMbs9Eey3O_xxFtHh8w" elementId="org.eclipse.ui.ide.addon.0" contributionURI="bundleclass://org.eclipse.ui.ide/org.eclipse.ui.internal.ide.addons.SaveAllDirtyPartsAddon"/>
   <addons xmi:id="_dz0JgGOlEeSMMaPQU2nlzw" elementId="org.eclipse.ui.ide.application.addon.0" contributorURI="platform:/plugin/org.eclipse.ui.ide.application" contributionURI="bundleclass://org.eclipse.ui.ide.application/org.eclipse.ui.internal.ide.application.addons.ModelCleanupAddon"/>
   <categories xmi:id="_YP5TAJsoEeyQ2oXBM7IwNw" elementId="org.eclipse.team.ui.category.team" name="Team" description="Actions that apply when working with a Team"/>
   <categories xmi:id="_YP5TAZsoEeyQ2oXBM7IwNw" elementId="org.eclipse.ui.category.views" name="Views" description="Commands for opening views"/>
