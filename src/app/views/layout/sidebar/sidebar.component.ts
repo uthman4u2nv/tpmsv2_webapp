@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, Renderer2, Inject } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, Renderer2, Inject, Input } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 
 import MetisMenu from 'metismenujs/dist/metismenujs';
@@ -6,6 +6,7 @@ import MetisMenu from 'metismenujs/dist/metismenujs';
 import { MENU } from './menu';
 import { MenuItem } from './menu.model';
 import { Router, NavigationEnd } from '@angular/router';
+import { MenuService } from '../../../services/menu.service'
 
 @Component({
   selector: 'app-sidebar',
@@ -15,11 +16,11 @@ import { Router, NavigationEnd } from '@angular/router';
 export class SidebarComponent implements OnInit, AfterViewInit {
 
   @ViewChild('sidebarToggler') sidebarToggler: ElementRef;
-
+  @Input() Obj={roleID:parseInt(localStorage.getItem("role"))}
   menuItems = [];
   @ViewChild('sidebarMenu') sidebarMenu: ElementRef;
 
-  constructor(@Inject(DOCUMENT) private document: Document, private renderer: Renderer2, router: Router) { 
+  constructor(@Inject(DOCUMENT) private document: Document, private renderer: Renderer2, router: Router, private ms: MenuService) { 
     router.events.forEach((event) => {
       if (event instanceof NavigationEnd) {
 
@@ -40,7 +41,9 @@ export class SidebarComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.menuItems = MENU;
+    console.log("Menu:"+MENU);
+    //this.menuItems = MENU;
+    this.ReturnMenu(this.Obj);
 
     /**
      * Sidebar-folded on desktop (min-width:992px and max-width: 1199px)
@@ -48,6 +51,15 @@ export class SidebarComponent implements OnInit, AfterViewInit {
     const desktopMedium = window.matchMedia('(min-width:992px) and (max-width: 1199px)');
     desktopMedium.addListener(this.iconSidebar);
     this.iconSidebar(desktopMedium);
+  }
+
+  ReturnMenu(data: menuReq){
+    this.ms.ReturnMenu(data).subscribe(d=>{
+      console.log(d);
+      this.menuItems=d;
+    },(error)=>{
+      console.log(error.message);
+    })
   }
 
   ngAfterViewInit() {
@@ -246,4 +258,7 @@ export class SidebarComponent implements OnInit, AfterViewInit {
   };
 
 
+}
+export interface menuReq{
+  roleID:number;
 }

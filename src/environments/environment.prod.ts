@@ -20,6 +20,7 @@ export const environment = {
   updateuserprofileurl:'http://localhost:8585/users/UpdateUser',
   addnewuserurl:'http://localhost:8585/users/AddUser',
   searchuserurl:'http://localhost:8585/users/search',
+  searchbankuserurl:'http://localhost:8585/users/searchbankusers',
   resetuserurl:'http://localhost:8585/users/ResetPassword',
   colorcodeurl:'http://localhost:8585/display/',
   updatecoloururl:'http://localhost:8585/display/UpdateDisplaySettings',
@@ -30,6 +31,8 @@ export const environment = {
   geteffreporturl:'https://tpms.ipsl.co.ke:4433/ReportAPI/api/Report',
   dashboardanalysisurl:'https://tpms.ipsl.co.ke:4433/ReportAPI/api/DashboardAnalysis',
   changepasswordurl:'http://localhost:8585/users/ChangePassword',
+  menuURL:'http://localhost:8585/auth/permissions',
+  bankusersurl:'http://localhost:8585/users/bankusers',
 
   socketUrl:'http://localhost:8586'
 };

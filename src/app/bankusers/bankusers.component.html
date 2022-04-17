@@ -1,0 +1,317 @@
+
+<div class="row">
+    <div class="col-md-12 stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-6"><h6 class="card-title">BANK USERS</h6>
+              <div class="spinner-border text-success" role="status" *ngIf="loading1">
+              <span class="sr-only">Loading...</span>
+            </div>
+            </div>
+            <div class="col-md-6"><div class="text-right" align="right"><div class="row"><div class="col-md-6 text-left"><input type="text" class="form-control" placeholder="Search" (keyup)="SearchUsers($event)" /></div><div class="col-md-6"><button class="btn btn-success" (click)="opnAddNewErrorModal(addModal)">Add New User</button></div></div></div></div>
+             {{BankLoadingMessage}}
+          </div>
+          
+          <div class="table-responsive">
+           <!-- <ngx-datatable
+              class="bootstrap"
+              [rows]="rows"
+              [loadingIndicator]="loadingIndicator"
+              [columnMode]="ColumnMode.force"
+              [footerHeight]="50"
+              [limit]="10"
+              rowHeight="auto"
+            >
+              <ngx-datatable-column name="Id"></ngx-datatable-column>
+              <ngx-datatable-column name="Name"></ngx-datatable-column>
+              <ngx-datatable-column name="Gender"></ngx-datatable-column>
+              <ngx-datatable-column name="Age"></ngx-datatable-column>
+              <ngx-datatable-column name="City" prop="address.city"></ngx-datatable-column>
+              <ngx-datatable-column name="State" prop="address.state"></ngx-datatable-column>
+            </ngx-datatable>-->
+  
+            <ngx-datatable class="bootstrap selection-cell" [rows]="rows" [columnMode]="'flex'" [headerHeight]="50" [footerHeight]="50" rowHeight="auto" [limit]="10"  [selected]="selected"
+            [selectionType]="SelectionType.cell"
+            (select)="onSelect($event,basicModal)" [loadingIndicator]="loadingIndicator"
+            [columnMode]="ColumnMode.force">
+              <ngx-datatable-column name="#" [flexGrow]="0.5">
+                  <ng-template let-rowIndex="rowIndex" let-row="row" ngx-datatable-cell-template>
+                      {{(rowIndex + 1)}}
+                  </ng-template>
+              </ngx-datatable-column>
+              <ngx-datatable-column name="" [flexGrow]="2">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                   <img [src]="row?.bankLogo" class="round-circle" height="40" width="40" />
+                </ng-template>https://via.placeholder.com/60x60.png?text=no-logo
+            </ngx-datatable-column>
+            
+              
+              <ngx-datatable-column name="Name" prop="fullnames" [flexGrow]="2">
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                      {{row?.fullnames}}
+                  </ng-template>
+              </ngx-datatable-column>
+              <ngx-datatable-column name="Bank Name" prop="bankName" [flexGrow]="2">
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                      {{row?.bankName}}
+                  </ng-template>
+              </ngx-datatable-column>
+              <ngx-datatable-column name="Role" prop="roleName" [flexGrow]="2">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                   {{row?.roleName}}
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Email" prop="email" [flexGrow]="2">
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                 {{row?.email}}
+              </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Phone" prop="phone" [flexGrow]="2">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+               {{row?.phone}}
+            </ng-template>
+        </ngx-datatable-column>
+              
+              
+          <ngx-datatable-column name="Status" prop="Status" [flexGrow]="2">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                <span class="badge badge-success" *ngIf="row?.status==1">Active</span>
+                <span class="badge badge-danger" *ngIf="row?.status==0">Inactive</span>
+                <span class="badge badge-warning" *ngIf="row?.status==2">Disabled</span>
+            </ng-template>
+        </ngx-datatable-column>
+      
+          </ngx-datatable>
+  
+  
+          <ng-template #basicModal let-modal>
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel"><img [src]="Obj.bankLogo" height="40" width="40" />&nbsp;{{Obj.fullnames}}</h5>
+      <button type="button" class="close" (click)="modal.close('by: close icon')" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="card">
+        <div class="card-body">
+         
+          <div class="alert alert-success" *ngIf="updateInfo">
+            {{updateMsg}}
+          </div>
+          <div class="spinner-border text-success" role="status" *ngIf="loading">
+            <span class="sr-only">Loading...</span>
+          </div>
+          <form class="needs-validation" #updateUserform="ngForm">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="fullnames">Full Names</label>
+                  <input type="text" class="form-control" id="fullnames" [(ngModel)]="Obj.fullnames" required name="fullnames" autocomplete="off" placeholder="Full Names" #fullnames="ngModel" required />
+                </div>
+                <div [hidden]="fullnames.valid || fullnames.pristine" class="alert alert-danger">
+                  Full Names is required
+           </div>
+              </div>
+              
+            </div>
+            <div class="row">
+              <div class="col-md-8">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Email</label>
+                  <input type="email" class="form-control" id="email" required [(ngModel)]="Obj.email" name="email" #email="ngModel" autocomplete="off" placeholder="Email">    
+                  <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
+                    Email is required
+             </div>     
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="phone">Phone</label>
+                  <input type="text" class="form-control" required [(ngModel)]="Obj.phone" name="phone" id="phone" #phone="ngModel" placeholder="Phone">
+                  <div [hidden]="phone.valid || phone.pristine" class="alert alert-danger">
+                  Phone  is required
+             </div>
+                </div>
+              </div>
+              
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Roles</label>
+                  <div class="form-group">
+                    
+                    <select class="form-control" #role="ngModel" required [(ngModel)]="Obj.role" name="role" id="role" required>
+                       
+                      <!--<option [value]="r.roleID" *ngFor="let r of roles">{{r.roleName}}</option>-->
+                      <option value="3">Bank Admin</option>
+                      <option value="4">Bank User</option>
+                    </select>
+                    <div [hidden]="role.valid || role.pristine" class="alert alert-danger">
+                      Role is required
+               </div>   
+                  </div>
+                </div>
+              </div>
+              <!--<div class="col-md-4">
+                <div class="form-group">
+                  <label for="bank">Bank</label>
+                  <div class="form-group">
+                    
+                    <select class="form-control" #bank="ngModel" required [(ngModel)]="Obj.bank" name="bank" id="bank" required>
+                      <option [value]="b.bankID" *ngFor="let b of banks">{{b.bankName}}</option>
+                    </select>
+                    <div [hidden]="bank.valid || bank.pristine" class="alert alert-danger">
+                      Bank is required
+               </div>  
+                  </div>
+                </div>
+              </div>-->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="status">Bank</label>
+                <select class="form-control" required [(ngModel)]="Obj.status" #status="ngModel" name="status" id="status" required>
+                  <option value="1">Active</option>
+                  <option value="0">Inactive</option>
+                  <option value="2">Disabled</option>
+                </select>
+                <div [hidden]="status.valid || status.pristine" class="alert alert-danger">
+                  Status is required
+           </div>  
+                </div>
+              </div>
+            </div>
+           
+                    
+          </form>
+        </div>
+  
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="modal.close('by: close button')">Close</button>
+      <button type="button" class="btn btn-warning" (click)="ResetUsers(Obj.email)">Reset User</button>
+      <button type="button" class="btn btn-success" [disabled]="!updateUserform.form.valid" (click)="UpdateUserProfile(Obj)">Update User Profile</button>
+    </div>
+  </ng-template>
+  
+  
+  <ng-template #addModal let-modal>
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">ADD NEW USER</h5>
+      <button type="button" class="close" (click)="modal.close('by: close icon')" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="card">
+        <div class="card-body">
+         
+          <div class="alert alert-success" *ngIf="addResp">
+            {{updateAddMsg}}
+          </div>
+          <div class="spinner-border text-success" role="status" *ngIf="loadingAdd">
+            <span class="sr-only">Loading...</span>
+          </div>
+          <form class="forms-sample needs-validation" #addUserform="ngForm">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="fullnames">Full Names</label>
+                  <input type="text" class="form-control" required #fullnames="ngModel" id="fullnames" [(ngModel)]="Obj2.fullnames" name="fullnames" autocomplete="off" placeholder="Full Names">
+                  <div [hidden]="fullnames.valid || fullnames.pristine" class="alert alert-danger">
+                    Full Name is required
+             </div>  
+                </div>
+              </div>
+              
+            </div>
+            <div class="row">
+              <div class="col-md-8">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Email</label>
+                  <input type="email" class="form-control" id="email" [(ngModel)]="Obj2.email" required #email="ngModel" name="email" autocomplete="off" placeholder="Email">    
+                  <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
+                    Email is required
+             </div>       
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="phone">Phone</label>
+                  <input type="text" class="form-control" required #phone="ngModel" [(ngModel)]="Obj2.phone" name="phone" id="phone" placeholder="Phone" />
+                  <div [hidden]="phone.valid || phone.pristine" class="alert alert-danger">
+                    Phone is required
+             </div>  
+                </div>
+              </div>
+              
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Roles</label>
+                  <div class="form-group">
+                    
+                    <select class="form-control" required [(ngModel)]="Obj2.role" #role="ngModel"  name="role" id="role">
+                      <option>--Select Role--</option>
+                      <!--<option [value]="r.roleID" *ngFor="let r of roles">{{r.roleName}}</option>-->
+                      <option value="3">Bank Admin</option>
+                      <option value="3">Bank User</option>
+                    </select>
+                    <div [hidden]="role.valid || role.pristine" class="alert alert-danger">
+                      Role  is required
+               </div>  
+                  </div>
+                </div>
+              </div>
+              <!--<div class="col-md-4">
+                <div class="form-group">
+                  <label for="bank">Bank</label>
+                  <div class="form-group">
+                    
+                    <select class="form-control" #bank="ngModel" required [(ngModel)]="Obj2.bank" name="bank" id="bank">
+                      <option>--Select Bank--</option>
+                      <option [value]="b.bankID" *ngFor="let b of banks">{{b.bankName}}</option>
+                    </select>
+                    <div [hidden]="bank.valid || bank.pristine" class="alert alert-danger">
+                      Bank is required
+               </div>  
+                  </div>
+                </div>
+              </div>-->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="status">Status</label>
+                <select class="form-control" required #status="ngModel" [(ngModel)]="Obj2.status" name="status" id="status">
+                  <option>--Select Status--</option>
+                  <option value="1">Active</option>
+                  <option value="0">Inactive</option>
+                  <option value="2">Disabled</option>
+                </select>
+                <div [hidden]="status.valid || status.pristine" class="alert alert-danger">
+                  Status is required
+           </div>  
+                </div>
+              </div>
+            </div>
+           
+                    
+          </form>
+                   
+          
+        </div>
+  
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="modal.close('by: close button')">Close</button>
+      <button type="button" class="btn btn-success" [disabled]="!addUserform.form.valid" (click)="AddNewUser(Obj2)">Add User </button>
+    </div>
+  </ng-template>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

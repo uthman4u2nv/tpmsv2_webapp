@@ -22,6 +22,8 @@ import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { ChangepasswordComponent } from './changepassword/changepassword.component';
+import { BankusersComponent } from './bankusers/bankusers.component';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 //import { GuagechartComponent } from './guagechart/guagechart.component';
 
 /*const config: SocketIoConfig = {
@@ -36,6 +38,7 @@ import { ChangepasswordComponent } from './changepassword/changepassword.compone
     AppComponent,
     ErrorPageComponent,
     ChangepasswordComponent,
+    BankusersComponent,
     //GuagechartComponent,
   ],
   imports: [
@@ -47,6 +50,7 @@ import { ChangepasswordComponent } from './changepassword/changepassword.compone
     FormsModule,
     NgBootstrapFormValidationModule.forRoot(),
     NgBootstrapFormValidationModule,
+    NgxDatatableModule,
     GoogleChartsModule.forRoot(),
     //SocketIoModule.forRoot(config),
     //SocketIoModule.forRoot({ url: 'http://localhost:8586' }),

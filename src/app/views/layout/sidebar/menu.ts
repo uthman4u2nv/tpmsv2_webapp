@@ -18,17 +18,17 @@ export const MENU: MenuItem[] = [
     link: '/settings/codes',
   },
   {
-    icon: 'home',
+    icon: 'feather',
     label: 'Manage Users',
     link: '/settings/users',
   },
   {
-    icon:'home',
+    icon:'file-text',
     label: 'Manage Banks',
     link: '/settings/banks'
   },
   {
-    icon:'home',
+    icon:'calender',
     label: 'Manage Color Codes',
     link: '/icons/mdi-icons'
   },

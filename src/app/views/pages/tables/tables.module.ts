@@ -7,6 +7,7 @@ import { BasicTableComponent } from './basic-table/basic-table.component';
 import { DataTableComponent } from './data-table/data-table.component';
 import { NgxDatatableComponent } from './ngx-datatable/ngx-datatable.component';
 import {GuagechartComponent} from './../../../guagechart/guagechart.component'
+import { BankusersComponent } from '../../../bankusers/bankusers.component'
 
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { FormsModule } from '@angular/forms';
@@ -31,6 +32,11 @@ const routes: Routes = [
         //path: 'data-table',
         path: 'users',
         component: DataTableComponent
+      },
+      {
+        //path: 'data-table',
+        path: 'bankusers',
+        component: BankusersComponent
       },
       {
         //path: 'ngx-datatable',

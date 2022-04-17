@@ -8,11 +8,13 @@ import { environment } from 'src/environments/environment';
 })
 export class UserService {
   usersurl=environment.usersurl;
+  bankusersurl=environment.bankusersurl;
   rolesurl=environment.rolesurl;
   listbankurl=environment.listbankurl;
   updateuserprofileurl=environment.updateuserprofileurl;
   addnewuserurl=environment.addnewuserurl;
   searchuserurl=environment.searchuserurl;
+  searchhbankuserurl=environment.searchbankuserurl;
   resetuserurl=environment.resetuserurl;
   updateuserurl=environment.updateProfileurl;
   changepasswordurl=environment.changepasswordurl;
@@ -21,6 +23,10 @@ export class UserService {
   FetchUsers(): Observable<UserResponse[]>{
     return this.http.get<UserResponse[]>(this.usersurl,{responseType:'json'});
   }
+  FetchBankUsers(d): Observable<UserResponse[]>{
+    return this.http.get<UserResponse[]>(this.bankusersurl+"/"+d,{responseType:'json'});
+  }
+
 
   FetchRoles(): Observable<RolesResp[]>{
     return this.http.get<RolesResp[]>(this.rolesurl,{responseType:'json'});
@@ -39,6 +45,9 @@ export class UserService {
 
   SearchUsers(d): Observable<Bankresponse[]>{
     return this.http.get<Bankresponse[]>(this.searchuserurl+'/'+d,{responseType:'json'});
+  }
+  SearchBankUsers(d,bankID): Observable<Bankresponse[]>{
+    return this.http.get<Bankresponse[]>(this.searchhbankuserurl+'/'+d+'/'+bankID,{responseType:'json'});
   }
 
   ResetUser(d): Observable<AddUserResponse>{
