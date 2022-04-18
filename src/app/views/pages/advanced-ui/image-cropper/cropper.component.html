@@ -90,7 +90,21 @@
         [options]="chart.options">
         </google-chart>-->
         <!--<div id="chart_div"></div>-->
-        <app-guagechart></app-guagechart>
+        <!--<app-guagechart></app-guagechart>-->
+        <ngx-gauge [value]="gaugeValue">
+          <ngx-gauge-append>
+             A
+          </ngx-gauge-append>
+          <ngx-gauge-label>
+            L
+          </ngx-gauge-label>
+          <ngx-gauge-prepend>
+            P
+          </ngx-gauge-prepend>
+          <ngx-gauge-value>
+            {{r.PCTEFF}}
+          </ngx-gauge-value>
+      </ngx-gauge>
       </div>
     </div>
   </div>

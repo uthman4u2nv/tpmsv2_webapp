@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -23,6 +23,7 @@ import { environment } from 'src/environments/environment';
 //import { Socket } from 'ngx-socket-io';  
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
+import { NgxGaugeModule } from 'ngx-gauge';
 
 /*const config: SocketIoConfig = {
 	url: environment.socketUrl, // socket server url;
@@ -78,11 +79,13 @@ const routes: Routes = [
     NgApexchartsModule,
     ChartsModule,
     FormsModule,
+    NgxGaugeModule,
     GoogleChartsModule.forRoot(),
     //SocketIoModule.forRoot(config),
 
 
-  ]
+  ],
+  schemas:[CUSTOM_ELEMENTS_SCHEMA]
   
   
 })

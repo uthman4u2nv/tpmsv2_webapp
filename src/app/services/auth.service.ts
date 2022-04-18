@@ -32,6 +32,7 @@ export interface LoginResponse{
   roleName:string;
   bankName:string;
   userID:number;
+  status:number;
 
 	
 }

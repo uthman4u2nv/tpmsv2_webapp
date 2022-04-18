@@ -8,7 +8,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class ProfileComponent implements OnInit {
   @Input() Obj={fullnames:localStorage.getItem("fullnames"),email:localStorage.getItem("email"),phone:localStorage.getItem("phone"),userID:parseInt(localStorage.getItem("userID"))}
-  @Input() Obj2={oldpassword:"",newpassword:"",confirmpassword:""}
+  @Input() Obj2={oldpassword:"",newpassword:"",confirmpassword:"",email:localStorage.getItem("email")}
   fullnames="";
   email="";
   phone="";
@@ -116,4 +116,5 @@ export interface UpdateProfileRequest{
 export interface ChangePasswordreq{
   oldpassword:string;
   newpassword:string;
+  email:string;
 }

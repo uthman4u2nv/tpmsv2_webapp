@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -24,6 +24,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { ChangepasswordComponent } from './changepassword/changepassword.component';
 import { BankusersComponent } from './bankusers/bankusers.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { NgxGaugeModule } from 'ngx-gauge';
 //import { GuagechartComponent } from './guagechart/guagechart.component';
 
 /*const config: SocketIoConfig = {
@@ -51,6 +52,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     NgBootstrapFormValidationModule.forRoot(),
     NgBootstrapFormValidationModule,
     NgxDatatableModule,
+    NgxGaugeModule,
     GoogleChartsModule.forRoot(),
     //SocketIoModule.forRoot(config),
     //SocketIoModule.forRoot({ url: 'http://localhost:8586' }),
@@ -76,7 +78,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
       }
     },
   ],
-  
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

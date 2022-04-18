@@ -48,7 +48,12 @@ export class LoginComponent implements OnInit {
         localStorage.setItem("bankName",d.bankName);
         localStorage.setItem("roleName",d.roleName);
         localStorage.setItem("userID",d.userID.toString());
+        //alert("Role:"+d.role);
+        if(d.status==1){
         this.router.navigate(['dashboard-new/dashboard-new']);
+        }else if(d.status==2){
+          this.router.navigate(['general/profile']);
+        }
         
         this.btnLink="Login";
       }else{

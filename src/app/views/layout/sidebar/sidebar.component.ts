@@ -41,14 +41,16 @@ export class SidebarComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    console.log("Menu:"+MENU);
+    //console.log("Menu:"+MENU);
     //this.menuItems = MENU;
+    
     this.ReturnMenu(this.Obj);
 
     /**
      * Sidebar-folded on desktop (min-width:992px and max-width: 1199px)
      */
     const desktopMedium = window.matchMedia('(min-width:992px) and (max-width: 1199px)');
+    
     desktopMedium.addListener(this.iconSidebar);
     this.iconSidebar(desktopMedium);
   }
@@ -76,9 +78,11 @@ export class SidebarComponent implements OnInit, AfterViewInit {
     this.sidebarToggler.nativeElement.classList.toggle('active');
     this.sidebarToggler.nativeElement.classList.toggle('not-active');
     if (window.matchMedia('(min-width: 992px)').matches) {
+      //if (window.matchMedia('(min-width: 1400px)').matches) {
       e.preventDefault();
       this.document.body.classList.toggle('sidebar-folded');
     } else if (window.matchMedia('(max-width: 991px)').matches) {
+  //} else if (window.matchMedia('(max-width: 1200px)').matches) {
       e.preventDefault();
       this.document.body.classList.toggle('sidebar-open');
     }
