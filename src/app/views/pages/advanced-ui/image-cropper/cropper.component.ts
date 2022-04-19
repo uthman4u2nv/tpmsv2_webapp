@@ -16,6 +16,17 @@ declare var google:any;
   styleUrls: ['./cropper.component.scss']
 })
 export class ImageCropperComponent implements OnInit {
+
+  thresholdConfig = {
+    '0': {color: 'green'},
+    '6': {color: 'orange'},
+    '10': {color: 'red'}
+};
+thresholdConfig2 = {
+  '0': {color: 'red'},
+  '40': {color: 'orange'},
+  '80': {color: 'green'}
+};
   ch=80;
   dd=[];
   @Input() Cha={ch:90,charttitle:"Test"}
@@ -88,10 +99,14 @@ export class ImageCropperComponent implements OnInit {
   resultImage: any;
   
   banks=[];
+  aggregatetrans:number=0;
   ReportLabel:string="";
+  previousweek:string="";
   displayReport:boolean=false;
   Inflow:any=[];
   Outflow:any=[];
+  InflowLastWeek:any=[];
+  OutflowLastWeek:any=[];
   BankName="";
   
   //Employee: any = [];
@@ -103,60 +118,27 @@ export class ImageCropperComponent implements OnInit {
   constructor(private bs:BanksService,private es:EfficiencyreportService) { }
   setValues(){
    
-    this.charttitle="Thhhhhh";
-    this.ch=87;
+   
 
   }
   
-  ngOnInit(): void {
-    
-    google.charts.load('current', {'packages':['gauge']});
-    google.charts.setOnLoadCallback(this.drawChart);
+  ngOnInit(): void {   
+  
     this.FetchBanks();
     this.setValues();
   }
-  drawChart(){
-    
-    var data = google.visualization.arrayToDataTable([
-      ['Label', 'Value'],
-      ['Memory', 80],
-      ['CPU', 55],
-      ['Network', 68]
-    ]);
-
-    var options = {
-      width: 400, height: 120,
-      redFrom: 90, redTo: 100,
-      yellowFrom:75, yellowTo: 90,
-      minorTicks: 5
-    };
-    
-      
-
-    var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
-chart.draw(data,options);
-    //chart.draw(data, options);
-
-   /* setInterval(function() {
-      data.setValue(0, 1, 40 + Math.round(60 * Math.random()));
-      chart.draw(data, options);
-    }, 13000);
-    setInterval(function() {
-      data.setValue(1, 1, 40 + Math.round(60 * Math.random()));
-      chart.draw(data, options);
-    }, 5000);
-    setInterval(function() {
-      data.setValue(2, 1, 60 + Math.round(20 * Math.random()));
-      chart.draw(data, options);
-    }, 26000);*/
-  }
-
+  
   FetchBanks(){
     this.bs.FetchBanks().subscribe(d=>{
+      //alert(d);
+     // console.log("banks:"+d);
       this.banks=d;
     },(error)=>{
 
     })
+  }
+  CalculateAggregate(){
+
   }
 
   GenerateReport(data:ReportRequest):any{
@@ -166,14 +148,20 @@ chart.draw(data,options);
       console.log(JSON.stringify(d));
       this.displayReport=true;
       this.ReportLabel=d.datetimelabel;
+      this.previousweek=d.previousweek;
       this.BankName=d.BankName;
       this.LinkUptime=d.Link;
       this.Inflow=d.Inflow;
       this.Outflow=d.Outflow;
+      this.InflowLastWeek=d.InflowLastWeek;
+      this.OutflowLastWeek=d.OutflowLastWeek;
       this.ch=d.Link;
       this.data=d.link;
       this.Cha.ch=d.Link;
       this.chart.data=d.Link;
+
+      
+      this.aggregatetrans=d.TransRating;
       
       
     },(error)=>{
