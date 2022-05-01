@@ -1,7 +1,8 @@
 
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { Observable, of,EMPTY } from 'rxjs';
+import { retry, catchError,shareReplay } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -11,7 +12,13 @@ export class AuthService {
   authurl=environment.authurl;
   constructor(public http:HttpClient) { }
   Login(data: LoginRequest): Observable<LoginResponse>{
-    return this.http.post<LoginResponse>(this.authurl,data,{responseType:'json'});
+    return this.http.post<LoginResponse>(this.authurl,data,{responseType:'json'}).pipe(
+      retry(5),
+      catchError(()=>{
+        return EMPTY;
+      }),
+      shareReplay()
+    );
   }
 }
 

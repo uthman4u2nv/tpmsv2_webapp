@@ -22,6 +22,9 @@
           
           </div>
           <div class="col-md-3"><input type="submit" (click)="GenerateReport(Obj)" class="btn btn-success" value="Search" /></div>
+        <!--<div id="pdfTable" #pdfTable>
+          This is me
+        </div>-->
         </div>
       </form>
       </div>
@@ -39,33 +42,25 @@
         <div class="row">
           <div class="col-lg-12">
             <div class="table-responsive">
-              <!--<google-chart #chart  
-   [title]="title"  
-   [type]="type"  
-   [data]="data"  
-   [columnNames]="columnNames"  
-   [options]="options"  
-   [width]="width"  
-   [height]="height">  
-</google-chart> --> 
+              
 <div class="row">
-  <table class="table table-borderedss table-stripedz">
+  <table class="table table-bordered table-striped">
 
-      <tr>
+      <!--<tr>
           <!--<td class="col-md-1z" valign="middle"></td>-->
-          <td class="col-md-11z" colspan="3" align="center" valign="middle" style="white-space: nowrap;">
-              <img src="../../../../../assets/images/logoipsl2.png"  />&nbsp;&nbsp;<br />
+          <!--<td class="col-md-11z text-center" colspan="3"  valign="middle" style="white-space: nowrap;">
+            <img src="../../../../../assets/images/logoipsl - Copy.png"  />&nbsp;&nbsp;<br />
               <h4><strong>INTEGRATED PAYMENT SERVICES LIMITED</strong></h4>
 
           </td>
       </tr>
       <tr>
-      </tr>
+      </tr>-->
 
-      <tr><td class="col-md-11z" align="center" valign="middle" colspan="3" style="background-color: #4DCAC4 !important;color: black !important; width: 5px !important;padding-top: 20px !important;font-weight: 900 !important;"><h6><strong>BANK EFFICIENCY RATING ON PESALINK</strong></h6><!--<h6> </h6>--></td></tr>
-      <tr><td class="col-md-11z" align="center" valign="middle" colspan="3" style="background-color: #fff !important;color: #FF5733 !important;"><h6><strong>Analysis for {{ReportLabel}}</strong></h6><!--<h6> </h6>--></td></tr>
+      <tr><td class="col-md-11z text-center"  valign="middle" colspan="3" style="background-color: #4DCAC4 !important;color: black !important; width: 5px !important;padding-top: 20px !important;font-weight: 900 !important;"><h6><strong>BANK EFFICIENCY RATING ON PESALINK</strong></h6><!--<h6> </h6>--></td></tr>
+      <tr><td class="col-md-11z text-center" valign="middle" colspan="3" style="background-color: #fff !important;color: #FF5733 !important;"><h6><strong>Analysis for {{ReportLabel}}</strong></h6><!--<h6> </h6>--></td></tr>
 
-      <tr><td align="center" valign="middle" colspan="3" style="background-color: #66A6F3 !important; color:black !important; width:5px !important;padding-top:20px !important;font-weight:900 !important;"><strong><h6><strong>BANK:{{BankName}} </strong></h6></strong></td><!--<td align="left"><strong></strong></td>--></tr>
+      <tr><td class="text-center"  valign="middle" colspan="3" style="background-color: #66A6F3 !important; color:black !important; width:5px !important;padding-top:20px !important;font-weight:900 !important;"><strong><h6><strong>BANK:{{BankName}} </strong></h6></strong></td><!--<td align="left"><strong></strong></td>--></tr>
   </table>
 
 </div>
@@ -83,14 +78,7 @@
         
       </div>
       <div class="col-sm-6 text-right" >
-        <!--<google-chart #googlechart
-        [title]="chart.title"
-        [type]="chart.type"
-        [data]="chart.data"
-        [options]="chart.options">
-        </google-chart>-->
-        <!--<div id="chart_div"></div>-->
-        <!--<app-guagechart></app-guagechart>-->
+        
         <ngx-gauge [value]="r.PCTEFF" [thresholds]="thresholdConfig">
           <ngx-gauge-append>
              %
@@ -214,14 +202,14 @@ darkcyan
 
                   <tr style="border:none !important">
                       <td colspan="3" style="border:none !important"></td>
-                      <th colspan="3" align="right" style="border:none !important;background-color:#4DCAC4 !important; color:black !important;">
+                      <th class="text-right" colspan="3"  style="border:none !important;background-color:#4DCAC4 !important; color:black !important;">
 
                           
                           <div class="text-center">Analysis for {{ReportLabel}}</div>
 
                       </th>
                       <th style="border:none !important;">&nbsp;&nbsp;</th>
-                      <th colspan="2" align="right" style="border: none !important;background-color: #FF5733 !important;color: black !important;">
+                      <th class="text-right" colspan="2"  style="border: none !important;background-color: #FF5733 !important;color: black !important;">
 
                           
                             <div class="text-center">Analysis for {{previousweek}}</div>
@@ -234,12 +222,12 @@ darkcyan
                       <td style="width:40px !important;"></td>
                       <th class="col-sm-1z" style="padding-left:5px !important;">OPERATIONAL PLATFORMS</th>
                       <th class="col-sm-10z" style="padding-left:5px !important;">MEASURES</th>
-                      <th class="col-sm-1" style="background-color: #c9e9f6 !important; padding:5px !important;" align="center"></th>
-                      <th class="col-sm-1" style="background-color: #c9e9f6 !important; padding: 5px !important;" align="center"></th>
-                      <th class="col-sm-1" style="background-color: #c9e9f6 !important; padding: 5px !important;" align="center"></th>
+                      <th class="col-sm-1 text-center" style="background-color: #c9e9f6 !important; padding:5px !important;" ></th>
+                      <th class="col-sm-1 text-center" style="background-color: #c9e9f6 !important; padding: 5px !important;"></th>
+                      <th class="col-sm-1 text-center" style="background-color: #c9e9f6 !important; padding: 5px !important;"></th>
                       <th style="border: none !important;">&nbsp;&nbsp;</th>
-                      <th class="col-sm-1z" style="background-color: #FFC0CB !important;padding: 5px !important;" align="center"></th>
-                      <th class="col-sm-1z" style="background-color: #FFC0CB !important;padding: 5px !important;" align="center"></th>
+                      <th class="col-sm-1z text-center" style="background-color: #ffc0cb  !important;padding: 5px !important;"></th>
+                      <th class="col-sm-1z text-center" style="background-color: #ffc0cb  !important;padding: 5px !important;" ></th>
                       <!--<th class="col-sm-1z" style="background-color: #FFC0CB !important; padding: 5px !important;" align="center">BEST BANK RATING</th>-->
                   </tr>
                   <tr>
@@ -250,8 +238,8 @@ darkcyan
                       <td style="background-color: #c9e9f6 !important;"><strong>RANKING</strong></td>
                       <td style="background-color: #c9e9f6 !important;"><strong>BEST BANK RATING</strong></td>
                       <td style="border: none !important;"></td>
-                      <td style="background-color: #FFC0CB !important;"><strong>BANK'S RATING</strong></td>
-                      <td style="background-color: #FFC0CB !important;"><strong>RANKING</strong></td>
+                      <td style="background-color: #ffc0cb  !important;"><strong>BANK'S RATING</strong></td>
+                      <td style="background-color: #ffc0cb  !important;"><strong>RANKING</strong></td>
                       <!--<td style="background-color: #FFC0CB !important;"></td>-->
                   </tr>
                   <tr>
@@ -260,14 +248,14 @@ darkcyan
                   </tr>
                   <tr *ngFor="let i of Inflow; let ii=index;">
                       <td></td>
-                      <td style="padding-left:5px !important;" align="right">{{ii+1}}</td>
+                      <td class="text-right" style="padding-left:5px !important;" >{{ii+1}}</td>
                       <td style="white-space: nowrap; padding-left:5px !important"><i><strong>({{i.RESPONSE_CODE}}) - {{i.DEFINITION}}</strong></i></td>
                       <td style="background-color: #c9e9f6 !important; padding-left:10px !important;"><strong>{{i.PCTEFF}}%</strong></td>
                       <td style="background-color: #c9e9f6 !important; padding-left:10px !important;"><strong>{{i.WEEKLYRANK}}</strong></td>
                       <td style="background-color: #c9e9f6 !important; padding-left:10px !important;"><strong>{{i.PCTEFF_BEST}}%</strong></td>
                       <td style="border: none !important;">&nbsp;&nbsp;</td>
-                      <td style="background-color: #FFC0CB !important; padding-left:10px !important;"><strong>{{i.PCTEFF_BEST_L}}%</strong></td>
-                      <td style="background-color: #FFC0CB !important; padding-left:10px !important"><strong>{{i.LastWeekRank}}</strong></td>
+                      <td style="background-color: #ffc0cb  !important; padding-left:10px !important;"><strong>{{i.PCTEFF_BEST_L}}%</strong></td>
+                      <td style="background-color: #ffc0cb  !important; padding-left:10px !important"><strong>{{i.LastWeekRank}}</strong></td>
                       <!--<td style="background-color: #FFC0CB !important; padding-left:10px !important;"><strong>%</strong></td>-->
                   </tr>
                   <tr>
@@ -275,14 +263,14 @@ darkcyan
                   </tr>
                   <tr *ngFor="let o of Outflow; let oo=index;">
                     <td></td>
-                    <td style="padding-left:5px !important;" align="right"><strong>{{oo+1}}</strong></td>
+                    <td class="text-right" style="padding-left:5px !important;"><strong>{{oo+1}}</strong></td>
                     <td style="white-space: nowrap; padding-left:5px !important"><i><strong>({{o.RESPONSE_CODE}}) - {{o.DEFINITION}} </strong></i></td>
                     <td style="background-color: #c9e9f6 !important; padding-left:10px !important;"><strong>{{o.PCTEFF}}%</strong></td>
                     <td style="background-color: #c9e9f6 !important; padding-left:10px !important;"><strong>{{o.WEEKLYRANK}}</strong></td>
                     <td style="background-color: #c9e9f6 !important; padding-left:10px !important;"><strong>{{o.PCTEFF_BEST}}%</strong></td>
                     <td style="border: none !important;">&nbsp;&nbsp;</td>
-                    <td style="background-color: #FFC0CB !important; padding-left:10px !important;"><strong>{{o.PCTEFF_BEST_L}}%</strong></td>
-                    <td style="background-color: #FFC0CB !important; padding-left:10px !important"><strong>{{o.LastWeekRank}}</strong></td>
+                    <td style="background-color: #ffc0cb  !important; padding-left:10px !important;"><strong>{{o.PCTEFF_BEST_L}}%</strong></td>
+                    <td style="background-color: #ffc0cb  !important; padding-left:10px !important"><strong>{{o.LastWeekRank}}</strong></td>
                     <!--<td style="background-color: #FFC0CB !important; padding-left:10px !important;"><strong>%</strong></td>-->
                 </tr>
 
@@ -297,9 +285,10 @@ darkcyan
 
                                         <table class="table table-striped" style="font-size:13px !important">
                                             <tr style="background-color: #c9e9f6 !important;padding-left: 5px !important"><td style="padding-left:5px !important;"><strong>Measures</strong></td><td style="padding-left:5px !important"><strong>Overall Bank's Performance</strong></td><td style="padding-left:5px !important"><strong>Benchmark</strong></td><td style="padding-left:5px !important;"><strong>Meet Requirement</strong></td></tr>
-                                            <tr style="background-color: #FFC0CB !important;padding-left: 5px !important"><td style="padding-left:5px !important;"><strong>Transaction Success Rate</strong></td><td style="padding-left:5px !important;"><strong>{{aggregatetrans}}</strong></td><td style="padding-left:5px !important;"><strong>90%</strong></td><td style="padding-left:5px !important;"><strong></strong></td></tr>
-                                            <tr style="background-color: #c9e9f6 !important;padding-left:5px !important"><td style="padding-left:5px !important;"><strong>Network Uptime</strong></td><td style="padding-left:5px !important;"><strong>{{LinkUptime}}</strong></td><td style="padding-left:5px !important;"><strong>90%</strong></td><td style="padding-left:5px !important;"><strong><span *ngIf="LinkUptime >=90">Yes</span><span *ngIf="LinkUptime < 90">No</span></strong></td></tr>
-                                            <tr style="background-color: #FFC0CB !important;padding-left:5px !important"><td style="padding-left:5px !important;"><strong>Aggregated Rating</strong></td><td style="padding-left:5px !important;"><strong>{{LinkUptime/100*40}}</strong></td><td style="padding-left:5px !important;"><strong>90%</strong></td><td style="padding-left:5px !important;"><strong></strong></tr>
+                                            <tr style="background-color: #ffc0cb  !important;padding-left: 5px !important"><td style="padding-left:5px !important;"><strong>Transaction Success Rate</strong></td><td style="padding-left:5px !important;"><strong>{{aggregatetrans | number : '1.2-2'}}%</strong></td><td style="padding-left:5px !important;"><strong>90%</strong></td><td style="padding-left:5px !important;"><strong><span *ngIf="aggregatetrans >= 90">Yes</span><span *ngIf="aggregatetrans < 90">No</span></strong></td></tr>
+                                            <tr style="background-color: #ffc0cb  !important;padding-left: 5px !important"><td style="padding-left:5px !important;"><strong>Transaction Failure Rate</strong></td><td style="padding-left:5px !important;"><strong>{{100-aggregatetrans | number : '1.2-2'}}%</strong></td><td style="padding-left:5px !important;"><strong>10%</strong></td><td style="padding-left:5px !important;"><strong><span *ngIf="100-aggregatetrans <= 10">Yes</span><span *ngIf="100-aggregatetrans > 10">No</span></strong></td></tr>
+                                            <tr style="background-color: #c9e9f6 !important;padding-left:5px !important"><td style="padding-left:5px !important;"><strong>Network Uptime</strong></td><td style="padding-left:5px !important;"><strong>{{LinkUptime}}%</strong></td><td style="padding-left:5px !important;"><strong>90%</strong></td><td style="padding-left:5px !important;"><strong><span *ngIf="LinkUptime >=90">Yes</span><span *ngIf="LinkUptime < 90">No</span></strong></td></tr>
+                                            <tr style="background-color: #ffc0cb  !important;padding-left:5px !important"><td style="padding-left:5px !important;"><strong>Aggregated Rating</strong></td><td style="padding-left:5px !important;"><strong>{{aggregatetrans*0.6+LinkUptime/100*40 | number : '1.2-2'}}%</strong></td><td style="padding-left:5px !important;"><strong>90%</strong></td><td style="padding-left:5px !important;"><strong><span *ngIf="aggregatetrans*0.6+LinkUptime/100*40 >=90">Yes</span><span *ngIf="aggregatetrans*0.6+LinkUptime/100*40 < 90">No</span></strong></tr>
                                             <!--<tr style="background-color: #c9e9f6 !important;padding-left:5px !important"><td style="padding-left:5px !important;"><strong>Bank Rank</strong></td><td style="padding-left:5px !important;"><strong></strong></td><td></td><td></td></tr>-->
 
 
@@ -311,4 +300,8 @@ darkcyan
   </div>
 </div>
 </div>
+</div>
+
+<div *ngIf="blackout" class="text-center" style="position:fixed;  top:0; left:0; bottom:0; right:0;background:rgba(0,0,0,.5);margin: auto">
+  <h3>Loading...</h3>
 </div>

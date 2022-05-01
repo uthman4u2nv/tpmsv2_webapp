@@ -18,6 +18,7 @@ export class UserService {
   resetuserurl=environment.resetuserurl;
   updateuserurl=environment.updateProfileurl;
   changepasswordurl=environment.changepasswordurl;
+  checkemailurl=environment.checkemailurl;
   constructor(public http:HttpClient) { }
 
   FetchUsers(): Observable<UserResponse[]>{
@@ -46,6 +47,10 @@ export class UserService {
   SearchUsers(d): Observable<Bankresponse[]>{
     return this.http.get<Bankresponse[]>(this.searchuserurl+'/'+d,{responseType:'json'});
   }
+  CheckEmail(data:CheckEmailRequest): Observable<SearchByEmailResponse>{
+    return this.http.post<SearchByEmailResponse>(this.checkemailurl,data,{responseType:'json'});
+  }
+
   SearchBankUsers(d,bankID): Observable<Bankresponse[]>{
     return this.http.get<Bankresponse[]>(this.searchhbankuserurl+'/'+d+'/'+bankID,{responseType:'json'});
   }
@@ -61,7 +66,9 @@ export class UserService {
   }
 
 }
-
+export interface CheckEmailRequest{
+  email:string;
+}
 export interface Bankresponse{
   bankID:number;
   bankName:string;
@@ -126,6 +133,10 @@ export interface UpdateProfileRequest{
   userID:number;
 }
 export interface UpdateProfileResponse{
+  responseCode:string;
+  responseMessage:string;
+}
+export interface SearchByEmailResponse{
   responseCode:string;
   responseMessage:string;
 }

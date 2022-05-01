@@ -4,11 +4,26 @@ import { BanksService } from '../../../../services/banks.service';
 import { EfficiencyreportService } from '../../../../services/efficiencyreport.service';
 import { GoogleChartComponent } from 'angular-google-charts';  
 import jsPDF from 'jspdf';
-import pdfMake from 'pdfmake/build/pdfmake';
-import pdfFonts from 'pdfmake/build/vfs_fonts';
-pdfMake.vfs = pdfFonts.pdfMake.vfs;
-import htmlToPdfmake from 'html-to-pdfmake';
+
+
+
 declare var google:any;
+
+declare var require: any;
+
+import * as pdfMake from "pdfmake/build/pdfmake";
+import * as pdfFonts from "pdfmake/build/vfs_fonts";
+const htmlToPdfmake = require("html-to-pdfmake");
+(pdfMake as any).vfs = pdfFonts.pdfMake.vfs;
+
+
+
+
+
+
+
+
+
 
 @Component({
   selector: 'app-cropper',
@@ -27,69 +42,40 @@ thresholdConfig2 = {
   '40': {color: 'orange'},
   '80': {color: 'green'}
 };
+blackout:boolean=false;
   ch=80;
   dd=[];
-  @Input() Cha={ch:90,charttitle:"Test"}
-  charttitle="";
-  @ViewChild('googlechart')googlechart: GoogleChartComponent;
-  @ViewChild('googlechart')googlechartlink: GoogleChartComponent;
-
+  
   /**PDF SECTION */
   title = 'htmltopdf';
   data:0;
   
-  @ViewChild('pdfTable') pdfTable: ElementRef;
+  
+
+  @ViewChild('pdfTable')
+  pdfTable!: ElementRef;
   
   public downloadAsPDF() {
-    const doc = new jsPDF();
+   // const doc = new jsPDF();
    
-    const pdfTable = this.pdfTable.nativeElement;
+   // const pdfTable = this.pdfTable.nativeElement;
    
-    var html = htmlToPdfmake(pdfTable.innerHTML);
+  //  var html = htmlToPdfmake(pdfTable.innerHTML);
      
-    const documentDefinition = { content: html };
-    pdfMake.createPdf(documentDefinition).open(); 
+   // const documentDefinition = { content: html };
+   // pdfMake.createPdf(documentDefinition).open(); 
+   const pdfTable = this.pdfTable.nativeElement;
+   var html = htmlToPdfmake(pdfTable.innerHTML);
+   const documentDefinition = { content: html };
+   pdfMake.createPdf(documentDefinition).download(); 
      
   }
   /**END PDF SECTION */
   
   LinkUptime:number=0;
-  chart = {
-    type: 'Gauge',
-    data: [
-    [this.charttitle, this.ch]
-    ],
-    options: {
-    width: 400,
-    height: 120,
-    greenFrom: 0,
-    greenTo: 5,
-    redFrom: 10,
-    redTo: 100,
-    yellowFrom: 75,
-    yellowTo: 90,
-    minorTicks: 5
-    }
-    };
+  
   
     
-  chart2 = {
-    type: 'Gauge',
-    data: [
-      ["", this.Cha.ch]
-      ],
-    options: {
-    width: 400,
-    height: 120,
-    greenFrom: 70,
-    greenTo: 100,
-    redFrom: 0,
-    redTo: 50,
-    yellowFrom: 50,
-    yellowTo: 700,
-    minorTicks: 5
-    }
-    };
   
 
   @ViewChild('angularCropper') public angularCropper: CropperComponent;
@@ -142,6 +128,7 @@ thresholdConfig2 = {
   }
 
   GenerateReport(data:ReportRequest):any{
+    this.blackout=true;
    
     this.es.GetReport(data).subscribe((d: any)=>{
       
@@ -157,13 +144,12 @@ thresholdConfig2 = {
       this.OutflowLastWeek=d.OutflowLastWeek;
       this.ch=d.Link;
       this.data=d.link;
-      this.Cha.ch=d.Link;
-      this.chart.data=d.Link;
+    
 
       
       this.aggregatetrans=d.TransRating;
       
-      
+      this.blackout=false;
     },(error)=>{
       console.log(error);
     })

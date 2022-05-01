@@ -68,6 +68,12 @@ export interface AnalysisResponse{
 	DailyOutSuccessRate:number;
 	DailyOutFailedRate:number;
 	DailyOutSummary:DailyOutSummary[];
+	DateLabel:string;
+	LabelLastFive:string;
+	InDailySuccessCnt:number;
+	OutDailySuccessCnt:number;
+	Out5Cnt:number;
+	In5Cnt:number;
 }
 export interface InLast5Summary{
 	Code:string;

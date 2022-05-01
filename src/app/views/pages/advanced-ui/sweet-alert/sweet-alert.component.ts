@@ -75,6 +75,24 @@ export class SweetAlertComponent implements OnInit {
    
    Last5SummaryOut:any=[];
    DailySummaryOut:any=[];
+   LabelLastFive="";
+   DateLabel="";
+   InDailySuccessCnt:number=0;
+	OutDailySuccessCnt:number=0;;
+	Out5Cnt:number=0;
+	In5Cnt:number=0;
+
+  In5SuccessRate:number=0;
+  In5FailureRate:number=0;
+  InDailySuccessRate:number=0;
+  InDailyFailureRate:number=0;
+
+  Out5SuccessRate:number=0;
+  Out5FailureRate:number=0;
+  OutDailySuccessRate:number=0;
+  OutDailyFailureRate:number=0;
+
+
   
 
 
@@ -301,6 +319,9 @@ this.displaytime=value.datetimelabel;
    this.DailySummary=d.DailyInSummary;
    this.Last5Summary=d.InLast5Summary;
    
+   
+
+
    this.OutVollast5=d.OutLast5Vol;
    this.OutFailedLast5=d.OutLast5Failed;
    this.OutSuccessLast5=d.OutLast5Success;
@@ -315,6 +336,24 @@ this.displaytime=value.datetimelabel;
    
    this.Last5SummaryOut=d.OutLast5Summary;
    this.DailySummaryOut=d.DailyOutSummary;
+   this.LabelLastFive=d.LabelLastFive;
+   this.DateLabel=d.DateLabel;
+
+   this.InDailySuccessCnt=d.InDailySuccessCnt;
+	this.OutDailySuccessCnt=d.OutDailySuccessCnt;
+	this.Out5Cnt=d.Out5Cnt;
+	this.In5Cnt=d.In5Cnt;
+
+  this.In5SuccessRate=(d.In5Cnt/d.InLast5Vol)*100;
+  this.In5FailureRate=100-((d.In5Cnt/d.InLast5Vol)*100);
+  this.InDailySuccessRate=(d.InDailySuccessCnt/d.DailyInVol)*100;
+  this.InDailyFailureRate=100-((d.InDailySuccessCnt/d.DailyInVol)*100);
+
+  this.Out5SuccessRate=(d.Out5Cnt/d.OutLast5Vol)*100;
+  this.Out5FailureRate=100-((d.Out5Cnt/d.OutLast5Vol)*100);
+  this.OutDailySuccessRate=(d.OutDailySuccessCnt/d.DailyOutVol)*100;
+  this.OutDailyFailureRate=100-((d.OutDailySuccessCnt/d.DailyOutVol)*100);
+
 		  
 	  },(err: HttpErrorResponse)=>{
 		  alert(err.message+"error");

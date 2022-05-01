@@ -130,21 +130,23 @@
             <a ngbNavLink>INWARDS</a>
             <ng-template ngbNavContent>
               <div class="card shadow-lg p-3 mb-5 bg-white rounded" style="margin-top: 5px; margin-bottom: 2px !important;">
-                <h5 class="modal-title" style="color: darkcyan;">INWARDS TRANSACTIONS LAST 5 MINUTES 00:00:00 AM - 00:05:00 AM</h5>
+                <h5 class="modal-title" style="color: darkcyan;">INWARDS TRANSACTIONS LAST 5 MINUTES {{LabelLastFive}}</h5>
                 <div class="card-body" style="padding-left: 5px !important;">
                   <div class="row">                
                   <div class="col-lg-4 text-start">
                   <table class="table" style="font-size: small;">
                     <tr><td colspan="2"><span style="color: darkcyan;">Inwards</span></td></tr>
                     <tr><td>Txn Vol.</td><td>{{InVollast5}}</td></tr>
-					<tr><td>Success</td><td>{{InSuccessLast5}}</td></tr>
-                    <tr><td>Failed</td><td>{{InFailedLast5}}</td></tr>
-                    <tr><td class="text-start">Success</td><td class="text-start">Failed</td></tr>
+					<!--<tr><td>Success</td><td>{{InSuccessLast5}}</td></tr>-->
+          <tr><td>Success</td><td>{{In5Cnt}}</td></tr>
+                    <!--<tr><td>Failed</td><td>{{InFailedLast5}}</td></tr>-->
+                    <tr><td>Failed</td><td>{{InVollast5-In5Cnt}}</td></tr>
+                    <tr><td class="text-start">Success %</td><td class="text-start">Failed %</td></tr>
                     <tr><td>
-					<div class="circless text-center" style="border: 1px solid; padding: 5px; width: 40px; height:40px; background-color: green; color: white;"><p class="text-start">{{InSuccessRateLast5 | number : '1.2-2'}}%</p></div>			
+					<div class="circless text-center" style="border: 1px solid; padding: 5px; width: 80px; height:80px; background-color: green; color: white;"><p class="text-start">{{In5SuccessRate | number : '1.2-2'}}</p></div>			
 					
 					</td><td>
-					<div class="circless text-center" style="border: 1px solid; padding: 5px; width: 40px; height:40px; background-color: red; color: white;"><p class="text-start">{{InFailedRateLast5 | number : '1.2-2'}}%</p></div>					
+					<div class="circless text-center" style="border: 1px solid; padding: 5px; width: 80px; height:80px; background-color: red; color: white;"><p class="text-start">{{In5FailureRate | number : '1.2-2'}}</p></div>					
 					
 					</td></tr>
     
@@ -163,21 +165,23 @@
               </div>
               <!-- Daily Inwards-->
               <div class="card shadow-lg p-3 mb-5 bg-white rounded" style="margin-top: 5px; margin-bottom: 2px !important;">
-                <h5 class="modal-title" style="color: darkcyan;">DAILY INWARDS TRANSACTIONS FOR 20-03-2022</h5>
+                <h5 class="modal-title" style="color: darkcyan;">DAILY INWARDS TRANSACTIONS FOR {{DateLabel}}</h5>
                 <div class="card-body" style="padding-left: 5px !important;">
                   <div class="row">                
                   <div class="col-lg-4 text-start">
                   <table class="table" style="font-size: small;">
                     <tr><td colspan="2"><span style="color: darkcyan;">Inwards</span></td></tr>
                     <tr><td>Txn Vol.</td><td>{{InVolDaily}}</td></tr>
-					<tr><td>Success</td><td>{{InSuccessLast5}}</td></tr>
-                    <tr><td>Failed</td><td>{{InFailedDaily}}</td></tr>
-                    <tr><td class="text-start">Failed Rate</td><td class="text-start">Success Rate</td></tr>
+					<!--<tr><td>Success</td><td>{{InSuccessLast5}}</td></tr>-->
+          <tr><td>Success</td><td>{{InDailySuccessCnt}}</td></tr>
+                    <!--<tr><td>Failed</td><td>{{InFailedDaily}}</td></tr>-->
+                    <tr><td>Failed</td><td>{{InVolDaily-InDailySuccessCnt}}</td></tr>
+                    <tr><td class="text-start">Failure %</td><td class="text-start">Success %</td></tr>
                     <tr><td>
-					<div class="circless text-center" style="border: 1px solid; padding: 5px; width: 40px; height:40px; background-color: red; color: white;"><p class="text-start">{{InFailedRateDaily | number : '1.2-2'}}%</p></div>
+					<div class="circless text-center" style="border: 1px solid; padding: 5px; width: 80px; height:80px; background-color: red; color: white;"><p class="text-start">{{InDailyFailureRate | number : '1.2-2'}}</p></div>
 					
 					</td><td>
-					<div class="circless text-center" style="border: 1px solid; padding: 5px; width: 40px; height:40px; background-color: green; color: white;"><p class="text-start">{{InSuccessRateDaily | number : '1.2-2'}}%</p></div>
+					<div class="circless text-center" style="border: 1px solid; padding: 5px; width: 80px; height:80px; background-color: green; color: white;"><p class="text-start">{{InDailySuccessRate | number : '1.2-2'}}</p></div>
 					</td></tr>
     
                   </table>
@@ -199,21 +203,24 @@
             <a ngbNavLink>OUTWARDS</a>
             <ng-template ngbNavContent>
               <div class="card shadow-lg p-3 mb-5 bg-white rounded" style="margin-top: 5px; margin-bottom: 2px !important;">
-                <h5 class="modal-title" style="color: darkcyan;">OUTWARDS TRANSACTIONS LAST 5 MINUTES 00:00:00AM - 00:05:00 AM</h5>
+                <h5 class="modal-title" style="color: darkcyan;">OUTWARDS TRANSACTIONS LAST 5 MINUTES {{LabelLastFive}}</h5>
                 <div class="card-body" style="padding-left: 5px !important;">
                   <div class="row">                
                   <div class="col-lg-4 text-start">
                   <table class="table" style="font-size: small;">
                     <tr><td colspan="2"><span style="color: darkcyan;">Outwards</span></td></tr>
                     <tr><td>Txn Vol.</td><td>{{OutVollast5}}</td></tr>
-                    <tr><td>Failed</td><td>{{OutFailedLast5}}</td></tr>
-					<tr><td>Successfull</td><td>{{OutSuccessLast5}}</td></tr>
-                    <tr><td class="text-start">Failed</td><td class="text-start">Successful</td></tr>
+                    <!--<tr><td>Successfull</td><td>{{OutSuccessLast5}}</td></tr>-->
+                    <tr><td>Successfull</td><td>{{Out5Cnt}}</td></tr>
+                    <!--<tr><td>Failed</td><td>{{OutFailedLast5}}</td></tr>-->
+                    <tr><td>Failed</td><td>{{OutVollast5-Out5Cnt}}</td></tr>
+					
+                    <tr><td class="text-start">Failure %</td><td class="text-start">Successful %</td></tr>
                     <tr><td>
-					<div class="circless text-center" style="border: 1px solid; padding: 5px; width: 40px; height:40px; background-color: red; color: white;"><p class="text-start">{{OutFailedRateLast5 | number : '1.2-2'}}%</p></div>
+					<div class="circless text-center" style="border: 1px solid; padding: 5px; width: 80px; height:80px; background-color: red; color: white;"><p class="text-start">{{Out5FailureRate | number : '1.2-2'}}</p></div>
 					
 					</td><td>
-					<div class="circless text-center" style="border: 1px solid; padding: 5px; width: 40px; height:40px; background-color: green; color: white;"><p class="text-start">{{OutSuccessRateLast5 | number : '1.2-2'}}%</p></div>
+					<div class="circless text-center" style="border: 1px solid; padding: 5px; width: 80px; height:80px; background-color: green; color: white;"><p class="text-start">{{Out5SuccessRate | number : '1.2-2'}}</p></div>
 					
 					</td></tr>
     
@@ -233,21 +240,24 @@
               </div>
               <!--Daily Outwards-->
               <div class="card shadow-lg p-3 mb-5 bg-white rounded" style="margin-top: 5px; margin-bottom: 2px !important;">
-                <h5 class="modal-title" style="color: darkcyan;">DAILY OUTWARDS TRANSACTIONS AS AT </h5>
+                <h5 class="modal-title" style="color: darkcyan;">DAILY OUTWARDS TRANSACTIONS FOR {{DateLabel}} </h5>
                 <div class="card-body" style="padding-left: 5px !important;">
                   <div class="row">                
                   <div class="col-lg-4 text-start">
                   <table class="table" style="font-size: small;">
                     <tr><td colspan="2"><span style="color: darkcyan;">Outwards</span></td></tr>
                     <tr><td>Txn Vol.</td><td>{{OutVolDaily}}</td></tr>
-                    <tr><td>Failed</td><td>{{OutFailedDaily}}</td></tr>
-					<tr><td>Successful</td><td>{{OutSuccessDaily}}</td></tr>
-                    <tr><td class="text-start">Failed</td><td class="text-start">Successful</td></tr>
+                    <!--<tr><td>Successful</td><td>{{OutSuccessDaily}}</td></tr>-->
+                    <tr><td>Successful</td><td>{{OutDailySuccessCnt}}</td></tr>
+                    <!--<tr><td>Failed</td><td>{{OutFailedDaily}}</td></tr>-->
+                    <tr><td>Failed</td><td>{{OutVolDaily-OutDailySuccessCnt}}</td></tr>
+					
+                    <tr><td class="text-start">Failure %</td><td class="text-start">Successful %</td></tr>
                     <tr><td>
-					<div class="circless text-center" style="border: 1px solid; padding: 5px; width: 40px; height:40px; background-color: red; color: white;"><p class="text-start">{{outFailedRateDaily | number : '1.2-2'}}%</p></div>
+					<div class="circless text-center" style="border: 1px solid; padding: 5px; width: 80px; height:80px; background-color: red; color: white;"><p class="text-start">{{OutDailyFailureRate | number : '1.2-2'}}</p></div>
 					
 					</td><td>
-					<div class="circless text-center" style="border: 1px solid; padding: 5px; width: 40px; height:40px; background-color: green; color: white;"><p class="text-start">{{OutSuccessRateDaily | number : '1.2-2'}}%</p></div>
+					<div class="circless text-center" style="border: 1px solid; padding: 5px; width: 80px; height:80px; background-color: green; color: white;"><p class="text-start">{{OutDailySuccessRate | number : '1.2-2'}}</p></div>
 					</td></tr>
     
                   </table>

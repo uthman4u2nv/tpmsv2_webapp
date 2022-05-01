@@ -34,6 +34,8 @@ export class NgxDatatableComponent implements OnInit {
     isImageSaved: boolean;
     cardImageBase64: string;
     imagePath:any;
+    addRespFailed:boolean=false;
+    updateAddMsgFailed="";
 
 
 
@@ -130,6 +132,10 @@ export class NgxDatatableComponent implements OnInit {
 
 
   AddBank(data:AddBankReq):any{
+    this.addResp=false;
+    this.addRespFailed=false;
+    this.updateAddMsgFailed="";
+    this.updateAddMsg="";
     console.log(data);
     this.loadingAdd=true;
     
@@ -140,6 +146,9 @@ export class NgxDatatableComponent implements OnInit {
        this.FetchBanks();
        console.log(d.responseMessage)
        this.Obj2={bankName:"",bankCode:"",bankEmail:"",bankPhone:"",bankLogo:"Logo2.png",failureThreshold:0,volumeThreshold:0,bankType:1,CreatedBy:1}
+     }else{
+      this.addRespFailed=true;
+      this.updateAddMsgFailed=d.responseMessage;
      }
     },(err: HttpErrorResponse) => {
       console.log (err.message);

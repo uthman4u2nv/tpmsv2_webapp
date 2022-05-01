@@ -5,7 +5,7 @@
       <div class="card-body">
         <div class="row">
           <div class="col-md-6"><h6 class="card-title">BANKS</h6></div>
-          <div class="col-md-6"><div class="text-right" align="right"><div class="row"><div class="col-md-6 text-left"><input type="text" class="form-control" placeholder="Search" (keyup)="SearchBanks($event)" /></div><div class="col-md-6"><button class="btn btn-success" (click)="opnAddNewBankModal(addModal)">Add Bank</button></div></div></div></div>
+          <div class="col-md-6"><div class="text-right" align="right"><div class="row"><div class="col-md-6 text-left"><input type="text" class="form-control" placeholder="Search By Name or Bank Code" (keyup)="SearchBanks($event)" /></div><div class="col-md-6"><button class="btn btn-success" (click)="opnAddNewBankModal(addModal)">Add Bank</button></div></div></div></div>
            {{BankLoadingMessage}}
         </div>
         
@@ -225,6 +225,9 @@
        
         <div class="alert alert-success" *ngIf="addResp">
           {{updateAddMsg}}
+        </div>
+        <div class="alert alert-danger" *ngIf="addRespFailed">
+          {{updateAddMsgFailed}}
         </div>
         <div class="spinner-border text-success" role="status" *ngIf="loadingAdd">
           <span class="sr-only">Loading...</span>

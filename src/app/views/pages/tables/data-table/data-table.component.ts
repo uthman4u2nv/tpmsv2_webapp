@@ -18,6 +18,7 @@ import { DataTable } from "simple-datatables";
 export class DataTableComponent implements OnInit {
   @Input() Obj={userID:0,fullnames:"",email:"",phone:"",bankLogo:"",role:0,bank:0,status:0}
   @Input() Obj2={fullnames:"",email:"",phone:"",bankLogo:"",role:0,bank:0,status:0}
+  @Input() Obj3={email:""}
   rows = [];
   loadingIndicator = true;
   reorderable = true;
@@ -41,6 +42,8 @@ export class DataTableComponent implements OnInit {
     imagePath:any;
     roles=[];
     banks=[];
+    addRespFailed:boolean=false;
+    updateAddMsgFailed="";
 
   constructor(public us:UserService,public bs:BanksService,private modalService: NgbModal,private _sanitizer: DomSanitizer) { }
 
@@ -146,6 +149,25 @@ export class DataTableComponent implements OnInit {
     this.loading=false;
   }
 
+  CheckEmail(event){
+    this.addResp=false;
+    this.addRespFailed=false;
+    
+    this.Obj3.email=event.target.value;
+    this.us.CheckEmail(this.Obj3).subscribe(d=>{
+      
+      if(d.responseCode=="99"){
+        this.addRespFailed=true;
+        this.updateAddMsgFailed=d.responseMessage;
+        
+        this.Obj2.email="";
+      }
+    },(error)=>{
+      this.addRespFailed=true;
+        this.updateAddMsgFailed=error.message;
+    })
+  }
+
   SearchUsers(event):any{
     this.BankLoadingMessage="";
     if(event.target.value===""){
@@ -182,6 +204,9 @@ export class DataTableComponent implements OnInit {
 
 
 
+}
+export interface CheckEmailRequest{
+  email:string;
 }
 export interface UpdateUserProfilerequest{
   fullnames:string;
