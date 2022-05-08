@@ -23,6 +23,63 @@
 <div class="row table-responsive" #fullScreen  style="margin-top: 10px !important; background-color: white;"> 
   <ul class="bbx" style="padding-left: 0px !important;" >
   <!--<div class="col-6 col-md-6 col-xl-6">-->
+    <div class="card shadow rounded" style="border: 2px solid; border-color: darkgray;overflow: hidden; ">
+      <div class="card-body" style="margin-top: 0px !important; padding: 2px !important;margin-bottom:0px !important;">
+        <div class="row">
+          <div class="col-lg-3 text-start" align="left"><img src="../../../../../assets/images/logoipsl2.png" height="40" width="40" class="rounded-circle image z-depth-2 border"  /></div>
+          <div class="col-lg-9">
+            <div class="row">
+              <div class="col-md-12 text-center" ><strong>INDUSTRY</strong></div>
+            </div>
+            <div class="row" style="padding:5px !important" >
+             
+              
+               <div class="col-md-6 blockss" style="margin-right: -20px !important;">               
+                
+                <div class="align-items-end">
+                <small>                 
+                 <div class="text-center" style="padding: 5px; width: 40px;  color: black;"><p class="text-start" style="color: darkcyan;"><strong>IN</strong></p></div>
+                 <div class="circless text-center" style="border: 1px solid; padding: 5px; width: 40px; height:40px; background-color: grey; color: white;" *ngIf="IndinRate == 9999 && IndinVolume == 0"><p class="text-start">0%</p></div>
+                 <div class="circless text-center" style="border: 1px solid; padding: 5px; width: 40px; height:40px; background-color: green; color: white;" *ngIf="IndinRate == 9999 && IndinVolume > 0"><p class="text-start">0%</p></div>
+                 <div class="circless text-center" style="border: 1px solid; padding: 5px; width: 40px; height:40px; background-color: green; color: white;" *ngIf="IndinRate ==0 && IndinVolume > 0"><p class="text-start">{{IndinRate }}%</p></div>
+                  <div class="circless text-center" style="border: 1px solid; padding: 5px; width: 40px; height:40px; background-color: green; color: white;" *ngIf="IndinRate > 0 && IndinRate < 40 && IndinVolume > 0"><p class="text-start">{{IndinRate }}%</p></div>
+                  <div class="circless text-center" style="padding: 5px; width: 40px; height:40px; background-color: yellow; color: black;" *ngIf="IndinRate > 50 && IndinRate < 70"><p class="text-start">{{IndinRate }}%</p></div>
+                  <div class="circless text-center" style="border: 2px solid; padding: 5px; width: 40px; height:40px; background-color: red; color: white;" *ngIf="IndinRate > 70 && IndinRate < 100"><p class="text-start">{{IndinRate }}%</p></div>
+                  <div class="circless text-center" style="border: 2px solid; padding: 5px; width: 40px; height:40px; background-color: red; color: white;" *ngIf="IndinRate > 69 && IndinRate < 71 "><p class="text-start">{{IndinRate }}%</p></div>
+                  <div class="circless text-center blink-bg"  style="border: 2px solid; padding: 5px; width: 40px; height:40px; color: white;" *ngIf="IndinRate > 99 && IndinRate < 101"><p class="text-center">{{IndinRate }}%</p></div>
+                  
+                  </small>
+                </div>
+              </div>
+              <div class="col-md-6 blockss text-left">
+                
+                <div class="align-items-end">
+                <small>
+                 <div class="text-center" style="padding: 5px; width: 40px;  color: black;"><p class="text-start" style="color: darkcyan;"><strong>OUT</strong></p></div>
+                 <div class="circless text-center" style="border: 1px solid; padding: 5px; width: 40px; height:40px; background-color: green; color: white;" *ngIf="IndoutRate == 0 && IndoutVolume > 0"><p class="text-start">{{IndoutRate }}%</p></div>
+                 <div class="circless text-center" style="border: 1px solid; padding: 5px; width: 40px; height:40px; background-color: grey; color: white;" *ngIf="IndoutRate == 9999 && IndoutVolume ==0 "><p class="text-start">0%</p></div>
+                 <div class="circless text-center" style="border: 1px solid; padding: 5px; width: 40px; height:40px; background-color: green; color: white;" *ngIf="IndoutRate == 9999 && IndoutVolume > 0"><p class="text-start">0%</p></div>
+                  <div class="circless text-center" style="border: 1px solid; padding: 5px; width: 40px; height:40px; background-color: green; color: white;" *ngIf="IndoutRate > 0 && IndoutRate < 40 && IndoutVolume > 0"><p class="text-start">{{IndoutRate }}%</p></div>
+                  <div class="circless text-center" style=" padding: 5px; width: 40px; height:40px; background-color: yellow; color: black;" *ngIf="IndoutRate > 50 && IndoutRate < 70"><p class="text-start">{{IndoutRate }}%</p></div>
+                  <div class="circless text-center" style="border: 2px solid; padding: 5px; width: 40px; height:40px; background-color: red; color: white;" *ngIf="IndoutRate > 69 && IndoutRate < 71 "><p class="text-start">{{IndoutRate }}%</p></div>
+                  <div class="circless text-center" style="border: 2px solid; padding: 5px; width: 40px; height:40px; background-color: red; color: white;" *ngIf="IndoutRate > 70 && IndoutRate < 100"><p class="text-start">{{IndoutRate }}%</p></div>
+                  <div class="circless text-center blink-bg"  style="border: 2px solid; padding: 5px; width: 40px; height:40px; color: white;" *ngIf="IndoutRate > 99 && IndoutRate < 101"><p class="text-start">{{IndoutRate }}%</p></div>
+                </small>
+              </div>
+            </div>
+            
+            </div>
+            
+          </div>
+        </div>
+      </div>
+      <div class="card-footer" style="padding: 2px !important;color:darkcyan;margin-top: 5px !important;">
+        <div class="row">
+          
+          <div class="col-md-12"><p class="text-center"><strong>Vol: In: {{IndinVolume}} | Out: {{IndoutVolume}}</strong></p></div>
+        </div>
+      </div>
+    </div>
     
     <div class="card shadow rounded" style="border: 2px solid; border-color: darkgray;overflow: hidden; " *ngFor="let rows of row" (click)="onSelect(rows.bankName,rows.bankLogo,rows.bankCode,basicModal)">
       <!--<div class="card-header d-flex justify-content-center" style="margin-bottom: 0px !important; margin-top:-30px !important; color:black; " >
@@ -108,6 +165,7 @@
 </div>
 
 <ng-template #basicModal let-modal>
+  
   <div class="modal-header">
     
     <div class="row">                
@@ -124,6 +182,9 @@
     
     <div class="card">
       <div class="card-body">
+        <div *ngIf="blackout2" class="text-center" style="position:fixed;  top:0; left:0; bottom:0; right:0;background:rgba(0,0,0,.5);margin: auto">
+          <h3>Loading...</h3>
+        </div>
         
         <ul ngbNav #defaultNav="ngbNav" [(activeId)]="defaultNavActiveId" class="nav-tabs">
           <li [ngbNavItem]="1">

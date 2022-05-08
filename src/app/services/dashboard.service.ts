@@ -8,6 +8,7 @@ import { environment } from 'src/environments/environment';
 })
 export class DashboardService {
   dashboardurl=environment.dashboardurl;
+  inddashboardurl=environment.Inddashboardurl;
   dashboardurl2=environment.dashboardurl2;
   searchdashboardurl=environment.searchdashboardurl;
   dashboardanalyticsurl=environment.dashboardanalytics;
@@ -17,6 +18,9 @@ export class DashboardService {
 
   FetchDashboard(): Observable<dashboardResp[]>{
     return this.http.get<dashboardResp[]>(this.dashboardurl,{responseType:'json'});
+  }
+  FetchIndustryDashboard(): Observable<InddashboardResp>{
+    return this.http.get<InddashboardResp>(this.inddashboardurl,{responseType:'json'});
   }
   FetchDashboardReload(): Observable<dashboardResp[]>{
     return this.http.get<dashboardResp[]>(this.dashboardurl,{responseType:'json'});
@@ -40,7 +44,16 @@ export interface dashboardResp{
   bankCode:string;
   bankLogo:string;
   totalRate:number;
+  
 }
+export interface InddashboardResp{
+
+	totalRate:number;
+	IndInRate: number;
+	IndOutRate: number;
+	IndOutVolume: number;
+	IndInVolume:number;
+  }
 
 export interface DashAnalysisReq{
 	bankCode:string;

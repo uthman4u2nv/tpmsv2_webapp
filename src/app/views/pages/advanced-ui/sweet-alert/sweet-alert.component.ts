@@ -35,6 +35,10 @@ export class SweetAlertComponent implements OnInit {
   incomingdata:any[]=[];
   outgoingdata:any[]=[];
   displaytime="";
+  IndinRate=0;
+  IndinVolume=0;
+  IndoutRate=0;
+  IndoutVolume=0;
   mydata:"";
   blackout:boolean=false;
   @ViewChild('fullScreen') divRef;
@@ -42,7 +46,13 @@ export class SweetAlertComponent implements OnInit {
   
 //
   constructor(public dash:DashboardService,private _sanitizer: DomSanitizer,private modalService: NgbModal,private wss:WebSocketServiceService) {
-
+    this.wss.listen().subscribe((data)=>{
+      this.row=data;
+      this.DisplayDashboard(data);console.log("dataaaaa"+data);
+      
+    },error=>{
+      console.log(error+"Error");
+    });
 
    }
    //Analytics variables
@@ -91,6 +101,7 @@ export class SweetAlertComponent implements OnInit {
   Out5FailureRate:number=0;
   OutDailySuccessRate:number=0;
   OutDailyFailureRate:number=0;
+  blackout2:boolean=false;
 
 
   
@@ -158,12 +169,7 @@ export class SweetAlertComponent implements OnInit {
     //this.wss.FetchDash();
     //this.wss.FetchDashboard().subscribe((data: any) => this.row = data)
     //this.wss.Fet().subscribe((data: any) => console.log(data))
-    this.wss.listen().subscribe((data)=>{
-      this.row=data;
-      this.DisplayDashboard(data);console.log("dataaaaa"+data)
-    },error=>{
-      console.log(error+"Error");
-    });
+    
 
   }
 
@@ -201,12 +207,26 @@ this.displaytime=value.datetimelabel;
     //console.log("Dataaaa:"+data);
     this.DisplayLabel(data);
     this.row=data;
+    this.FetchIndustryDashboard();
   }
   FetchDashboard(){
     this.dash.FetchDashboard().subscribe(d=>{
      this.blackout=false;
       this.row=d;
       this.DisplayLabel(d);
+      this.FetchIndustryDashboard();
+    },(err: HttpErrorResponse)=>{
+
+    })
+  }
+  FetchIndustryDashboard(){
+    this.dash.FetchIndustryDashboard().subscribe(d=>{
+     
+      this.IndinRate=d.IndInRate;
+      this.IndinVolume=d.IndInVolume;
+      this.IndoutRate=d.IndOutRate;
+      this.IndoutVolume=d.IndOutVolume;
+      //this.DisplayLabel(d);
     },(err: HttpErrorResponse)=>{
 
     })
@@ -300,6 +320,7 @@ this.displaytime=value.datetimelabel;
   }
 
   openBasicModal(content,bCode) {
+    this.blackout2=true;
 	  //alert(bCode);
 	  this.Obj2.bankCode=bCode;
 	  //alert("Obj"+JSON.stringify(this.Obj2));
@@ -344,16 +365,16 @@ this.displaytime=value.datetimelabel;
 	this.Out5Cnt=d.Out5Cnt;
 	this.In5Cnt=d.In5Cnt;
 
-  this.In5SuccessRate=(d.In5Cnt/d.InLast5Vol)*100;
-  this.In5FailureRate=100-((d.In5Cnt/d.InLast5Vol)*100);
+  this.In5SuccessRate=d.In5Cnt/d.InLast5Vol*100;
+  this.In5FailureRate=100-(d.In5Cnt/d.InLast5Vol*100);
   this.InDailySuccessRate=(d.InDailySuccessCnt/d.DailyInVol)*100;
   this.InDailyFailureRate=100-((d.InDailySuccessCnt/d.DailyInVol)*100);
 
-  this.Out5SuccessRate=(d.Out5Cnt/d.OutLast5Vol)*100;
-  this.Out5FailureRate=100-((d.Out5Cnt/d.OutLast5Vol)*100);
+  this.Out5SuccessRate=d.Out5Cnt/d.OutLast5Vol*100;
+  this.Out5FailureRate=100-(d.Out5Cnt/d.OutLast5Vol*100);
   this.OutDailySuccessRate=(d.OutDailySuccessCnt/d.DailyOutVol)*100;
   this.OutDailyFailureRate=100-((d.OutDailySuccessCnt/d.DailyOutVol)*100);
-
+this.blackout2=false;
 		  
 	  },(err: HttpErrorResponse)=>{
 		  alert(err.message+"error");

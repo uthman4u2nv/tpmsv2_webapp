@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import * as io from 'socket.io-client';
 import { Observable, Subscriber,BehaviorSubject } from 'rxjs';
+import { environment } from 'src/environments/environment';
 //import { Socket } from 'ngx-socket-io';  
 import { map, subscribeOn } from 'rxjs/operators';
 
@@ -16,7 +17,7 @@ export class WebSocketServiceService {
   constructor() { 
     //this.socket=io.connect('http://localhost:8586')
   }
-  socket = io('http://localhost:8586');
+  socket = io(environment.socketUrl);
   /*listen(eventname: String): Observable<any>{
     return new Observable((subscribe)=>{
        this.socket.on(eventname,(data)=>{

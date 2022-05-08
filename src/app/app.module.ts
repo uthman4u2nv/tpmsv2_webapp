@@ -25,6 +25,7 @@ import { ChangepasswordComponent } from './changepassword/changepassword.compone
 import { BankusersComponent } from './bankusers/bankusers.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { NgxGaugeModule } from 'ngx-gauge';
+import { GaugeModule } from 'angular-gauge';
 //import { GuagechartComponent } from './guagechart/guagechart.component';
 
 /*const config: SocketIoConfig = {
@@ -54,6 +55,7 @@ import { NgxGaugeModule } from 'ngx-gauge';
     NgxDatatableModule,
     NgxGaugeModule,
     GoogleChartsModule.forRoot(),
+    GaugeModule.forRoot(),
     //SocketIoModule.forRoot(config),
     //SocketIoModule.forRoot({ url: 'http://localhost:8586' }),
     ServiceWorkerModule.register('ngsw-worker.js', {

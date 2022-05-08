@@ -24,6 +24,7 @@ import { environment } from 'src/environments/environment';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { NgxGaugeModule } from 'ngx-gauge';
+import { GaugeModule } from 'angular-gauge';
 
 /*const config: SocketIoConfig = {
 	url: environment.socketUrl, // socket server url;
@@ -81,6 +82,7 @@ const routes: Routes = [
     FormsModule,
     NgxGaugeModule,
     GoogleChartsModule.forRoot(),
+    GaugeModule.forRoot()
     //SocketIoModule.forRoot(config),
 
 

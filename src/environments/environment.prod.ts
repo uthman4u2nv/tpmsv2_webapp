@@ -49,6 +49,7 @@ export const environment = {
   //dashboardurl:'http://localhost:8585/dashboard',
   //dashboardurl:'http://localhost:61681/api/dashboard',
   dashboardurl:'https://tpms.ipsl.co.ke:4433/ReportAPI/api/Dashboard',
+  Inddashboardurl:'https://tpms.ipsl.co.ke:4433/ReportAPI/api/IndustryDashboard',
   dashboardurl2:'https://tpms.ipsl.co.ke:4433/ReportAPI/api/Dashboard',
   //searchdashboardurl:'http://localhost:8585/dashboard/search',
   searchdashboardurl:'https://tpms.ipsl.co.ke:4433/ReportAPI/api/dashboardsearch',
