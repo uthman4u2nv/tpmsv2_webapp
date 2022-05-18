@@ -33,6 +33,7 @@ export class SidebarComponent implements OnInit, AfterViewInit {
          * closing the sidebar
          */
         if (window.matchMedia('(max-width: 991px)').matches) {
+          
           this.document.body.classList.remove('sidebar-open');
         }
 
@@ -49,7 +50,8 @@ export class SidebarComponent implements OnInit, AfterViewInit {
     /**
      * Sidebar-folded on desktop (min-width:992px and max-width: 1199px)
      */
-    const desktopMedium = window.matchMedia('(min-width:992px) and (max-width: 1199px)');
+    
+    const desktopMedium = window.matchMedia('(min-width:1200px) and (max-width: 1400px)');
     
     desktopMedium.addListener(this.iconSidebar);
     this.iconSidebar(desktopMedium);
@@ -124,7 +126,7 @@ export class SidebarComponent implements OnInit, AfterViewInit {
     if (e.matches) {
       this.document.body.classList.add('sidebar-folded');
     } else {
-      this.document.body.classList.remove('sidebar-folded');
+      this.document.body.classList.remove('sidebar-open');
     }
   }
 
@@ -133,7 +135,7 @@ export class SidebarComponent implements OnInit, AfterViewInit {
    * Switching sidebar light/dark
    */
   onSidebarThemeChange(event) {
-    this.document.body.classList.remove('sidebar-light', 'sidebar-dark');
+    this.document.body.classList.remove('sidebar-light', 'sidebar-dark');    
     this.document.body.classList.add(event.target.value);
     this.document.body.classList.remove('settings-open');
   }

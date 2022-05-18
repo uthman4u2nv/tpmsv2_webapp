@@ -32,6 +32,7 @@ const htmlToPdfmake = require("html-to-pdfmake");
   styleUrls: ['./cropper.component.scss']
 })
 export class ImageCropperComponent implements OnInit {
+  percentageValue: (value: number) => string;
 
   thresholdConfig = {
     '0': {color: 'green'},
@@ -60,8 +61,8 @@ blackout:boolean=false;
     var data = document.getElementById('mypdf');
     html2canvas(data).then(canvas => {
         // Few necessary setting options
-        var imgWidth = 208;
-        var pageHeight = 295;
+        var imgWidth = 230;
+        var pageHeight = 315;
         var imgHeight = canvas.height * imgWidth / canvas.width;
         var heightLeft = imgHeight;
 
@@ -119,7 +120,11 @@ blackout:boolean=false;
     zoomable: true
   };
 
-  constructor(private bs:BanksService,private es:EfficiencyreportService) { }
+  constructor(private bs:BanksService,private es:EfficiencyreportService) {
+    this.percentageValue = function (value: number): string {
+      return `${Math.round(value)} / ${this['max']}`;
+    };
+   }
   setValues(){
    
    

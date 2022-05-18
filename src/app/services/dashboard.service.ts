@@ -87,6 +87,19 @@ export interface AnalysisResponse{
 	OutDailySuccessCnt:number;
 	Out5Cnt:number;
 	In5Cnt:number;
+	VolGraphIn:VolumeGraphIn[];
+	VolGraphOut:VolumeGraphOut[];
+}
+
+export interface VolumeGraphIn{
+	transDate:string;
+	Cnt:number;
+	Receipient:string;
+}
+export interface VolumeGraphOut{
+	transDate:string;
+	Cnt:number;
+	Receipient:string;
 }
 export interface InLast5Summary{
 	Code:string;

@@ -70,6 +70,10 @@ export class SweetAlertComponent implements OnInit {
    
    Last5Summary:any=[];
    DailySummary:any=[];
+   VolGraphIn:any=[];
+   VolGraphOut:any=[];
+   VolGraphInLabel:any=[];
+   VolGraphOutLabel:any=[];
    
    OutVollast5:any=0;
    OutFailedLast5:any=0;
@@ -111,8 +115,8 @@ export class SweetAlertComponent implements OnInit {
   public lineChartData: ChartDataSets[] = [
     //{ data: [86,114,106,106,107,111,133,221,783,2478], label: 'Incoming', fill: true },
     //{ data: [282,350,411,502,635,809,947,1402,3700,5267], label: 'Outgoing', fill: true }
-    { data: [86,114,106,106,107,111,133,221,783,2478], label: 'Incoming', fill: false },
-    { data: [282,350,411,502,635,809,947,1402,3700,5267], label: 'Outgoing', fill: false }
+    { data: this.VolGraphIn, label: 'Incoming', fill: false },
+    { data: this.VolGraphOut, label: 'Outgoing', fill: false }
   ];
   public lineChartData1: ChartDataSets[] = [
     { data: [67,145,11,106,107,199,133,288,687,345], label: 'Incoming', fill: true },
@@ -164,6 +168,8 @@ export class SweetAlertComponent implements OnInit {
 
   ngOnInit(): void {
     this.blackout=true;
+    this.VolGraphIn=[0,0,0,0,0,0,0,0,0,0];
+    this.VolGraphOut=[0,0,0,0,0,0,0,0,0,0];
     this.FetchDashboard();
     //this.LoadDashboard();
     //this.wss.FetchDash();
@@ -339,6 +345,8 @@ this.displaytime=value.datetimelabel;
    this.InFailedRateDaily=d.DailyInFailedRate;
    this.DailySummary=d.DailyInSummary;
    this.Last5Summary=d.InLast5Summary;
+   this.VolGraphIn=d.VolGraphIn;
+   this.VolGraphOut=d.VolGraphOut;
    
    
 
