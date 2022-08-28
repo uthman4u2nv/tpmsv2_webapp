@@ -8,7 +8,21 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { ChartOptions, ChartType, ChartDataSets, RadialChartOptions } from 'chart.js';
 import { Label, Color, SingleDataSet } from 'ng2-charts';
 import { WebSocketServiceService } from '../../../../services/web-socket-service.service';
-
+import * as Chart from 'chart.js';
+import ApexCharts from 'apexcharts';
+import {
+  ChartComponent,
+  ApexAxisChartSeries,
+  ApexChart,
+  ApexXAxis,
+  ApexDataLabels,
+  ApexStroke,
+  ApexMarkers,
+  ApexYAxis,
+  ApexGrid,
+  ApexTitleSubtitle,
+  ApexLegend
+} from "ng-apexcharts";
 
 
 
@@ -19,9 +33,16 @@ import { WebSocketServiceService } from '../../../../services/web-socket-service
 @Injectable()
 export class SweetAlertComponent implements OnInit {
 
+  canvas:any; ctx:any; canvas2:any; ctx2:any; canvas3:any; ctx3:any;
+  
   @Input() Obj={bankCode:"",bankName:"",bankLogo:""}
+  @Input() Obj44={bankCode:""}
   @Input() Obj2={bankCode:""}
   @Input() Obj3={bankName:""}
+  p:any=[];
+  q:any=[];
+  pp:VolumeGraphIn[]=[];
+  retrievedData:AnalysisResponse;
   row:any=[];
   temp:any=[];
   bankName:string="";
@@ -107,24 +128,83 @@ export class SweetAlertComponent implements OnInit {
   OutDailyFailureRate:number=0;
   blackout2:boolean=false;
 
+  /*chartData = {
+    type: 'LineChart',
+    data: [
+    ["00:00",  500, 600],
+    ["Feb",  800, 900],
+    ["Mar",  400, 600],
+    ["Apr",  600, 500],
+    ["May",  400, 300],
+    ["Jun",  750, 700],
+    ["Jul",  800, 710],
+    ["Aug",  810, 720],
+    ["Sep",  820, 730],
+    ["Oct",  900, 840],
+    ["Nov",  910, 850],
+    ["Dec",  920, 890]
+ ],
+ columnNames: ["Month", "Apple", "Mi"],
+ options: {
+ hAxis: {
+       title: 'Month'
+    },
+    vAxis:{
+       title: 'Sell'
+    },
+ },
+ width: 1000,
+ height: 400
+};
 
+*/
   
 
 
   
+ /* public lineChartData: ChartDataSets[] = [
+    { data: [86,114,106,106,107,111,133,221,783,2478,1100,1500,550,230,590,100,520,400,200,650,700,432,879,2300], label: 'Incoming', fill: false },
+    { data: [282,350,411,502,635,809,947,1402,3700,5267,1600,1250,86,114,106,106,107,111,133,221,783,2478,1100,1500], label: 'Outgoing', fill: false }
+    //{ data: this.VolGraphIn, label: 'Incoming', fill: false },
+    //{ data: this.VolGraphOut, label: 'Outgoing', fill: false }
+  ];*/
   public lineChartData: ChartDataSets[] = [
-    //{ data: [86,114,106,106,107,111,133,221,783,2478], label: 'Incoming', fill: true },
-    //{ data: [282,350,411,502,635,809,947,1402,3700,5267], label: 'Outgoing', fill: true }
-    { data: this.VolGraphIn, label: 'Incoming', fill: false },
-    { data: this.VolGraphOut, label: 'Outgoing', fill: false }
+    //{ data: [67,145,11,106,107,199,133,288,687,345], label: 'Incoming', fill: true },
+    { data: this.p, label: 'Incoming', fill: true },
+    //{ data: [200,199,375,502,635,809,947,1402,3700,5267], label: 'Outgoing', fill: true }
+    { data: this.q, label: 'Outgoing', fill: true }
   ];
   public lineChartData1: ChartDataSets[] = [
     { data: [67,145,11,106,107,199,133,288,687,345], label: 'Incoming', fill: true },
     { data: [200,199,375,502,635,809,947,1402,3700,5267], label: 'Outgoing', fill: true }
   ];
-  public lineChartLabels: Label[] = ['1500','1600','1700','1750','1800','1850','1900','1950','1999','2050'];
+  public lineChartLabels: Label[] = ['00:00','01:00','02:00','03:00','04:00','05:00','06:00','07:00','08:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00','18:00','19:00','20:00','21:00','22:00','23:00','00:00'];
   public lineChartOptions: ChartOptions = {
-    responsive: true,
+    responsive: true
+   /* scales: {
+      yAxes: [{
+          ticks: {
+              beginAtZero: true
+          }
+      }],
+      xAxes: [{
+        type: 'time',
+        time: {
+         // parser: timeFormat,
+          displayFormats: {
+            
+            hour: 'HH:mm'
+            //millisecond: 'HH:mm:ss.SSS',
+            //second: 'HH:mm:ss',
+            //minute: 'HH:mm',
+            //hour: 'HH'
+          },
+         
+        },
+        
+       // labels:['00:00','01:00','02:00','03:00','04:00','05:00','06:00','07:00','08:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00','18:00','19:00','20:00','21:00','22:00','23:00','00:00'],
+      }]
+  }*/
   };
 
   public lineChartLabels1: Label[] = ['1500','1600','1700','1750','1800','1850','1900','1950','1999','2050'];
@@ -176,6 +256,7 @@ export class SweetAlertComponent implements OnInit {
     //this.wss.FetchDashboard().subscribe((data: any) => this.row = data)
     //this.wss.Fet().subscribe((data: any) => console.log(data))
     
+    
 
   }
 
@@ -202,6 +283,49 @@ export class SweetAlertComponent implements OnInit {
       elem.webkitRequestFullscreen();
     }
   }
+  Populate(d){
+    console.log(d);
+    //alert("hhhBankCode:"+d[key].bankCode)
+    for (let key in d) {
+      let value = d[key];
+
+      this.Obj44.bankCode=value.bankCode;
+      this.dash.PopulateData(this.Obj44).subscribe(dd=>{
+        console.log("Bank Data Ddetails:"+dd);
+       // this.p.push(this.rNumber(20,100))
+        
+        const arr: PopulateResp[] = [];
+        const a1: PopulateResp = {
+          bankCode:dd.bankCode,
+          bankName: dd.bankName,
+          inRate:15,
+          outRate:15,
+          inVolume:4,
+          outVolume:4,
+          bankLogo:dd.bankLogo,
+          totalRate:99,
+          IndInRate:4,
+          IndOutRate:0,
+          IndOutVolume:70,
+          IndInVolume:50
+
+          
+        };
+        
+this.row.push(dd);
+      })
+    
+    }
+    /*Object.keys(d).forEach(function(key){
+      
+      this.Obj44.bankCode=d[key].bankCode;
+
+      )*/
+
+  }
+    
+    
+  
   DisplayLabel(data){
     for (let key in data) {
       let value = data[key];
@@ -218,7 +342,8 @@ this.displaytime=value.datetimelabel;
   FetchDashboard(){
     this.dash.FetchDashboard().subscribe(d=>{
      this.blackout=false;
-      this.row=d;
+      //this.row=d;
+     this.Populate(d);
       this.DisplayLabel(d);
       this.FetchIndustryDashboard();
     },(err: HttpErrorResponse)=>{
@@ -289,7 +414,7 @@ this.displaytime=value.datetimelabel;
     
     //this.Obj={bankCode:bCode,bankName:bankName,bankLogo:bankLogo}
     
-    this.openBasicModal(content,bCode);
+    this.openBasicModal(content,bCode,bankName);
    }
 
    FetchIncomingAnalytics(){
@@ -324,14 +449,29 @@ this.displaytime=value.datetimelabel;
     })
    
   }
+  rNumber(min, max) {
+    return Math.floor(Math.random() * (max - min) + min);
+  }
 
-  openBasicModal(content,bCode) {
+  openBasicModal(content,bCode,bName) {
+
+    //check the role
+    let role=localStorage.getItem("role");
+    let bankName=localStorage.getItem("bankName");
+    if(role==="3" || role==="4"){
+      if(bankName!=bName){
+        return false;
+      }
+    }
+    
+    this.p.splice(0);
+  this.q.splice(0);
     this.blackout2=true;
-	  //alert(bCode);
+	 
 	  this.Obj2.bankCode=bCode;
-	  //alert("Obj"+JSON.stringify(this.Obj2));
+	  
 	  this.dash.DashAnalysis(this.Obj2).subscribe(d=>{
-		 // alert("D:"+d);
+		 
 		   this.InVollast5=d.InLast5Vol;
    this.InFailedLast5=d.InLast5Failed;
    this.InSuccessLast5=d.InLast5Success;
@@ -348,6 +488,63 @@ this.displaytime=value.datetimelabel;
    this.VolGraphIn=d.VolGraphIn;
    this.VolGraphOut=d.VolGraphOut;
    
+  //this.p=[];
+  //this.q=[];
+   for(let i=0; i<18;i++){
+    this.p.push(this.rNumber(20,100))
+   }
+   for(let i=0; i<18;i++){
+    this.q.push(this.rNumber(20,100))
+   }
+
+   
+   //alert("Graph"+d.VolGraphIn[1].Cnt);
+   
+   
+  /* d.VolGraphIn.forEach(mobile => {
+    for (let key in mobile) {
+        console.log(`${key}: ${mobile[key]}`);
+    }
+});*/
+	
+ 
+   /*for(let i=0; i<this.pp.length; i++){
+    console.log("Date:"+this.pp[i].Cnt); //use i instead of 0
+    
+}*/
+
+/*var options123 = {
+  chart: {
+    height: 380,
+    width: "100%",
+    type: "line",
+    animations: {
+      initialAnimation: {
+        enabled: false
+      }
+    }
+  },
+  series: [
+    {
+      name: "Series 1",
+      data: [
+        [1486684800000, 34], 
+        [1486771200000, 43], 
+        [1486857600000, 31], 
+        [1486944000000, 43], 
+        [1487030400000, 33], 
+        [1487116800000, 52]
+      ]
+    }
+  ],
+  xaxis: {
+    type: 'datetime'
+  }
+};
+*/
+//var chart1 = new ApexCharts(document.querySelector("#chart123"), options123);
+
+//chart1.render();
    
 
 
@@ -383,9 +580,10 @@ this.displaytime=value.datetimelabel;
   this.OutDailySuccessRate=(d.OutDailySuccessCnt/d.DailyOutVol)*100;
   this.OutDailyFailureRate=100-((d.OutDailySuccessCnt/d.DailyOutVol)*100);
 this.blackout2=false;
+
 		  
 	  },(err: HttpErrorResponse)=>{
-		  alert(err.message+"error");
+		  //alert(err.message+"error");
 		  console.log(err.message);
 	  })
 	  
@@ -451,4 +649,62 @@ export interface DailyOutSummary{
 }
 export interface SearchDashboardReq{
 	bankName:string;
+}
+export interface VolumeGraphIn{
+	transDate:string;
+	Cnt:number;
+	Receipient:string;
+}
+export interface VolumeGraphOut{
+	transDate:string;
+	Cnt:number;
+	Receipient:string;
+}
+
+export interface AnalysisResponse{
+	InLast5Vol:number;
+	InLast5Failed:number;
+	InLast5Success:number;
+	InLast5SuccessRate:number;
+	InLast5Summary:InLast5Summary[];
+	DailyInVol: number;
+	DailyInFailed: number;
+	DailyInSuccess: number;
+	DailyInSuccessRate: number;
+	DailyInFailedRate:number;
+	DailyInSummary:DailyInSummary[];
+	OutLast5Vol: number,
+	OutLast5Failed: number,
+	OutLast5Success: number,
+	OutLast5SuccessRate:number;
+	OutLast5Summary:OutLast5Summary[];
+	DailyOutVol:number;
+	DailyOutFailed:number;
+	DailyOutSuccess:number;
+	DailyOutSuccessRate:number;
+	DailyOutFailedRate:number;
+	DailyOutSummary:DailyOutSummary[];
+	DateLabel:string;
+	LabelLastFive:string;
+	InDailySuccessCnt:number;
+	OutDailySuccessCnt:number;
+	Out5Cnt:number;
+	In5Cnt:number;
+	VolGraphIn:VolumeGraphIn[];
+	VolGraphOut:VolumeGraphOut[];
+}
+
+export interface PopulateResp{
+	bankName:string;
+	bankLogo:string;
+	bankCode:string;
+	inRate:number;
+	outRate:number;
+	inVolume:number,
+    outVolume: number,
+    totalRate: number,
+    IndInRate: number,
+    IndOutRate: number,
+    IndOutVolume: number,
+    IndInVolume: number
 }

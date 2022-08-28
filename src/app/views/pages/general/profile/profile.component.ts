@@ -9,8 +9,10 @@ import { UserService } from 'src/app/services/user.service';
 export class ProfileComponent implements OnInit {
   @Input() Obj={fullnames:localStorage.getItem("fullnames"),email:localStorage.getItem("email"),phone:localStorage.getItem("phone"),userID:parseInt(localStorage.getItem("userID"))}
   @Input() Obj2={oldpassword:"",newpassword:"",confirmpassword:"",email:localStorage.getItem("email")}
-  fullnames="";
-  email="";
+  fullnames:string="";
+  logonnames="";
+  logonemail="";
+  email:string="";
   phone="";
   bankName="";
   roleName="";
@@ -23,10 +25,16 @@ export class ProfileComponent implements OnInit {
   messagefailed="";
   msg="";
   msgfailed="";
-  constructor(private us:UserService) { }
+  constructor(private us:UserService) { 
+      
+
+  }
 
   ngOnInit(): void {
+    //alert("Full Names:"+localStorage.getItem("fullnames"));
     this.fullnames=localStorage.getItem("fullnames");
+   this.logonnames=localStorage.getItem("logonnames");
+   this.logonemail=localStorage.getItem("logonemail");
     this.email=localStorage.getItem("email");
     this.phone=localStorage.getItem("phone");
     this.bankName=localStorage.getItem("bankName");
@@ -35,6 +43,7 @@ export class ProfileComponent implements OnInit {
   }
   
   UpdateProfile(data: UpdateProfileRequest){
+    
     this.showresult=false;
     this.showresultfailed=false;
     this.showpasswordpass=false;

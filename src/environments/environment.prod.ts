@@ -35,8 +35,47 @@ export const environment = {
   menuURL:'http://localhost:8585/auth/permissions',
   bankusersurl:'http://localhost:8585/users/bankusers',
 
-  socketUrl:'http://localhost:8586'*/
+  socketUrl:'http://localhost:8586'
   
+  /*listbankurl:'https://tpmsuat.ipsl.co.ke:8585/banks/',
+  updatebankurl:'https://tpmsuat.ipsl.co.ke:8585/banks/UpdateBank',
+  addbankurl:'https://tpmsuat.ipsl.co.ke:8585/banks/AddBank',
+  searchbankurl:'https://tpmsuat.ipsl.co.ke:8585/banks/search',
+  listerrorurl:'https://tpmsuat.ipsl.co.ke:8585/error/',
+  updateerrorurl:'https://tpmsuat.ipsl.co.ke:8585/error/UpdateErrorCode',
+  adderrorcodeurl:'https://tpmsuat.ipsl.co.ke:8585/error/AddErrorCode',
+  searcherrorcodeurl:'https://tpmsuat.ipsl.co.ke:8585/error/search',
+  checkcodeurl:'https://tpmsuat.ipsl.co.ke:8585/banks/CheckCode',
+  //dashboardurl:'http://localhost:8585/dashboard',
+  //dashboardurl:'http://localhost:61681/api/dashboard',
+  dashboardurl:'https://tpmsuat.ipsl.co.ke:4433/ReportAPI/api/Dashboard',
+  Inddashboardurl:'https://tpmsuat.ipsl.co.ke:4433/ReportAPI/api/IndustryDashboard',
+  dashboardurl2:'https://tpmsuat.ipsl.co.ke:4433/ReportAPI/api/Dashboard',
+  //searchdashboardurl:'http://localhost:8585/dashboard/search',
+  searchdashboardurl:'https://tpmsuat.ipsl.co.ke:4433/ReportAPI/api/dashboardsearch',
+  usersurl:'https://tpmsuat.ipsl.co.ke:8585/users',
+  checkemailurl:'https://tpmsuat.ipsl.co.ke:8585/users/CheckEmail',
+  rolesurl:'https://tpmsuat.ipsl.co.ke:8585/users/roles',
+  updateuserprofileurl:'https://tpmsuat.ipsl.co.ke:8585/users/UpdateUser',
+  addnewuserurl:'https://tpmsuat.ipsl.co.ke:8585/users/AddUser',
+  searchuserurl:'https://tpmsuat.ipsl.co.ke:8585/users/search',
+  searchbankuserurl:'https://tpmsuat.ipsl.co.ke:8585/users/searchbankusers',
+  resetuserurl:'https://tpmsuat.ipsl.co.ke:8585/users/ResetPassword',
+  colorcodeurl:'http://tpmsuat.ipsl.co.ke:8585/display/',
+  updatecoloururl:'https://tpmsuat.ipsl.co.ke:8585/display/UpdateDisplaySettings',
+  addcoloururl:'https://tpmsuat.ipsl.co.ke:8585/display/addNewDisplaySettings',
+  dashboardanalytics:'https://tpmsuat.ipsl.co.ke:8585/dashboard/analytics',
+  authurl:'https://tpmsuat.ipsl.co.ke:8585/auth/login',
+  //authurl:'https://tpms.ipsl.co.ke:4433/ReportAPI/api/login',
+  updateProfileurl:'https://tpmsuat.ipsl.co.ke:8585/users/UpdateProfile',
+  geteffreporturl:'https://tpmsuat.ipsl.co.ke:4433/ReportAPI/api/Report',
+  //geteffreporturl:'http://localhost:61681/api/Report',
+  dashboardanalysisurl:'https://tpmsuat.ipsl.co.ke:4433/ReportAPI/api/DashboardAnalysis',
+  changepasswordurl:'https://tpmsuat.ipsl.co.ke:8585/users/ChangePassword',
+  menuURL:'https://tpmsuat.ipsl.co.ke:8585/auth/permissions',
+  bankusersurl:'https://tpmsuat.ipsl.co.ke:8585/users/bankusers',
+  socketUrl:'https://tpmsuat.ipsl.co.ke:8586',*/
+
   listbankurl:'https://tpms.ipsl.co.ke:8585/banks/',
   updatebankurl:'https://tpms.ipsl.co.ke:8585/banks/UpdateBank',
   addbankurl:'https://tpms.ipsl.co.ke:8585/banks/AddBank',
@@ -61,12 +100,13 @@ export const environment = {
   searchuserurl:'https://tpms.ipsl.co.ke:8585/users/search',
   searchbankuserurl:'https://tpms.ipsl.co.ke:8585/users/searchbankusers',
   resetuserurl:'https://tpms.ipsl.co.ke:8585/users/ResetPassword',
-  colorcodeurl:'http://tpms.ipsl.co.ke:8585/display/',
+  colorcodeurl:'https://tpms.ipsl.co.ke:8585/display/',
   updatecoloururl:'https://tpms.ipsl.co.ke:8585/display/UpdateDisplaySettings',
   addcoloururl:'https://tpms.ipsl.co.ke:8585/display/addNewDisplaySettings',
   dashboardanalytics:'https://tpms.ipsl.co.ke:8585/dashboard/analytics',
   authurl:'https://tpms.ipsl.co.ke:8585/auth/login',
-  updateProfileurl:'https://tpms.ipsl.co.ke:8585/users/UpdateProfile',
+  //authurl:'https://tpms.ipsl.co.ke:4433/ReportAPI/api/login',
+  updateProfileurl:'http://tpms.ipsl.co.ke:8585/users/UpdateProfile',
   geteffreporturl:'https://tpms.ipsl.co.ke:4433/ReportAPI/api/Report',
   //geteffreporturl:'http://localhost:61681/api/Report',
   dashboardanalysisurl:'https://tpms.ipsl.co.ke:4433/ReportAPI/api/DashboardAnalysis',
@@ -74,6 +114,8 @@ export const environment = {
   menuURL:'https://tpms.ipsl.co.ke:8585/auth/permissions',
   bankusersurl:'https://tpms.ipsl.co.ke:8585/users/bankusers',
   socketUrl:'https://tpms.ipsl.co.ke:8586'
+
+  
 
 };
 

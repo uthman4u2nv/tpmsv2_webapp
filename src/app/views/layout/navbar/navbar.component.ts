@@ -12,6 +12,8 @@ export class NavbarComponent implements OnInit {
 
   email="";
   fullnames="";
+  rolename="";
+  bankname="";
   constructor(
     @Inject(DOCUMENT) private document: Document, 
     private renderer: Renderer2,
@@ -21,6 +23,8 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     this.email=localStorage.getItem('email').toString();
     this.fullnames=localStorage.getItem("fullnames").toString();
+    this.rolename=localStorage.getItem("roleName").toString();
+    this.bankname=localStorage.getItem("bankName").toString();
   }
 
   SignOut(){

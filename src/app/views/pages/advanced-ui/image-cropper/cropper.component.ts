@@ -33,6 +33,7 @@ const htmlToPdfmake = require("html-to-pdfmake");
 })
 export class ImageCropperComponent implements OnInit {
   percentageValue: (value: number) => string;
+  gauge:string;
 
   thresholdConfig = {
     '0': {color: 'green'},

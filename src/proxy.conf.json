@@ -1,0 +1,8 @@
+  {
+    "/#/auth*": {
+      "target": "https://tpms.ipsl.co.ke:8585",
+      "secure": true,
+      "changeOrigin": true
+      
+    }
+  }

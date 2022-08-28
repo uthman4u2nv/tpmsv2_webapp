@@ -2,7 +2,13 @@
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a routerLink=".">Efficiency Report</a></li>
     <li class="breadcrumb-item active" aria-current="page">Generate Report</li>
-  </ol>
+    
+  </ol><hr />
+  <li class="list-group-item"><strong>Instructions:</strong>Select from a Friday to another Friday, Select a bank to view data, Click on Search to generate report</li>
+      
+  
+
+  
 </nav>
 
 <div class="row">
@@ -47,7 +53,7 @@
   <table class="table table-bordered table-striped">
 
       <!--<tr>
-          <!--<td class="col-md-1z" valign="middle"></td>-->
+          <td class="col-md-1z" valign="middle"></td>-->
           <!--<td class="col-md-11z text-center" colspan="3"  valign="middle" style="white-space: nowrap;">
             <img src="../../../../../assets/images/logoipsl - Copy.png"  />&nbsp;&nbsp;<br />
               <h4><strong>INTEGRATED PAYMENT SERVICES LIMITED</strong></h4>
@@ -107,12 +113,13 @@
       </ngx-gauge>-->
       <mwl-gauge
       [max]="100"
-      class="seven"
+      [class]="gauge"
+      [dialClass]="gauge"
       [dialStartAngle]="-90"
       [dialEndAngle]="-90.001"
       [value]="r.PCTEFF"
       [label]="percentageValue"
-      [animated]="true"
+      [animated]="false"
       [animationDuration]="1"
     >
     </mwl-gauge>
@@ -165,6 +172,8 @@ darkcyan
       </ngx-gauge>-->
       <mwl-gauge
       [max]="100"
+      [class]="gauge"
+      [dialClass]="gauge"
       [dialStartAngle]="-90"
       [dialEndAngle]="-90.001"
       [value]="rr.PCTEFF"
@@ -213,6 +222,8 @@ darkcyan
                                             </ngx-gauge>-->
                                             <mwl-gauge
       [max]="100"
+      [class]="gauge"
+      [dialClass]="gauge"
       [dialStartAngle]="-90"
       [dialEndAngle]="-90.001"
       [value]="LinkUptime"
@@ -224,7 +235,7 @@ darkcyan
                                             </div>
                                             <div class="col-lg-6">
                                                 <table class="table table-striped">
-                                                    <tr><td><strong>BANK</strong></td><td><strong>{{LinkUptime}}%</strong></td></tr>
+                                                    <tr><td><strong>BANK</strong></td><td><strong>{{LinkUptime}}</strong></td></tr>
                                                     <tr><td><strong>BANK RATING</strong></td><td><strong></strong></td></tr>
                                                 </table>
                                             </div>
@@ -319,7 +330,7 @@ darkcyan
                                             <tr style="background-color: #c9e9f6 !important;padding-left: 5px !important"><td style="padding-left:5px !important;"><strong>Measures</strong></td><td style="padding-left:5px !important"><strong>Overall Bank's Performance</strong></td><td style="padding-left:5px !important"><strong>Benchmark</strong></td><td style="padding-left:5px !important;"><strong>Meet Requirement</strong></td></tr>
                                             <tr style="background-color: #ffc0cb  !important;padding-left: 5px !important"><td style="padding-left:5px !important;"><strong>Transaction Success Rate</strong></td><td style="padding-left:5px !important;"><strong>{{aggregatetrans | number : '1.2-2'}}%</strong></td><td style="padding-left:5px !important;"><strong>90%</strong></td><td style="padding-left:5px !important;"><strong><span *ngIf="aggregatetrans >= 90">Yes</span><span *ngIf="aggregatetrans < 90">No</span></strong></td></tr>
                                             <tr style="background-color: #ffc0cb  !important;padding-left: 5px !important"><td style="padding-left:5px !important;"><strong>Transaction Failure Rate</strong></td><td style="padding-left:5px !important;"><strong>{{100-aggregatetrans | number : '1.2-2'}}%</strong></td><td style="padding-left:5px !important;"><strong>10%</strong></td><td style="padding-left:5px !important;"><strong><span *ngIf="100-aggregatetrans <= 10">Yes</span><span *ngIf="100-aggregatetrans > 10">No</span></strong></td></tr>
-                                            <tr style="background-color: #c9e9f6 !important;padding-left:5px !important"><td style="padding-left:5px !important;"><strong>Network Uptime</strong></td><td style="padding-left:5px !important;"><strong>{{LinkUptime}}%</strong></td><td style="padding-left:5px !important;"><strong>90%</strong></td><td style="padding-left:5px !important;"><strong><span *ngIf="LinkUptime >=90">Yes</span><span *ngIf="LinkUptime < 90">No</span></strong></td></tr>
+                                            <tr style="background-color: #c9e9f6 !important;padding-left:5px !important"><td style="padding-left:5px !important;"><strong>Network Uptime</strong></td><td style="padding-left:5px !important;"><strong>{{LinkUptime}}</strong></td><td style="padding-left:5px !important;"><strong>90%</strong></td><td style="padding-left:5px !important;"><strong><span *ngIf="LinkUptime >=90">Yes</span><span *ngIf="LinkUptime < 90">No</span></strong></td></tr>
                                             <tr style="background-color: #ffc0cb  !important;padding-left:5px !important"><td style="padding-left:5px !important;"><strong>Aggregated Rating</strong></td><td style="padding-left:5px !important;"><strong>{{aggregatetrans*0.6+LinkUptime/100*40 | number : '1.2-2'}}%</strong></td><td style="padding-left:5px !important;"><strong>90%</strong></td><td style="padding-left:5px !important;"><strong><span *ngIf="aggregatetrans*0.6+LinkUptime/100*40 >=90">Yes</span><span *ngIf="aggregatetrans*0.6+LinkUptime/100*40 < 90">No</span></strong></tr>
                                             <!--<tr style="background-color: #c9e9f6 !important;padding-left:5px !important"><td style="padding-left:5px !important;"><strong>Bank Rank</strong></td><td style="padding-left:5px !important;"><strong></strong></td><td></td><td></td></tr>-->
 

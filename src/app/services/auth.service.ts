@@ -12,13 +12,14 @@ export class AuthService {
   authurl=environment.authurl;
   constructor(public http:HttpClient) { }
   Login(data: LoginRequest): Observable<LoginResponse>{
-    return this.http.post<LoginResponse>(this.authurl,data,{responseType:'json'}).pipe(
+    /*return this.http.post<LoginResponse>(this.authurl,data,{responseType:'json'}).pipe(
       retry(5),
       catchError(()=>{
         return EMPTY;
       }),
       shareReplay()
-    );
+    );*/
+    return this.http.post<LoginResponse>(this.authurl,data,{responseType:'json'})
   }
 }
 

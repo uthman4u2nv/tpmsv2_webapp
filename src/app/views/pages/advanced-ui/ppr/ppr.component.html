@@ -1,0 +1,140 @@
+<nav class="page-breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a routerLink=".">Product Performance Report</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Generate Report</li>
+      
+    </ol><hr />
+    <li class="list-group-item"><strong>Instructions:</strong>Select an Ending Date and a bank to view data, Click on Search to generate report</li>
+        
+    
+  
+    
+  </nav>
+  
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          
+        
+          <div class="row">
+            <div class="col-md-3"><input type="date"name="dateFrom" required [(ngModel)]="Obj.date" required  class="form-control" /></div>
+             <div class="col-md-3">
+              <select class="form-control" [(ngModel)]="Obj.bankName" required name="bank">
+                <option>Select Bank</option>
+                <option *ngFor="let b of banks" [value]="b.name">{{b.name}}</option>
+              </select>
+            
+            </div>
+            <div class="col-md-3">
+                <input type="submit" (click)="GenerateReport(Obj)" class="btn btn-success" value="Search" />
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-primary" (click)="convertToPDF()" *ngIf="displayresult">Export To PDF</button>
+            </div>
+          <!--<div id="pdfTable" #pdfTable>
+            This is me
+          </div>-->
+          </div>
+          
+          <div id="mypdf" #pdfTable>
+          <div class="row" *ngIf="displayresult">
+            <div class="col-lg-6 offset-lg-3">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <p><img src="assets/images/logoipsl2.png" /></p>
+                        <h5>INTEGRATED PAYMENT SERVICES LIMITED</h5>
+                        <h5>{{bankName}} STATISTICAL INFORMATION ON PESALINK FOR THE WEEK ENDING {{date}} </h5>
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+
+          <div class="row" *ngIf="displayresult" style="margin-top: 20px;">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body table-responsive" style="overflow-x: auto !important;">
+                <!--F69423-->
+                        <table class="table table-striped">
+                            <tr style="background-color: #09B6CB; border:1px solid;border-color:#F69423;color: #fff;">
+                            <td>RANK</td>
+                            <td>BANK NAME</td>
+            
+                            <td>TOTAL RECEIVED ITEMS</td>
+                            <td>MKT SHARE VOL</td>
+                            <td>TOTAL AMOUNT RECEIVED</td>
+                            <td>MKT SHARE VOL</td>
+            
+                            <td>TOTAL PRESENTED ITEM</td>
+                            <td>MKT SHARE VOL</td>
+                            <td>TOTAL AMOUNT PRSENTED</td>
+                            <td>MKT SHARE VOL</td>
+                            
+
+                            <td>TOTAL DECLINED BY RECEIVING BANK</td>
+                            <td>MKT SHARE VOL</td>
+                            <td>TOTAL AMOUNT DECLINED BY RECEIVING BANK</td>
+                            <td>MKT SHARE VOL</td>
+                            </tr>
+                            <tr *ngFor="let row of report; let i=index;">
+                                <td>{{i+1}}</td>
+                                <td><span *ngIf="bankName ===row.bankName">{{row.BankName}}</span>
+                                    <span *ngIf="bankName !=row.bankName">XXBank</span>
+                                    
+                                    <ng-template #fullbankName>
+                                        <span>{{row.BankName}}</span>
+                                      </ng-template>
+                                </td>
+                                <td>{{row.Volume | number}}</td>
+                                <td>{{row.mktShareVolumeInward}}%</td>
+                                <td>{{row.InwardValue | number}}</td>
+                                <td>{{row.mktShareValueInward}}%</td>
+            
+                                <td>{{row.OutwardVolume | number}}</td>
+                                <td>{{row.mktShareVolumeOutward}}%</td>
+                                <td>{{row.OutwardValue | number}}</td>
+                                <td>{{row.mktShareValueOutward}}%</td>
+
+                                <td>{{row.FailedVolume | number}}</td>
+                                <td>{{row.mktShareVolumeFailed}}%</td>
+                                <td>{{row.FailedValue | number}}</td>
+                                <td>{{row.mktShareValueFailed}}%</td>
+            
+            
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td><strong>TOTAL</strong></td>
+                                <td><strong>{{TotalVolumeInwards | number}}</strong></td>
+                                <td><strong>100%</strong></td>
+                                <td><strong>{{TotalValueInwards | number}}</strong></td>
+                                <td><strong>100%</strong></td>
+            
+                                <td><strong>{{TotalVolumeOutwards | number}}</strong></td>
+                                <td><strong>100%</strong></td>
+                                <td><strong>{{TotalValueOutwards | number}}</strong></td>
+                                <td><strong>100%</strong></td>
+
+                                <td><strong>{{TotalVolumeFailed | number}}</strong></td>
+                                <td><strong>100%</strong></td>
+                                <td><strong>{{TotalValueFailed | number}}</strong></td>
+                                <td><strong>100%</strong></td>
+            
+            
+                            </tr>
+                        </table>
+                        <span>THE INDUSTRY REPORT IS FOR ALL OUTWARD AND INWARD TRANSACTIONS FROM BANKS, MMOS & OFIS								
+                        </span>
+                    </div>
+                </div>
+            </div>
+            
+
+          </div>
+          </div>
+        
+        </div>
+      </div>
+    </div>
+  </div>

@@ -39,6 +39,8 @@ export class LoginComponent implements OnInit {
       if(d.responseCode=="00"){
         this.blackout=false;
         localStorage.setItem("fullnames",d.fullnames);
+        localStorage.setItem("logonnames",d.fullnames);
+        localStorage.setItem("logonemail",d.email);
         localStorage.setItem("email",d.email);
         localStorage.setItem("phone",d.phone);
         localStorage.setItem("bank",d.bank.toString());

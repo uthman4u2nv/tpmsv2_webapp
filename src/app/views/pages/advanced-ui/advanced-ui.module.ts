@@ -25,6 +25,8 @@ import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { NgxGaugeModule } from 'ngx-gauge';
 import { GaugeModule } from 'angular-gauge';
+import { PprComponent } from './ppr/ppr.component';
+
 
 /*const config: SocketIoConfig = {
 	url: environment.socketUrl, // socket server url;
@@ -58,7 +60,11 @@ const routes: Routes = [
        // path: 'sweet-alert',
         path: 'dashboard-new',
         component: SweetAlertComponent
-      }
+      },
+      {
+         path: 'ppr',
+         component: PprComponent
+       }
     ]
   }
 ]
@@ -66,7 +72,7 @@ const routes: Routes = [
 
 
 @NgModule({
-  declarations: [AdvancedUiComponent, ImageCropperComponent, OwlCarouselComponent, SweetAlertComponent,GuagechartComponent],
+  declarations: [AdvancedUiComponent, ImageCropperComponent, OwlCarouselComponent, SweetAlertComponent,GuagechartComponent, PprComponent],
   exports: [GuagechartComponent],
   
   imports: [

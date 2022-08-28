@@ -16,7 +16,7 @@
   </div>
 </div>-->
 <div class="row" style="background-color: #ffff; padding:5px; margin-top: 0px !important;">
-  <div class="col-lg-10"><a (click)="openFullscreen()" alt="Full Screen Mode" title="Full Screen" style="color: black;"> <i data-feather="airplay" appFeatherIcon></i>Full Screen Mode</a> | <strong>Showing Data for: {{displaytime}}</strong></div>
+  <div class="col-lg-10 fs"><a (click)="openFullscreen()" alt="Full Screen Mode" title="Full Screen" style="color: black;"> <i data-feather="airplay" appFeatherIcon></i>Full Screen Mode</a> | <strong>Showing Data for: {{displaytime}}</strong></div>
     <div class="col-lg-2 text-right"><input type="text" class="form-control" placeholder="Search Bank" (keyup)="SearchDashboard($event)" /></div>
 </div>
 
@@ -34,7 +34,7 @@
             <div class="row" style="padding:5px !important" >
              
               
-               <div class="col-md-6 blockss" style="margin-right: -20px !important;">               
+               <div class="col-md-6 blockss " style="margin-right: -20px !important;">               
                 
                 <div class="align-items-end">
                 <small>                 
@@ -51,7 +51,7 @@
                   </small>
                 </div>
               </div>
-              <div class="col-md-6 blockss text-left">
+              <div class="col-md-6 blockss text-left ">
                 
                 <div class="align-items-end">
                 <small>
@@ -250,7 +250,9 @@
                   <div class="col-lg-8">
                     <table class="table">
                       <tr><td class="col-md-3" style="white-space:normal; word-wrap: break-word;min-width: 160px;max-width: 160px;">Status</td><td class="col-md-3">Volume</td></tr>
-                    <tr *ngFor="let e of DailySummary"><td>{{e.CodeName}} - ({{e.Code}})</td><td>{{e.CodeCount}}</td></tr> 
+                    <tr *ngFor="let e of DailySummary"><td>{{e.CodeName}} - ({{e.Code}})</td><td>{{e.CodeCount}} 
+                     
+                    </td></tr> 
                                  </table>
                   </div>
                   
@@ -343,23 +345,36 @@
             <ng-template ngbNavContent>
               <div class="card">
                 <div class="card-body">
-                  <h6 class="card-title">VOLUME</h6>
-          
-                  <canvas baseChart
-                    [datasets]="lineChartData"
-                    [labels]="lineChartLabels"
-                    [options]="lineChartOptions"
-                    [colors]="lineChartColors"
-                    [legend]="lineChartLegend"
-                    [chartType]="lineChartType"
-                    [plugins]="lineChartPlugins">
-                  </canvas>
-          
+                  <h6 class="card-title">VOLUME</h6><!--[datasets]="lineChartData"-->
+          <div><canvas baseChart            
+            [datasets]="lineChartData"
+            [labels]="lineChartLabels"
+            [options]="lineChartOptions"
+            [colors]="lineChartColors"
+            [legend]="lineChartLegend"
+            [chartType]="lineChartType"
+            [plugins]="lineChartPlugins">
+          </canvas></div>
+                  
+                  <!--<canvas id="myChart" width="1200px" height="400"></canvas>-->
+
+                  <!--<google-chart 
+    [type]="chartData.type" 
+    [data]="chartData.data" 
+    [columns]="chartData.columnNames" 
+    [options]="chartData.options" 
+    [width]="chartData.width"
+    [height]="chartData.height">
+      
+</google-chart>-->
+                  <!--<div id="chart123">
+                  </div>-->
                 </div>
               </div>
             </ng-template>
+            
           </li>
-          <li [ngbNavItem]="4">
+          <!--<li [ngbNavItem]="4">
             <a ngbNavLink>FAILURE RATE</a>
             <ng-template ngbNavContent>
               <div class="card">
@@ -379,11 +394,11 @@
                 </div>
               </div>
             </ng-template>
-          </li>
+          </li>-->
         </ul>
         
         <div [ngbNavOutlet]="defaultNav" class="border border-top-0 p-3"></div>
-        <p class="mt-2">Active: {{ defaultNavActiveId }}</p>
+        <!--<p class="mt-2">Active: {{ defaultNavActiveId }}</p>-->
         
       
         

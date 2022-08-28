@@ -1,4 +1,4 @@
-<nav class="sidebar" style="background-image: url(../../../../assets/images/images.jpg);">
+<nav class="sidebar" >
   <div class="sidebar-header">
 
     <!--- Logo -->
@@ -16,11 +16,11 @@
     </div>
 
   </div>
-  <div class="sidebar-body" (mouseenter)="operSidebarFolded()" (mouseleave)="closeSidebarFolded()" [perfectScrollbar]>
+  <div class="sidebar-body"   (mouseenter)="operSidebarFolded()" (mouseleave)="closeSidebarFolded()" [perfectScrollbar]>
 
     <!--- Sidemenu start -->
 
-    <ul class="sidebar-nav metismenu" id="sidebar-menu" #sidebarMenu>
+    <ul class="sidebar-nav metismenu" id="sidebar-menu"  #sidebarMenu>
       <ng-container *ngFor="let item of menuItems">
         <li class="nav-item nav-category" *ngIf="item.isTitle">{{ item.label }}</li>
     
@@ -79,8 +79,8 @@
         </a>
       </li>
     </ul>
-    <div class="text-center table-responsive rounded-circle"  style="overflow: hidden;">
-    <img src="../../../../assets/images/logoipsl2.png" />
+    <div class="text-center table-responsive"  style="overflow: hidden;">
+    <img src="../../../../assets/images/logoipsl3.png" height="50" width="50" />
     </div>
 
     <!--- Sidemenu end -->

@@ -21,7 +21,7 @@ export class NgxDatatableComponent implements OnInit {
   ColumnMode = ColumnMode;
   selected: any[] = [];
   SelectionType = SelectionType;
-  bankName:string;
+  bankName="";
   bankLogo:string;
   updateInfo:boolean=false;
   addResp:boolean=false;

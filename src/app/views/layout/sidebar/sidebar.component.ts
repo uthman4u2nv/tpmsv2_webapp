@@ -54,7 +54,11 @@ export class SidebarComponent implements OnInit, AfterViewInit {
     const desktopMedium = window.matchMedia('(min-width:1200px) and (max-width: 1400px)');
     
     desktopMedium.addListener(this.iconSidebar);
-    this.iconSidebar(desktopMedium);
+    
+    this.document.body.classList.toggle('sidebar-folded');
+    this.document.body.classList.add('sidebar-dark');
+
+    //this.iconSidebar(desktopMedium);
   }
 
   ReturnMenu(data: menuReq){

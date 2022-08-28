@@ -4,6 +4,35 @@
     grid-template-columns: repeat(6, 1fr);
     grid-gap: 10px;
 }
+@media screen and (max-width: 768px) {
+    .bbx {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 5px;
+       
+   
+       
+        
+    }
+    .tp{
+        display: none;
+        font-size: 0;
+    }
+    .fs{
+        font-size: 0;
+    }
+    .card{
+        height: 100%;
+        width: 100%;
+        justify-content: center;
+        display: flex;
+    }
+    .blockss {
+        //border: 1px solid red;
+        text-align: left;
+        vertical-align: middle;
+    }
+  }
 .blink-bg {
     color: #fff;
     animation: blinkingBackground 2s infinite;
@@ -194,21 +223,28 @@ color: #fff;
             padding: 10px;
           }
           mwl-gauge > .gauge > .dial {
-            stroke: #eee;
-            stroke-width: 2;
+            stroke: green;
+            stroke-width: 10;
             fill: rgba(0, 0, 0, 0);
           }
           mwl-gauge > .gauge > .value {
-            stroke: rgb(47, 227, 255);
-            stroke-width: 2;
+            stroke: orangered;
+            stroke-width: 10;
             fill: rgba(0, 0, 0, 0);
           }
           mwl-gauge > .gauge > .value-text {
-            fill: rgb(47, 227, 255);
+            fill: blueviolet;
             font-family: sans-serif;
             font-weight: bold;
             font-size: 1em;
           }
 
-
+.page-content{
+    background-color: lightcyan;
+    //background-image: url("./assets/images/images.jpg");
+}
          
+#chart {
+    max-width: 650px;
+    margin: 35px auto;
+  }
